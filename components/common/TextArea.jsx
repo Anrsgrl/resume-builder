@@ -1,6 +1,6 @@
 const TextArea = ({ state, setState, label, name }) => {
   return (
-    <div class="relative">
+    <div className="relative">
       <textarea
         type="text"
         name={name}

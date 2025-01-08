@@ -1,6 +1,6 @@
 const Input = ({ state, setState, label, name }) => {
   return (
-    <div class="relative">
+    <div className="relative">
       <input
         type="text"
         name={name}
