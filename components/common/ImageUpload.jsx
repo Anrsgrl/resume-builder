@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useStore from "@/store/store";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
@@ -20,6 +20,12 @@ const ImageUpload = () => {
     }
   };
 
+  useEffect(() => {
+    if (image !== null) {
+      setImagePreview(image);
+    }
+  }, [image]);
+
   const deleteImage = () => {
     if (window.confirm("Are you sure you want to delete?")) {
       setImage(null);
@@ -30,7 +36,7 @@ const ImageUpload = () => {
   return (
     <div className="flex flex-col items-center">
       <div className="w-20 h-20 relative">
-        {imagePreview ? (
+        {imagePreview && image ? (
           <img
             src={imagePreview}
             alt="Preview"
