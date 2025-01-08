@@ -1,18 +1,14 @@
 "use client";
-import Button from "@/components/common/Button";
-import Input from "@/components/common/Input";
-import React, { useState } from "react";
+import Personal from "@/components/layout/Personal";
+import { useSearchParams } from "next/navigation";
+import React from "react";
 
 const Build = () => {
-  const [name, setName] = useState("");
-  return (
-    <div className="mt-20 px-10 flex flex-col gap-2">
-      <Input state={name} setState={setName} label="Name" name="name" />
-      <Button onClick={() => alert("namne")} animation={true}>
-        Name
-      </Button>
-    </div>
-  );
+  const searchParams = useSearchParams();
+
+  const step = searchParams.get("step");
+
+  return <div>{step == 1 && <Personal />}</div>;
 };
 
 export default Build;
