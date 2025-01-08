@@ -17,7 +17,7 @@ export default function Home() {
       <Image src={logo} alt="logo" width={300} className="drop-shadow-lg" />
       <h1 className="text-white text-3xl font-bold text-center">
         {t("title")}{" "}
-        <span className="text-main font-bold uppercase underline">
+        <span className="font-bold relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-main to-main/80 animate-glow uppercase">
           {t("free")}
         </span>
       </h1>
