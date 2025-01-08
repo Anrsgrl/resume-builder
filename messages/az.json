@@ -1,7 +1,9 @@
 {
     "Home": {
-      "title": "Pulsuz şəkildə CV-nizi asanlıqla hazırlayın!",
-      "startButton": "Hazırlamağa Başla"
+      "title": "CV-nizi asanlıqla hazırlayın!",
+      "free": "Pulsuz şəkildə!",
+      "startButton": "Hazırlamağa Başla",
+      "how": "Necə işləyir?"
     },
     "How": {
       "how": "Necə işləyir?",

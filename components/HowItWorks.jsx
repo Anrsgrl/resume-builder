@@ -5,11 +5,18 @@ import {
   BsPaperclip,
   BsDownload,
 } from "react-icons/bs";
-
-const HowItWorks = () => {
+import { IoCloseCircleSharp } from "react-icons/io5";
+const HowItWorks = ({ setHowModal }) => {
   const t = useTranslations("How");
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md text-center">
+    <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md text-center relative">
+      <button
+        onClick={() => setHowModal(false)}
+        type="button"
+        className="absolute top-0 right-0 hover:rotate-90 animation-all"
+      >
+        <IoCloseCircleSharp size={36} className="text-red-400" />
+      </button>
       <div className="flex flex-col items-center justify-center gap-2 my-1 text-emerald-700 mb-4">
         <BsFillQuestionOctagonFill size={36} />
         <h2 className="text-xl font-semibold">{t("how")}</h2>

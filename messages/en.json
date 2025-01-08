@@ -1,7 +1,9 @@
 {
    "Home":{
-        "title": "Create a professional resume effortlessly and free!",
-        "startButton": "Start Building"
+        "title": "Create a professional resume effortlessly and",
+        "free": "free!",
+        "startButton": "Start Building",
+        "how": "How It Works"
     },
     "How":{
         "how": "How It Works",

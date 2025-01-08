@@ -7,7 +7,7 @@ export const metadata = {
   description: "Building ATS friendly Resume",
 };
 
-export default async function RootLayout({ children, params: { locale } }) {
+export default async function RootLayout({ children, locale }) {
   const messages = await getMessages();
 
   return (
