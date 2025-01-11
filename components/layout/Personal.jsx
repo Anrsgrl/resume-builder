@@ -5,6 +5,7 @@ import TextArea from "@/components/common/TextArea";
 import CustomLink from "@/components/common/CustomLink";
 import useStore from "@/store/store";
 import React from "react";
+import Editor from "../shared/Editor";
 
 const Personal = () => {
   const {
@@ -71,7 +72,7 @@ const Personal = () => {
         <Input state={city} setState={setCity} name={"city"} label={"City"} />
       </div>
       <div className="mt-2">
-        <TextArea
+        <Editor
           state={summary}
           setState={setSummary}
           name={"summary"}

@@ -1,4 +1,5 @@
 import "../globals.css";
+import "@/styles/editor.css";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
