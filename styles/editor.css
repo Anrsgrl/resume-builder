@@ -26,6 +26,22 @@
   outline: 0 !important;
   border-bottom: 1px solid rgba(255, 255, 255) !important;
 }
-/* .ql-snow .ql-tooltip input::placeholder{
+.ql-snow .ql-tooltip input::placeholder{
   opacity: 0 !important;
-} */
+}
+/* Bullet list */
+li[data-list="bullet"] {
+  margin-left: 20px;
+  list-style-type: disc;
+}
+
+/* Ordered list */
+li[data-list="ordered"] {
+  margin-left: 20px;
+  list-style-type: decimal;
+  counter-increment: list-counter;
+}
+
+ol[data-list="ordered"] {
+  counter-reset: list-counter;
+}
