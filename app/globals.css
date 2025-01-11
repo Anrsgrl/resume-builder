@@ -42,8 +42,29 @@ input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
   box-shadow: inset 0 0 20px 20px #23232329;
 }
+input::placeholder{
+  color: rgb(156 163 175) !important;
+}
+::-webkit-calendar-picker-indicator{
+  color-scheme: dark;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 3px;
+}
 @layer components {
   .animation-all {
     @apply transition-all ease-in-out duration-300;
   }
+}
+
+
+@media print {
+  #cv-preview {
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: none;
+  }
+}
+#cv-preview {
+  page-break-inside: avoid;
 }
