@@ -1,0 +1,31 @@
+.ql-toolbar.ql-snow,
+.ql-container.ql-snow {
+  border: 0 !important;
+}
+.ql-container {
+  font-size: 14px !important;
+  font-family: inherit !important;
+}
+.ql-snow .ql-tooltip{
+  z-index: 99;
+  border-radius: 12px;
+  color: white !important;
+  background-color: black !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  padding: 20px 10px !important;
+}
+.ql-snow .ql-tooltip input{
+  background-color: transparent;
+  border: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6) !important;
+  transition: all 300ms ease-in-out !important;
+}
+.ql-snow .ql-tooltip input:focus{
+  border: 0 !important;
+  outline: 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255) !important;
+}
+/* .ql-snow .ql-tooltip input::placeholder{
+  opacity: 0 !important;
+} */
