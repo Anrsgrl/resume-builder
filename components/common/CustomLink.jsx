@@ -2,22 +2,36 @@ import Link from "next/link";
 import React from "react";
 import { MdArrowRightAlt } from "react-icons/md";
 
-const CustomLink = ({ children, href, animation, icon, ...props }) => {
+const CustomLink = ({ children, href, animation, icon, prev, ...props }) => {
   return (
     <Link
       href={href}
       {...props}
       type="button"
-      className="w-fit flex items-center gap-1 animation-all group overflow-hidden w-fit px-3 py-1 rounded-lg text-main cursor-pointer border border-main hover:border-main hover:bg-main group font-semibold"
+      className={`w-fit flex items-center gap-1 animation-all group overflow-hidden w-fit px-3 py-1 rounded-lg text-main cursor-pointer border border-main hover:border-main hover:bg-main group font-semibold ${
+        prev && "flex-row-reverse"
+      }`}
     >
       {animation && (
-        <span className="transform -translate-x-5 animation-all group-hover:translate-x-0 opacity-0 group-hover:opacity-100 group-hover:text-white ">
-          <MdArrowRightAlt size={24} />
+        <span
+          className={`transform animation-all  opacity-0 group-hover:opacity-100 group-hover:text-white ${
+            animation && !prev
+              ? "-translate-x-5  group-hover:translate-x-0"
+              : animation && prev
+              ? "translate-x-5  group-hover:translate-x-0"
+              : ""
+          }`}
+        >
+          <MdArrowRightAlt size={24} className={`${prev && "rotate-180"}`} />
         </span>
       )}
       <p
         className={`uppercase text-sm animation-all group-hover:text-white ${
-          animation && "-translate-x-3 group-hover:translate-x-0"
+          animation && !prev
+            ? "-translate-x-3 group-hover:translate-x-0"
+            : animation && prev
+            ? "translate-x-4 group-hover:translate-x-0"
+            : ""
         }`}
       >
         {children}
