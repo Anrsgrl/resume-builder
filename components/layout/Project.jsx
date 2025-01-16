@@ -178,7 +178,7 @@ const Project = () => {
           Prev Step
         </CustomLink>
         <CustomLink
-          href={"/build?step=4"}
+          href={"/build?step=6"}
           shallow={true}
           replace
           animation={true}
