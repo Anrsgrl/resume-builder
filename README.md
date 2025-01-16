@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+  <img src="assets/images/logo.svg" alt="Logo" width="200"/>
+</p>
 
-## Getting Started
+# Resume Builder
 
-First, run the development server:
+Resume Builder is a free and simple tool that allows users to build their resumes without any sign-up required. This project uses Next.js, Zustand, and i18n for localization, making it flexible for future language expansion.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Build a professional resume with ease.
+- No sign-up required for creating and downloading resumes.
+- Multilingual support with initial language options (English and Azerbaijani).
+- Data is stored locally in the browser using `localStorage`.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Technologies Used
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Next.js**: A React framework for building modern web applications.
+- **i18n**: Internationalization for easy language support.
+- **Zustand**: A simple, fast state management tool for React.
+- **localStorage**: Used for storing data locally in the user's browser to avoid reliance on external servers.
 
-## Learn More
+## Localization
 
-To learn more about Next.js, take a look at the following resources:
+The app currently supports English and Azerbaijani languages (i18n). You can easily extend this by adding more language files and updating the `i18n` configuration.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Security
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Data entered by users is stored securely in the browser's `localStorage`. Please refer to the [security documentation](SECURITY.md) for more information about how the data is handled and stored.
 
-## Deploy on Vercel
+## TODO
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Add more templates for different types of resumes.
+- Implement resume customization options for users.
+- Extend multilingual support with additional languages.
+- Enhance UI/UX design for a better user experience.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Contributing
+
+If you'd like to contribute to the project, please check out the [Contributing Guide](CONTRIBUTING.md).
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+For any inquiries, please contact me at [mail@anarr.dev].
