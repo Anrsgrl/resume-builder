@@ -1,5 +1,6 @@
 "use client";
 import Education from "@/components/layout/Education";
+import Experience from "@/components/layout/Experience";
 import Personal from "@/components/layout/Personal";
 import { useSearchParams } from "next/navigation";
 
@@ -12,6 +13,7 @@ const Build = () => {
     <div className="max-w-xl mx-auto">
       {step == 1 && <Personal />}
       {step == 2 && <Education />}
+      {step == 3 && <Experience />}
     </div>
   );
 };
