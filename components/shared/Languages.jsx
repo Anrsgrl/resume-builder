@@ -12,15 +12,15 @@ const Languages = () => {
   const [show, setShow] = useState(false);
 
   const [newLanguage, setNewLanguage] = useState({
-    title: "",
+    language: "",
     level: "",
   });
 
   const handleAddLanguage = () => {
-    if (newLanguage.title && newLanguage.level) {
+    if (newLanguage.language && newLanguage.level) {
       addLanguage(newLanguage);
       setNewLanguage({
-        title: "",
+        language: "",
         level: "",
       });
     }
@@ -47,12 +47,12 @@ const Languages = () => {
         <>
           <div className="grid grid-cols-2 gap-4">
             <Input
-              state={newLanguage.title}
+              state={newLanguage.language}
               setState={(value) =>
-                setNewLanguage({ ...newLanguage, title: value })
+                setNewLanguage({ ...newLanguage, language: value })
               }
-              name="title"
-              label="Title*"
+              name="language"
+              label="Language*"
             />
             <Select
               options={LANGUAGE_OPTIONS}
@@ -77,7 +77,7 @@ const Languages = () => {
                     className="border border-white/50 p-4 rounded-md animation-all"
                   >
                     <summary className="font-bold text-white/80">
-                      {lang.title}
+                      {lang.language}
                     </summary>
                     <p>
                       {

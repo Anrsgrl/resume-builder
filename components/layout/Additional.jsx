@@ -16,7 +16,7 @@ const Additional = () => {
       <References />
       <Languages />
       {/* Navigation Link */}
-      <nav className="flex items-center gap-2">
+      <nav className="flex items-center gap-2 mt-2">
         <CustomLink
           prev={true}
           href={"/build?step=5"}
