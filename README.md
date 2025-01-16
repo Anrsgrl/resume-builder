@@ -1,10 +1,15 @@
-<p align="center">
-  <img src="assets/images/logo.svg" alt="Logo" width="200"/>
-</p>
+<div align="center">
 
 # Resume Builder
 
+<img src="assets/images/logo.svg" alt="Logo" width="200"/>
+
 Resume Builder is a free and simple tool that allows users to build their resumes without any sign-up required. This project uses Next.js, Zustand, and i18n for localization, making it flexible for future language expansion.
+
+<a href="https://resume.anarr.dev">resume.anarr.dev</a>
+
+</div>
+
 
 ## Features
 
