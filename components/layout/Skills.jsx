@@ -36,7 +36,7 @@ const Skills = () => {
       </div>
 
       {/* Skills List */}
-      <div className="mt-6 max-h-56 overflow-auto snap-y">
+      <div className="max-h-56 overflow-auto snap-y">
         {skills.length > 0 && (
           <div className="space-y-4 text-white/80">
             {skills.map((skill, index) => (

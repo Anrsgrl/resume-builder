@@ -64,26 +64,6 @@ body {
   word-wrap: break-word !important;
 }
 
-.skills-list li {
-  font-size: 0.9em;
-  padding: 5px 8px;
-}
-
-
-.skills-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.skills-list li {
-  background-color: #007BFF;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 5px;
-}
-
-
 /** Education Section */
 .education-item {
   margin-bottom: 15px;
@@ -109,3 +89,27 @@ body {
   color: #444;
   line-height: 1.4;
 }
+
+/** Skills Section */
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.skills-list li{
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: #007BFF;
+  padding: 0 8px 12px 8px !important;
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
