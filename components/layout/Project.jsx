@@ -20,7 +20,7 @@ const Project = () => {
   const [newTechnology, setNewTechnology] = useState("");
 
   const handleAddProject = () => {
-    if (newProject.title && newProject.description) {
+    if (newProject.title) {
       addProject(newProject);
       setNewProject({
         title: "",
