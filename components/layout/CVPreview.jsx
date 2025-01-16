@@ -16,9 +16,7 @@ const CVPreview = () => {
           Save Resume as PDF
         </button>
       </div>
-      <div className="max-h-[90dvh] overflow-auto mb-4">
-        <Template1 />
-      </div>
+      <Template1 />
     </>
   );
 };
