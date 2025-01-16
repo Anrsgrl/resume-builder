@@ -1,10 +1,10 @@
 import { useState } from "react";
+import { MdPlayArrow } from "react-icons/md";
 import useStore from "@/store/store";
 import Input from "@/components/common/Input";
-import Button from "../common/Button";
-import { useFormattedTime } from "@/utils/helpers";
-import { MdPlayArrow } from "react-icons/md";
-import Select from "../common/Select";
+import Button from "@/components/common/Button";
+import Select from "@/components/common/Select";
+import { LANGUAGE_OPTIONS } from "@/utils/constants";
 
 const Languages = () => {
   const { languages, addLanguage, removeLanguage } = useStore();
@@ -29,17 +29,6 @@ const Languages = () => {
   const handleRemoveLanguage = (index) => {
     removeLanguage(index);
   };
-
-  const OPTIONS = [
-    { value: "elementary", label: "Elementary Proficiency" },
-    { value: "limited_working", label: "Limited Working Proficiency" },
-    {
-      value: "professional_working",
-      label: "Professional Working Proficiency",
-    },
-    { value: "full_professional", label: "Full Professional Proficiency" },
-    { value: "native_or_bilingual", label: "Native or Bilingual Proficiency" },
-  ];
 
   return (
     <div className="flex flex-col gap-2 border-b border-dashed border-gray-400">
@@ -66,7 +55,7 @@ const Languages = () => {
               label="Title*"
             />
             <Select
-              options={OPTIONS}
+              options={LANGUAGE_OPTIONS}
               state={newLanguage.level}
               setState={(value) =>
                 setNewLanguage({ ...newLanguage, level: value })
@@ -90,7 +79,12 @@ const Languages = () => {
                     <summary className="font-bold text-white/80">
                       {lang.title}
                     </summary>
-                    <p>{OPTIONS.find((e) => e.value === lang.level).label}</p>
+                    <p>
+                      {
+                        LANGUAGE_OPTIONS.find((e) => e.value === lang.level)
+                          .label
+                      }
+                    </p>
                     <button
                       onClick={() => handleRemoveLanguage(index)}
                       className="text-red-500 mt-2"
