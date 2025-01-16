@@ -2,6 +2,7 @@
 import Education from "@/components/layout/Education";
 import Experience from "@/components/layout/Experience";
 import Personal from "@/components/layout/Personal";
+import Project from "@/components/layout/Project";
 import Skills from "@/components/layout/Skills";
 import { useSearchParams } from "next/navigation";
 
@@ -16,6 +17,7 @@ const Build = () => {
       {step == 2 && <Education />}
       {step == 3 && <Experience />}
       {step == 4 && <Skills />}
+      {step == 5 && <Project />}
     </div>
   );
 };

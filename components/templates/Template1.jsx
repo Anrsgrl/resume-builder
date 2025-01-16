@@ -86,7 +86,7 @@ const Template1 = ({}) => {
                   {useFormattedTime(exp.endDate) || "Present"}
                 </p>
                 <div
-                  className="experience-description"
+                  className="description"
                   dangerouslySetInnerHTML={{ __html: exp.description }}
                 ></div>
               </div>
@@ -113,7 +113,34 @@ const Template1 = ({}) => {
           <h3>Projects</h3>
           <ul>
             {projects.map((project, index) => (
-              <li key={index}>{project}</li>
+              <li key={index}>
+                <h4>{project.title}</h4>
+                <p
+                  className="description"
+                  dangerouslySetInnerHTML={{ __html: project.description }}
+                ></p>
+                <p>Technologies: {project.technologies.join(", ")}</p>
+                <div className="flex items-center gap-2">
+                  {project.githubLink && (
+                    <a
+                      href={project.githubLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      GitHub Repo
+                    </a>
+                  )}
+                  {project.liveLink && (
+                    <a
+                      href={project.liveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Live Project
+                    </a>
+                  )}
+                </div>
+              </li>
             ))}
           </ul>
         </section>

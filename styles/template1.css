@@ -57,6 +57,11 @@ body {
   color: #007BFF;
 }
 
+.resume-section a{
+  text-decoration: underline;
+  color: #007BFF;
+}
+
 .resume-container p{
   margin: 0;
   padding: 0;
@@ -83,7 +88,7 @@ body {
 }
 
 /** Experience Section */
-.experience-description {
+.description {
   margin-top: 10px;
   font-size: 0.9em;
   color: #444;
@@ -96,7 +101,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 12px;
+  margin-top: 8px;
 }
 
 .skills-list li{
@@ -111,6 +116,8 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+/** Projects Section  */
 
 
 
