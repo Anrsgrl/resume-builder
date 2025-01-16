@@ -2,6 +2,7 @@
 import Education from "@/components/layout/Education";
 import Experience from "@/components/layout/Experience";
 import Personal from "@/components/layout/Personal";
+import Skills from "@/components/layout/Skills";
 import { useSearchParams } from "next/navigation";
 
 const Build = () => {
@@ -14,6 +15,7 @@ const Build = () => {
       {step == 1 && <Personal />}
       {step == 2 && <Education />}
       {step == 3 && <Experience />}
+      {step == 4 && <Skills />}
     </div>
   );
 };

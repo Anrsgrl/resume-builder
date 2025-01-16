@@ -106,12 +106,7 @@ const Education = () => {
           label={"Description"}
         />
       </div>
-      <Button
-        onClick={handleAddEducation}
-        className="mt-4 bg-main text-white py-2 px-4 rounded-md"
-      >
-        Add Education
-      </Button>
+      <Button onClick={handleAddEducation}>Add Education</Button>
 
       {/* List */}
       <div className="mt-6">

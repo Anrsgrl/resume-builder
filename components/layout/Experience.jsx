@@ -97,12 +97,7 @@ const Experience = () => {
           label={"Description"}
         />
       </div>
-      <Button
-        onClick={handleAddExperience}
-        className="mt-4 bg-main text-white py-2 px-4 rounded-md"
-      >
-        Add Experience
-      </Button>
+      <Button onClick={handleAddExperience}>Add Experience</Button>
 
       {/* List */}
       <div className="mt-6">
@@ -111,7 +106,7 @@ const Experience = () => {
             {experience.map((exp, index) => (
               <details
                 key={index}
-                className="border border-white/50 p-4 rounded-md animation-all w-96"
+                className="border border-white/50 p-4 rounded-md animation-all"
               >
                 <summary className="font-bold text-white/80">
                   {exp.company} - {exp.jobTitle}
