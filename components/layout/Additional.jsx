@@ -1,5 +1,6 @@
 import React from "react";
-import Certificates from "../shared/Certificates";
+import Certificates from "@/components/shared/Certificates";
+import Interests from "@/components/shared/Interests";
 
 const Additional = () => {
   return (
@@ -8,6 +9,7 @@ const Additional = () => {
         Additional Informations
       </h1>
       <Certificates />
+      <Interests />
       {/* Navigation Link */}
       <nav className="flex items-center gap-2">
         <CustomLink
