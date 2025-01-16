@@ -1,13 +1,22 @@
 import { useState } from "react";
 import { FaCalendarTimes } from "react-icons/fa";
-const Input = ({ state, setState, label, name, type = "text", present }) => {
+const Input = ({
+  state,
+  setState,
+  label,
+  name,
+  type = "text",
+  present,
+  col,
+}) => {
   const [presentStatus, setPresentStatus] = useState(false);
   const setPresent = () => {
     setState("");
     setPresentStatus(!presentStatus);
   };
+  // Normally, of course, I use twMerge and clsx for className merging in components. But I didn't see the need for this project.
   return (
-    <div className="relative">
+    <div className={`relative ${col && "col-span-2"}`}>
       <input
         type={type}
         name={name}
