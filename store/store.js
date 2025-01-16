@@ -117,17 +117,6 @@ const useStore = create(
         set((state) => ({
           references: state.references.filter((_, i) => i !== index),
         })),
-
-      //! Awards and Achievements
-      awards: [],
-      addAward: (newAward) =>
-        set((state) => ({
-          awards: [...state.awards, newAward],
-        })),
-      removeAward: (index) =>
-        set((state) => ({
-          awards: state.awards.filter((_, i) => i !== index),
-        })),
     }),
     {
       name: "resume-data",
