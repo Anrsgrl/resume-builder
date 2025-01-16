@@ -1,6 +1,7 @@
 import React from "react";
 import Certificates from "@/components/shared/Certificates";
 import Interests from "@/components/shared/Interests";
+import References from "../shared/References";
 
 const Additional = () => {
   return (
@@ -10,6 +11,8 @@ const Additional = () => {
       </h1>
       <Certificates />
       <Interests />
+      <References />
+
       {/* Navigation Link */}
       <nav className="flex items-center gap-2">
         <CustomLink
