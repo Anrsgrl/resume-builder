@@ -95,7 +95,7 @@ body {
 .skills-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
   margin-top: 12px;
 }
 
@@ -105,6 +105,7 @@ body {
   background-color: #007BFF;
   padding: 0 8px 12px 8px !important;
   color: white;
+  font-size: 0.9em;
   border-radius: 8px;
   display: flex;
   align-items: center;
