@@ -1,4 +1,5 @@
 "use client";
+import Additional from "@/components/layout/Additional";
 import Education from "@/components/layout/Education";
 import Experience from "@/components/layout/Experience";
 import Personal from "@/components/layout/Personal";
@@ -18,6 +19,7 @@ const Build = () => {
       {step == 3 && <Experience />}
       {step == 4 && <Skills />}
       {step == 5 && <Project />}
+      {step == 6 && <Additional />}
     </div>
   );
 };
