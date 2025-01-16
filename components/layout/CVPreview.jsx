@@ -8,7 +8,7 @@ const CVPreview = () => {
 
   return (
     <>
-      <div className="mb-4 text-center">
+      <div className="mb-2 text-center">
         <button
           onClick={handlePrint}
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 print:hidden"
@@ -16,7 +16,7 @@ const CVPreview = () => {
           Save Resume as PDF
         </button>
       </div>
-      <div className="max-h-[90dvh] overflow-auto mb-4 scale-90">
+      <div className="max-h-[90dvh] overflow-auto mb-4">
         <Template1 />
       </div>
     </>
