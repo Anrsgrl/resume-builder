@@ -45,6 +45,12 @@ export default function Editor({ state, setState, label }) {
     }
   }, [quill, setState]);
 
+  useEffect(() => {
+    if (quill && !state) {
+      quill.root.innerHTML = "";
+    }
+  }, [quill, state]);
+
   return (
     <div className="relative border-gray-600 focus:outline-none focus:ring-0 focus:border-main border rounded-lg !font-[inherit]">
       <div
