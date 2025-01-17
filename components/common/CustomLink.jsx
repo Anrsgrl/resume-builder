@@ -2,15 +2,23 @@ import Link from "next/link";
 import React from "react";
 import { MdArrowRightAlt } from "react-icons/md";
 
-const CustomLink = ({ children, href, animation, icon, prev, ...props }) => {
+const CustomLink = ({
+  children,
+  href,
+  animation,
+  icon,
+  prev,
+  full,
+  ...props
+}) => {
   return (
     <Link
       href={href}
       {...props}
       type="button"
-      className={`w-fit flex items-center gap-1 animation-all group overflow-hidden w-fit px-3 py-1 rounded-lg text-main cursor-pointer border border-main hover:border-main hover:bg-main group font-semibold ${
-        prev && "flex-row-reverse"
-      }`}
+      className={`flex items-center gap-1 animation-all group overflow-hidden px-3 py-1 rounded-lg text-main cursor-pointer border border-main hover:border-main hover:bg-main group font-semibold ${
+        full ? "w-full" : "w-fit"
+      } ${prev && "flex-row-reverse"}`}
     >
       {animation && (
         <span
