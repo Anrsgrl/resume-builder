@@ -62,7 +62,7 @@ const Education = () => {
             setNewEducation({ ...newEducation, institution: value })
           }
           name={"institution"}
-          label={t("institution")}
+          label={t("institution") + "*"}
         />
         <Input
           state={newEducation.degree}
@@ -70,7 +70,7 @@ const Education = () => {
             setNewEducation({ ...newEducation, degree: value })
           }
           name={"degree"}
-          label={t("degree")}
+          label={t("degree") + "*"}
         />
         <Input
           state={newEducation.fieldOfStudy}
