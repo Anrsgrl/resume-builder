@@ -51,6 +51,11 @@
       "add": "Əlavə Et",
       "remove": "Sil",
       "error": "Təcrübə əlavə etmək üçün həm Şirkət, həm də Vəzifə göstərilməlidir"
+    },
+    "Skills": {
+      "title": "Bacarıqlar",
+      "add": "Əlavə Et",
+      "remove": "Sil"
     }
   }
   

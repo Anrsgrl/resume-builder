@@ -4,7 +4,9 @@ import Input from "@/components/common/Input";
 import Button from "@/components/common/Button";
 import { FaPlus } from "react-icons/fa";
 import Stepper from "@/components/shared/Stepper";
+import { useTranslations } from "next-intl";
 const Skills = () => {
+  const t = useTranslations("Skills");
   const { skills, addSkill, removeSkill } = useStore();
 
   const [newSkill, setNewSkill] = useState("");
@@ -22,13 +24,15 @@ const Skills = () => {
 
   return (
     <div className="mt-20 px-10 flex flex-col gap-2">
-      <h1 className="text-center font-bold text-3xl text-main mb-4">Skills</h1>
+      <h1 className="text-center font-bold text-3xl text-main mb-4">
+        {t("title")}
+      </h1>
       <div className="flex justify-between gap-2 mb-4">
         <Input
           state={newSkill}
           setState={setNewSkill}
           name={"skill"}
-          label={"Add Skill"}
+          label={t("add")}
         />
         <Button onClick={handleAddSkill}>
           <FaPlus />
@@ -49,7 +53,7 @@ const Skills = () => {
                   onClick={() => handleRemoveSkill(index)}
                   className="text-red-500"
                 >
-                  Remove
+                  {t("remove")}
                 </button>
               </div>
             ))}

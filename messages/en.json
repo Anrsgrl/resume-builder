@@ -51,6 +51,11 @@
         "add":"Add Experience",
         "remove":"Remove",
         "error":"Both Company and Job title must be provided to add experience"
+    },
+    "Skills": {
+        "title": "Skils",
+        "add": "Add Skill",
+        "remove": "Remove"
     }
  }
  
