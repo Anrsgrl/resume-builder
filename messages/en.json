@@ -78,6 +78,11 @@
         "add": "Add Certificate",
         "remove": "Remove",
         "error":"Both Title and Date must be provided to add certificate or award"
+    },
+    "Interests":{
+        "title": "Interests",
+        "add": "Add Interest",
+        "remove": "Remove"
     }
  }
  

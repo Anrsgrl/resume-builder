@@ -78,6 +78,11 @@
         "add": "Əlavə Et",
         "remove": "Sil",
         "error": "Sertifikatın Başlığı və Tarixi əlavə olunmalıdır"
+    },
+    "Interests":{
+        "title": "Maraqlar",
+        "add": "Əlavə Et",
+        "remove": "Sil"
     }
   }
   

@@ -4,7 +4,9 @@ import Input from "@/components/common/Input";
 import Button from "@/components/common/Button";
 import { MdPlayArrow } from "react-icons/md";
 import { FaPlus } from "react-icons/fa";
+import { useTranslations } from "next-intl";
 const Interests = () => {
+  const t = useTranslations("Interests");
   const { interests, addInterest, removeInterest } = useStore();
 
   const [show, setShow] = useState(false);
@@ -28,7 +30,7 @@ const Interests = () => {
         className="font-bold text-2xl text-main hover:text-main/80 animation-all mb-4 cursor-pointer flex items-center gap-1"
         onClick={() => setShow(!show)}
       >
-        Interests
+        {t("title")}
         <MdPlayArrow
           size={18}
           className={`mt-1 animation-all ${show ? "rotate-90" : ""}`}
@@ -42,7 +44,7 @@ const Interests = () => {
               state={newInterest}
               setState={setNewInterest}
               name={"Interests"}
-              label={"Add Interests"}
+              label={t("add")}
             />
             <Button onClick={handleAddInterest}>
               <FaPlus />
@@ -63,7 +65,7 @@ const Interests = () => {
                       onClick={() => handleRemoveInterest(index)}
                       className="text-red-500"
                     >
-                      Remove
+                      {t("remove")}
                     </button>
                   </div>
                 ))}
