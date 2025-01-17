@@ -3,8 +3,11 @@ import useStore from "@/store/store";
 import Input from "@/components/common/Input";
 import Button from "@/components/common/Button";
 import { MdPlayArrow } from "react-icons/md";
+import { useTranslations } from "next-intl";
+import toast from "react-hot-toast";
 
 const References = () => {
+  const t = useTranslations("References");
   const { references, addReference, removeReference } = useStore();
 
   const [show, setShow] = useState(false);
@@ -25,6 +28,8 @@ const References = () => {
         phone: "",
         email: "",
       });
+    } else {
+      toast.error(t("error"));
     }
   };
 
@@ -38,7 +43,7 @@ const References = () => {
         className="font-bold text-2xl text-main hover:text-main/80 animation-all mb-4 cursor-pointer flex items-center gap-1"
         onClick={() => setShow(!show)}
       >
-        References
+        {t("title")}
         <MdPlayArrow
           size={18}
           className={`mt-1 animation-all ${show ? "rotate-90" : ""}`}
@@ -53,7 +58,7 @@ const References = () => {
                 setNewReference({ ...newReference, name: value })
               }
               name={"name"}
-              label={"Name*"}
+              label={t("name") + "*"}
             />
             <Input
               state={newReference.company}
@@ -61,7 +66,7 @@ const References = () => {
                 setNewReference({ ...newReference, company: value })
               }
               name={"company"}
-              label={"Company*"}
+              label={t("company") + "*"}
             />
             <Input
               state={newReference.phone}
@@ -69,7 +74,7 @@ const References = () => {
                 setNewReference({ ...newReference, phone: value })
               }
               name={"phone"}
-              label={"Phone Number"}
+              label={t("phone")}
             />
             <Input
               state={newReference.email}
@@ -78,10 +83,10 @@ const References = () => {
               }
               type="email"
               name={"email"}
-              label={"Email"}
+              label={t("email")}
             />
           </div>
-          <Button onClick={handleAddReference}>Add Reference</Button>
+          <Button onClick={handleAddReference}>{t("add")}</Button>
 
           {/* List */}
           <div className="my-6">
@@ -95,13 +100,19 @@ const References = () => {
                     <summary className="font-bold text-white/80">
                       {ref.name} - {ref.company}
                     </summary>
-                    <p>Phone: {ref.phone}</p>
-                    <p>Email: {ref.email}</p>
+                    <p>
+                      {t("phone")}:{" "}
+                      <span className="text-main">{ref.phone}</span>
+                    </p>
+                    <p>
+                      {t("email")}:{" "}
+                      <span className="text-main">{ref.email}</span>
+                    </p>
                     <button
                       onClick={() => handleRemoveReference(index)}
                       className="text-red-500 mt-2"
                     >
-                      Remove
+                      {t("remove")}
                     </button>
                   </details>
                 ))}

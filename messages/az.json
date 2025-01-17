@@ -83,6 +83,16 @@
         "title": "Maraqlar",
         "add": "Əlavə Et",
         "remove": "Sil"
+    },
+    "References": {
+      "title": "Referans",
+      "name": "Tam Ad",
+      "company": "Şirkət",
+      "phone": "Telefon Nömrəsi",
+      "email": "Email",
+      "add": "Əlavə Et",
+      "remove": "Sil",
+      "error": "Həm Ad, həm də Şirkət məlumatları göstərilməlidir"
     }
   }
   

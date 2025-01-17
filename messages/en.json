@@ -83,6 +83,16 @@
         "title": "Interests",
         "add": "Add Interest",
         "remove": "Remove"
+    },
+    "References": {
+        "title": "References",
+        "name": "Full name",
+        "company": "Company",
+        "phone": "Phone Number",
+        "email": "Email",
+        "add": "Add Reference",
+        "remove": "Remove",
+        "error":"Both Full name and Company must be provided to add reference"
     }
  }
  
