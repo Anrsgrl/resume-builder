@@ -70,6 +70,14 @@
     },
     "Additional":{
         "title": "Additional Informations"
+    },
+    "Certificates":{
+        "title": "Certificates & Awards",
+        "certificate": "Title",
+        "date": "Date",
+        "add": "Add Certificate",
+        "remove": "Remove",
+        "error":"Both Title and Date must be provided to add certificate or award"
     }
  }
  

@@ -70,6 +70,14 @@
     },
     "Additional":{
         "title": "Əlavə məlumatlar"
+    },
+    "Certificates": {
+        "title": "Sertifikatlar və Mükafatlar",
+        "certificate": "Başlıq",
+        "date": "Tarix",
+        "add": "Əlavə Et",
+        "remove": "Sil",
+        "error": "Sertifikatın Başlığı və Tarixi əlavə olunmalıdır"
     }
   }
   

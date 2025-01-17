@@ -22,7 +22,7 @@ const Input = ({
         name={name}
         value={state}
         id={name}
-        className="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-1 appearance-none text-white border-gray-600 dark:focus:border-main focus:outline-none focus:ring-0 focus:border-main peer border disabled:opacity-50"
+        className="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-1 appearance-none text-white border-gray-600 dark:focus:border-main focus:outline-none focus:ring-0 focus:border-main peer border disabled:opacity-50 h-12"
         placeholder=" "
         disabled={presentStatus}
         onChange={(e) => setState(e.target.value)}
