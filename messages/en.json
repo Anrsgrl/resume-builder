@@ -67,6 +67,9 @@
         "description": "Description",
         "remove": "Remove",
         "error": "Project title must be provided to add project"
+    },
+    "Additional":{
+        "title": "Additional Informations"
     }
  }
  

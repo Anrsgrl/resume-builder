@@ -67,6 +67,9 @@
       "description": "Əlavə qeydlər",
       "remove": "Sil",
       "error": "Layihə əlavə etmək üçün Layihənin Adı göstərilməlidir"
+    },
+    "Additional":{
+        "title": "Əlavə məlumatlar"
     }
   }
   
