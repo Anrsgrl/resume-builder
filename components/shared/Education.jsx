@@ -1,7 +1,10 @@
 import { useState } from "react";
 import useStore from "@/store/store";
 import Input from "@/components/common/Input";
-import Editor from "@/components/shared/Editor";
+import dynamic from "next/dynamic";
+const Editor = dynamic(() => import("@/components/shared/Editor"), {
+  ssr: false,
+});
 import Button from "@/components/common/Button";
 import { useFormattedTime } from "@/utils/helpers";
 import Stepper from "@/components/shared/Stepper";

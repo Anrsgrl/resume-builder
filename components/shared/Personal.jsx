@@ -3,8 +3,11 @@ import ImageUpload from "@/components/common/ImageUpload";
 import Input from "@/components/common/Input";
 import useStore from "@/store/store";
 import React from "react";
-import Editor from "@/components/shared/Editor";
 import Stepper from "@/components/shared/Stepper";
+import dynamic from "next/dynamic";
+const Editor = dynamic(() => import("@/components/shared/Editor"), {
+  ssr: false,
+});
 
 const Personal = () => {
   const {
