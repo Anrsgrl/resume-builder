@@ -14,6 +14,17 @@
       "step3": "CV-nizi yükləyin",
       "step3text": "CV-nizi PDF olaraq yükləyin."
     },
+    "Steps": {
+      "1": "Şəxsi Məlumatlar",
+      "2": "Təhsil",
+      "3": "Təcrübə",
+      "4": "Bacarıqlar",
+      "5": "Layihələr",
+      "6": "Əlavə Məlumatlar",
+      "7": "Əsas Səhifə",
+      "prev": "Əvvəlki Addım",
+      "next": "Sonraki Addım"
+    },
     "Personal": {
       "title": "Şəxsi Məlumatlar",
       "name": "Ad",
@@ -101,6 +112,9 @@
         "add": "Əlavə Et",
         "remove": "Sil",
         "error": "Dil və səviyyə daxil edilməlidir"
-    }
+    },
+    "Template": {
+      "save": "CV-ni PDF şəklində yüklə"
   }
+}
   

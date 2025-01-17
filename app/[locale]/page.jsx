@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import logo from "@/assets/images/logo.svg";
-import HowItWorks from "@/components/HowItWorks";
+import HowItWorks from "@/components/layout/HowItWorks";
 import { MdArrowRightAlt, MdKeyboardArrowRight } from "react-icons/md";
 import { BsPatchQuestionFill } from "react-icons/bs";
 

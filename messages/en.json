@@ -14,6 +14,17 @@
          "step3": "Download your resume",
          "step3text": "Export your resume as a PDF."
     },
+    "Steps": {
+        "1": "Personal Informations",
+        "2": "Education",
+        "3": "Experience",
+        "4": "Skills",
+        "5": "Projects",
+        "6": "Additional Informations",
+        "7": "Home",
+        "prev": "Prev Step",
+        "next": "Next Step"
+    },
     "Personal": {
          "title": "Personal Informations",
          "name": "Name",
@@ -101,6 +112,9 @@
         "add": "Add Language",
         "remove": "Remove",
         "error": "Both Language and level must be provided to add language"
+    },
+    "Template": {
+        "save": "Save Resume as PDF"
     }
  }
  

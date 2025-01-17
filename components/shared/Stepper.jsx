@@ -1,16 +1,19 @@
 import React, { useState } from "react";
+import { useTranslations } from "next-intl";
 import CustomLink from "@/components/common/CustomLink";
+import Modal from "@/components/common/Modal";
 import { PiDotsThreeOutlineFill } from "react-icons/pi";
-import Modal from "../common/Modal";
+
 const Stepper = ({ prev, next, prevTitle, nextTitle }) => {
+  const t = useTranslations("Steps");
   const [modal, setModal] = useState(false);
   const STEPS = [
-    { value: 1, label: "Personal Informations" },
-    { value: 2, label: "Education" },
-    { value: 3, label: "Experience" },
-    { value: 4, label: "Skills" },
-    { value: 5, label: "Projects" },
-    { value: 6, label: "Additional Informations" },
+    { value: 1, label: t("1") },
+    { value: 2, label: t("2") },
+    { value: 3, label: t("3") },
+    { value: 4, label: t("4") },
+    { value: 5, label: t("5") },
+    { value: 6, label: t("6") },
   ];
   const toggleModal = () => {
     setModal(!modal);
@@ -25,7 +28,7 @@ const Stepper = ({ prev, next, prevTitle, nextTitle }) => {
           replace
           animation={true}
         >
-          {prevTitle ? prevTitle : "Prev Step"}
+          {prevTitle ? prevTitle : t("prev")}
         </CustomLink>
       )}
       <button
@@ -37,7 +40,7 @@ const Stepper = ({ prev, next, prevTitle, nextTitle }) => {
       </button>
       <Modal isOpen={modal} onClose={toggleModal}>
         <CustomLink full={true} animation={true} href={`/`}>
-          Home
+          {t("7")}
         </CustomLink>
         {STEPS.map((step, index) => (
           <CustomLink
@@ -52,7 +55,7 @@ const Stepper = ({ prev, next, prevTitle, nextTitle }) => {
       </Modal>
       {next && (
         <CustomLink href={next} shallow={true} replace animation={true}>
-          {nextTitle ? nextTitle : "Next Step"}
+          {nextTitle ? nextTitle : t("next")}
         </CustomLink>
       )}
     </nav>
