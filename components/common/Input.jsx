@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { FaCalendarTimes } from "react-icons/fa";
 const Input = ({
@@ -9,6 +10,7 @@ const Input = ({
   present,
   col,
 }) => {
+  const t = useTranslations("General");
   const [presentStatus, setPresentStatus] = useState(false);
   const setPresent = () => {
     setState("");
@@ -38,12 +40,12 @@ const Input = ({
         {present && (
           <button
             type="button"
-            className={`bg-gray-800 px-2 rounded-lg flex items-center gap-1 ${
+            className={`bg-gray-800 px-2 rounded-lg flex items-center gap-1 whitespace-nowrap ${
               presentStatus ? "text-main" : "text-gray-400"
             }`}
             onClick={setPresent}
           >
-            Present <FaCalendarTimes />
+            {t("present")} <FaCalendarTimes />
           </button>
         )}
       </label>

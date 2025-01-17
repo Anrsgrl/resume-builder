@@ -1,18 +1,21 @@
 {
     "Home": {
-         "title": "Create a professional resume effortlessly and",
-         "free": "free!",
-         "startButton": "Start Building",
-         "how": "How It Works"
+        "title": "Create a professional resume effortlessly and",
+        "free": "free!",
+        "startButton": "Start Building",
+        "how": "How It Works"
+    },
+    "General":{
+        "present": "Present"
     },
     "How": {
-         "how": "How It Works",
-         "step1": "Fill out your details",
-         "step1text": "Enter your personal, educational, and professional information.",
-         "step2": "Customize your template",
-         "step2text": "Choose from multiple template options and styles.",
-         "step3": "Download your resume",
-         "step3text": "Export your resume as a PDF."
+        "how": "How It Works",
+        "step1": "Fill out your details",
+        "step1text": "Enter your personal, educational, and professional information.",
+        "step2": "Customize your template",
+        "step2text": "Choose from multiple template options and styles.",
+        "step3": "Download your resume",
+        "step3text": "Export your resume as a PDF."
     },
     "Steps": {
         "1": "Personal Informations",
@@ -26,33 +29,33 @@
         "next": "Next Step"
     },
     "Personal": {
-         "title": "Personal Informations",
-         "name": "Name",
-         "surname": "Surname",
-         "email": "Email",
-         "phone": "Phone",
-         "jobtitle": "Job Title",
-         "driving": "Driving License",
-         "country": "Country",
-         "city": "City",
-         "summary": "Summary",
-         "home": "Home"
+        "title": "Personal Informations",
+        "name": "Name",
+        "surname": "Surname",
+        "email": "Email",
+        "phone": "Phone",
+        "jobtitle": "Job Title",
+        "driving": "Driving License",
+        "country": "Country",
+        "city": "City",
+        "summary": "Summary",
+        "home": "Home"
     },
     "Education": {
-         "title": "Education",
-         "institution": "Institution",
-         "degree": "Degree",
-         "field": "Field of Study",
-         "city": "City",
-         "startDate": "Start Date",
-         "endDate": "End Date",
-         "description": "Description",
-         "add": "Add Education",
-         "remove": "Remove",
-         "error": "Both Degree and Institution must be provided to add education"
+        "title": "Education",
+        "institution": "Institution",
+        "degree": "Degree",
+        "field": "Field of Study",
+        "city": "City",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "description": "Description",
+        "add": "Add Education",
+        "remove": "Remove",
+        "error": "Both Degree and Institution must be provided to add education"
     },
     "Experience": {
-        "title": "Experience",
+        "title": "Professional Experience",
         "company": "Company",
         "jobtitle": "Job Title",
         "city": "City",
@@ -91,7 +94,7 @@
         "error":"Both Title and Date must be provided to add certificate or award"
     },
     "Interests":{
-        "title": "Interests",
+        "title": "Interests & Hobbies",
         "add": "Add Interest",
         "remove": "Remove"
     },

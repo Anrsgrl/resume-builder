@@ -1,7 +1,12 @@
 import React from "react";
 import { useFormattedTime } from "@/utils/helpers";
+import {
+  LANGUAGE_OPTIONS,
+  LANGUAGE_OPTIONS_AZ,
+  LOCALES,
+} from "@/utils/constants";
 import useStore from "@/store/store";
-import { LANGUAGE_OPTIONS } from "@/utils/constants";
+import { useLocale, useTranslations } from "next-intl";
 
 const Template1 = ({}) => {
   const {
@@ -21,7 +26,10 @@ const Template1 = ({}) => {
     languages,
     interests,
   } = useStore();
-
+  const t = useTranslations();
+  const locale = useLocale();
+  const LANG_OPTIONS = locale === "en" ? LANGUAGE_OPTIONS : LANGUAGE_OPTIONS_AZ;
+  const localeIso = LOCALES.find((lang) => lang.value === locale).iso;
   return (
     <div className="w-[240mm] min-h-[296mm] bg-white my-0 mx-auto p-2 rounded">
       <div className="flex flex-col items-center justify-between w-full bg- text-center">
@@ -55,7 +63,7 @@ const Template1 = ({}) => {
           className="flex items-center justify-center flex-col gap-2 text-center w-full mt-4 px-8"
         >
           <h2 className="pb-1 border-b-2 font-bold uppercase w-full text-base">
-            Summary
+            {t("Personal.summary")}
           </h2>
           <p
             dangerouslySetInnerHTML={{ __html: summary }}
@@ -69,15 +77,17 @@ const Template1 = ({}) => {
           className="flex items-center justify-center flex-col gap-2 text-center w-full mt-4 px-8"
         >
           <h2 className="pb-1 border-b-2 font-bold uppercase w-full text-base">
-            Professional Experience
+            {t("Experience.title")}
           </h2>
           {experience.map((exp, index) => (
             <div key={index} className="flex flex-col w-full mb-5">
               <div className="flex items-center justify-between w-full">
                 <h3 className="font-semibold">{exp.jobTitle}</h3>
                 <p>
-                  {useFormattedTime(exp.startDate)} -{" "}
-                  {useFormattedTime(exp.endDate)}
+                  {useFormattedTime(exp.startDate, localeIso)} -{" "}
+                  {exp.endDate
+                    ? useFormattedTime(exp.endDate, localeIso)
+                    : t("General.present")}
                 </p>
               </div>
               <h4 className="font-normal me-auto">
@@ -97,7 +107,7 @@ const Template1 = ({}) => {
           className="flex items-center justify-center flex-col gap-2 text-center w-full mt-4 px-8"
         >
           <h2 className="pb-1 border-b-2 font-bold uppercase w-full text-base">
-            Education
+            {t("Education.title")}
           </h2>
           {education.map((edu, index) => (
             <div key={index} className="flex flex-col w-full mb-2">
@@ -106,8 +116,10 @@ const Template1 = ({}) => {
                   {edu.degree} of {edu.fieldOfStudy}
                 </h3>
                 <p>
-                  {useFormattedTime(edu.startDate)} -{" "}
-                  {useFormattedTime(edu.endDate)}
+                  {useFormattedTime(edu.startDate, localeIso)} -{" "}
+                  {edu.endDate
+                    ? useFormattedTime(edu.endDate, localeIso)
+                    : t("General.present")}
                 </p>
               </div>
               <h4 className="font-normal me-auto">
@@ -123,7 +135,7 @@ const Template1 = ({}) => {
           className="flex items-center justify-center flex-col gap-2 w-full mt-4 px-8"
         >
           <h2 className="pb-1 border-b-2 font-bold uppercase w-full text-base text-center">
-            Skills & Other
+            {t("Skills.title")}
           </h2>
           <div className="">
             <h3 className="mr-1 float-left font-semibold">Skills:</h3>{" "}
@@ -137,7 +149,7 @@ const Template1 = ({}) => {
           className="flex items-center justify-center flex-col gap-2 w-full mt-4 px-8"
         >
           <h2 className="pb-1 border-b-2 font-bold uppercase w-full text-base text-center">
-            Projects
+            {t("Projects.title")}
           </h2>
           <div className="flex flex-col gap-4 w-full">
             {projects.map((project, index) => (
@@ -147,7 +159,7 @@ const Template1 = ({}) => {
                   <p>
                     {project.liveLink && (
                       <a href={project.liveLink} className="text-sky-600">
-                        Live link
+                        {t("Projects.live")}
                       </a>
                     )}
                     {project.liveLink && project.githubLink && (
@@ -156,7 +168,7 @@ const Template1 = ({}) => {
                     {project.githubLink && (
                       <>
                         <a href={project.githubLink} className="text-sky-600">
-                          Project link
+                          {t("Projects.github")}
                         </a>
                       </>
                     )}
@@ -184,13 +196,13 @@ const Template1 = ({}) => {
           className="flex items-center justify-center flex-col gap-2 text-center w-full px-8 mt-4"
         >
           <h2 className="pb-1 border-b-2 font-bold uppercase w-full text-base">
-            Certificates & Awards
+            {t("Certificates.title")}
           </h2>
           {certificates.map((certificate, index) => (
             <div key={index} className="flex flex-col w-full mb-2">
               <div className="flex items-center justify-between w-full">
                 <h3 className="font-semibold">{certificate.title}</h3>
-                <p>{useFormattedTime(certificate.date)}</p>
+                <p>{useFormattedTime(certificate.date, localeIso)}</p>
               </div>
             </div>
           ))}
@@ -202,7 +214,7 @@ const Template1 = ({}) => {
           className="flex items-center justify-center flex-col gap-2 text-center w-full px-8 mt-4"
         >
           <h2 className="pb-1 border-b-2 font-bold uppercase w-full text-base">
-            References
+            {t("References.title")}
           </h2>
           {references.map((ref, index) => (
             <div key={index} className="flex flex-col w-full mb-2">
@@ -236,15 +248,13 @@ const Template1 = ({}) => {
           className="flex items-center justify-center flex-col gap-2 text-center w-full px-8 mt-4"
         >
           <h2 className="pb-1 border-b-2 font-bold uppercase w-full text-base">
-            Languages
+            {t("Languages.title")}
           </h2>
           {languages.map((lang, index) => (
             <div key={index} className="flex flex-col w-full mb-2">
               <div className="flex items-center justify-between w-full">
                 <h3 className="font-semibold">{lang.language}</h3>
-                <p>
-                  {LANGUAGE_OPTIONS.find((e) => e.value === lang.level).label}
-                </p>
+                <p>{LANG_OPTIONS.find((e) => e.value === lang.level).label}</p>
               </div>
             </div>
           ))}
@@ -256,12 +266,9 @@ const Template1 = ({}) => {
           className="flex items-center justify-center flex-col gap-2 w-full mt-4 px-8"
         >
           <h2 className="pb-1 border-b-2 font-bold uppercase w-full text-base text-center">
-            Interests & Hobbies
+            {t("Interests.title")}
           </h2>
-          <div>
-            <h3 className="mr-1 float-left font-semibold">Interests:</h3>{" "}
-            {interests.join(", ")}
-          </div>
+          <p>{interests.join(", ")}</p>
         </section>
       )}
     </div>

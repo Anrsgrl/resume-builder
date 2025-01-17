@@ -5,6 +5,9 @@
       "startButton": "Hazırlamağa Başla",
       "how": "Necə işləyir?"
     },
+    "General":{
+      "present": "Hal-hazırda"
+    },
     "How": {
       "how": "Necə işləyir?",
       "step1": "Şəxsi məlumatlarınızı doldurun",
@@ -91,12 +94,12 @@
         "error": "Sertifikatın Başlığı və Tarixi əlavə olunmalıdır"
     },
     "Interests":{
-        "title": "Maraqlar",
+        "title": "Maraqlar və Hobbilər",
         "add": "Əlavə Et",
         "remove": "Sil"
     },
     "References": {
-      "title": "Referans",
+      "title": "Referanslar",
       "name": "Tam Ad",
       "company": "Şirkət",
       "phone": "Telefon Nömrəsi",
