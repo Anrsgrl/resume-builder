@@ -8,8 +8,12 @@ const Editor = dynamic(() => import("@/components/shared/Editor"), {
 import Button from "@/components/common/Button";
 import { useFormattedTime } from "@/utils/helpers";
 import Stepper from "@/components/shared/Stepper";
+import { useLocale, useTranslations } from "next-intl";
+import toast from "react-hot-toast";
+import { LOCALES } from "@/utils/constants";
 
 const Experience = () => {
+  const t = useTranslations("Experience");
   const { experience, addExperience, removeExperience } = useStore();
 
   const [newExperience, setNewExperience] = useState({
@@ -32,6 +36,8 @@ const Experience = () => {
         endDate: "",
         description: "",
       });
+    } else {
+      toast.error(t("error"));
     }
   };
 
@@ -39,10 +45,13 @@ const Experience = () => {
     removeExperience(index);
   };
 
+  const locale = useLocale();
+  const localeIso = LOCALES.find((lang) => lang.value === locale).iso;
+
   return (
     <div className="mt-20 px-10 flex flex-col gap-2">
       <h1 className="text-center font-bold text-3xl text-main mb-4">
-        Experience
+        {t("title")}
       </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -52,7 +61,7 @@ const Experience = () => {
             setNewExperience({ ...newExperience, company: value })
           }
           name={"company"}
-          label={"Company*"}
+          label={t("company") + "*"}
         />
         <Input
           state={newExperience.jobTitle}
@@ -60,7 +69,7 @@ const Experience = () => {
             setNewExperience({ ...newExperience, jobTitle: value })
           }
           name={"jobTitle"}
-          label={"Job Title*"}
+          label={t("jobtitle") + "*"}
         />
         <Input
           state={newExperience.city}
@@ -69,7 +78,7 @@ const Experience = () => {
           }
           col={true}
           name={"city"}
-          label={"City"}
+          label={t("city")}
         />{" "}
         <Input
           state={newExperience.startDate}
@@ -78,7 +87,7 @@ const Experience = () => {
           }
           type="month"
           name={"startDate"}
-          label={"Start Date"}
+          label={t("startDate")}
         />
         <Input
           state={newExperience.endDate}
@@ -88,7 +97,7 @@ const Experience = () => {
           type="month"
           present={true}
           name={"endDate"}
-          label={"End Date"}
+          label={t("endDate")}
         />
       </div>
       <div className="mt-2">
@@ -97,10 +106,10 @@ const Experience = () => {
           setState={(value) =>
             setNewExperience({ ...newExperience, description: value })
           }
-          label={"Description"}
+          label={t("description")}
         />
       </div>
-      <Button onClick={handleAddExperience}>Add Experience</Button>
+      <Button onClick={handleAddExperience}>{t("add")}</Button>
 
       {/* List */}
       <div className="mt-6">
@@ -116,8 +125,8 @@ const Experience = () => {
                 </summary>
                 <p>{exp.city}</p>
                 <p>
-                  {useFormattedTime(exp.startDate)} -{" "}
-                  {useFormattedTime(exp.endDate)}
+                  {useFormattedTime(exp.startDate, localeIso)} -{" "}
+                  {useFormattedTime(exp.endDate, localeIso)}
                 </p>
                 <div
                   dangerouslySetInnerHTML={{ __html: exp.description }}
@@ -126,7 +135,7 @@ const Experience = () => {
                   onClick={() => handleRemoveExperience(index)}
                   className="text-red-500 mt-2"
                 >
-                  Remove
+                  {t("remove")}
                 </button>
               </details>
             ))}

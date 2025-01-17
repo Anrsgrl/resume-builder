@@ -4,8 +4,8 @@
          "free": "free!",
          "startButton": "Start Building",
          "how": "How It Works"
-     },
-     "How": {
+    },
+    "How": {
          "how": "How It Works",
          "step1": "Fill out your details",
          "step1text": "Enter your personal, educational, and professional information.",
@@ -13,8 +13,8 @@
          "step2text": "Choose from multiple template options and styles.",
          "step3": "Download your resume",
          "step3text": "Export your resume as a PDF."
-     },
-     "Personal": {
+    },
+    "Personal": {
          "title": "Personal Informations",
          "name": "Name",
          "surname": "Surname",
@@ -26,8 +26,8 @@
          "city": "City",
          "summary": "Summary",
          "home": "Home"
-     },
-     "Education": {
+    },
+    "Education": {
          "title": "Education",
          "institution": "Institution",
          "degree": "Degree",
@@ -38,7 +38,19 @@
          "description": "Description",
          "add": "Add Education",
          "remove": "Remove",
-         "error": "Both degree and institution must be provided to add education"
-     }
+         "error": "Both Degree and Institution must be provided to add education"
+    },
+    "Experience": {
+        "title": "Experience",
+        "company": "Company",
+        "jobtitle": "Job Title",
+        "city": "City",
+        "startDate":"Start Date",
+        "endDate":"End Date",
+        "description": "Description",
+        "add":"Add Experience",
+        "remove":"Remove",
+        "error":"Both Company and Job title must be provided to add experience"
+    }
  }
  
