@@ -8,3 +8,8 @@ export const LANGUAGE_OPTIONS = [
   { value: "full_professional", label: "Full Professional Proficiency" },
   { value: "native_or_bilingual", label: "Native or Bilingual Proficiency" },
 ];
+
+export const LOCALES = [
+  { value: "az", label: "AZ", iso: "az-AZ" },
+  { value: "en", label: "US", iso: "en-US" },
+];

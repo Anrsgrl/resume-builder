@@ -1,30 +1,44 @@
 {
-   "Home":{
-        "title": "Create a professional resume effortlessly and",
-        "free": "free!",
-        "startButton": "Start Building",
-        "how": "How It Works"
-    },
-    "How":{
-        "how": "How It Works",
-        "step1": "Fill out your details",
-        "step1text": "Enter your personal, educational, and professional information.",
-        "step2": "Customize your template",
-        "step2text": "Choose from multiple template options and styles.",
-        "step3": "Download your resume",
-        "step3text": "Export your resume as a PDF."
-    },
-    "Personal":{
-        "title": "Personal Informations",
-        "name": "Name",
-        "surname": "Surname",
-        "email": "Email",
-        "phone": "Phone",
-        "jobtitle": "Job Title",
-        "driving": "Driving License",
-        "country": "Country",
-        "city": "City",
-        "summary": "Summary",
-        "home": "Home"
-    }
-}
+    "Home": {
+         "title": "Create a professional resume effortlessly and",
+         "free": "free!",
+         "startButton": "Start Building",
+         "how": "How It Works"
+     },
+     "How": {
+         "how": "How It Works",
+         "step1": "Fill out your details",
+         "step1text": "Enter your personal, educational, and professional information.",
+         "step2": "Customize your template",
+         "step2text": "Choose from multiple template options and styles.",
+         "step3": "Download your resume",
+         "step3text": "Export your resume as a PDF."
+     },
+     "Personal": {
+         "title": "Personal Informations",
+         "name": "Name",
+         "surname": "Surname",
+         "email": "Email",
+         "phone": "Phone",
+         "jobtitle": "Job Title",
+         "driving": "Driving License",
+         "country": "Country",
+         "city": "City",
+         "summary": "Summary",
+         "home": "Home"
+     },
+     "Education": {
+         "title": "Education",
+         "institution": "Institution",
+         "degree": "Degree",
+         "field": "Field of Study",
+         "city": "City",
+         "startDate": "Start Date",
+         "endDate": "End Date",
+         "description": "Description",
+         "add": "Add Education",
+         "remove": "Remove",
+         "error": "Both degree and institution must be provided to add education"
+     }
+ }
+ 

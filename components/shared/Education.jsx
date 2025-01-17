@@ -8,8 +8,12 @@ const Editor = dynamic(() => import("@/components/shared/Editor"), {
 import Button from "@/components/common/Button";
 import { useFormattedTime } from "@/utils/helpers";
 import Stepper from "@/components/shared/Stepper";
+import toast from "react-hot-toast";
+import { useLocale, useTranslations } from "next-intl";
+import { LOCALES } from "@/utils/constants";
 
 const Education = () => {
+  const t = useTranslations("Education");
   const { education, addEducation, removeEducation } = useStore();
 
   const [newEducation, setNewEducation] = useState({
@@ -34,6 +38,8 @@ const Education = () => {
         endDate: "",
         description: "",
       });
+    } else {
+      toast.error(t("error"));
     }
   };
 
@@ -41,12 +47,14 @@ const Education = () => {
     removeEducation(index);
   };
 
+  const locale = useLocale();
+  const localeIso = LOCALES.find((lang) => lang.value === locale).iso;
+
   return (
     <div className="mt-20 px-10 flex flex-col gap-2">
       <h1 className="text-center font-bold text-3xl text-main mb-4">
-        Education
+        {t("title")}
       </h1>
-
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Input
           state={newEducation.institution}
@@ -54,7 +62,7 @@ const Education = () => {
             setNewEducation({ ...newEducation, institution: value })
           }
           name={"institution"}
-          label={"Institution*"}
+          label={t("institution")}
         />
         <Input
           state={newEducation.degree}
@@ -62,7 +70,7 @@ const Education = () => {
             setNewEducation({ ...newEducation, degree: value })
           }
           name={"degree"}
-          label={"Degree*"}
+          label={t("degree")}
         />
         <Input
           state={newEducation.fieldOfStudy}
@@ -70,7 +78,7 @@ const Education = () => {
             setNewEducation({ ...newEducation, fieldOfStudy: value })
           }
           name={"fieldOfStudy"}
-          label={"Field of Study"}
+          label={t("field")}
         />
         <Input
           state={newEducation.city}
@@ -78,7 +86,7 @@ const Education = () => {
             setNewEducation({ ...newEducation, city: value })
           }
           name={"city"}
-          label={"City"}
+          label={t("city")}
         />
         <Input
           state={newEducation.startDate}
@@ -87,7 +95,7 @@ const Education = () => {
           }
           type="month"
           name={"startDate"}
-          label={"Start Date"}
+          label={t("startDate")}
         />
         <Input
           state={newEducation.endDate}
@@ -97,7 +105,7 @@ const Education = () => {
           type="month"
           present={true}
           name={"endDate"}
-          label={"End Date"}
+          label={t("endDate")}
         />
       </div>
       <div className="mt-2">
@@ -106,10 +114,10 @@ const Education = () => {
           setState={(value) =>
             setNewEducation({ ...newEducation, description: value })
           }
-          label={"Description"}
+          label={t("description")}
         />
       </div>
-      <Button onClick={handleAddEducation}>Add Education</Button>
+      <Button onClick={handleAddEducation}>{t("add")}</Button>
 
       {/* List */}
       <div className="mt-6">
@@ -125,8 +133,8 @@ const Education = () => {
                 </summary>
                 <p>{edu.fieldOfStudy}</p>
                 <p>
-                  {useFormattedTime(edu.startDate)} -{" "}
-                  {useFormattedTime(edu.endDate)}
+                  {useFormattedTime(edu.startDate, localeIso)} -{" "}
+                  {useFormattedTime(edu.endDate, localeIso)}
                 </p>
                 <div
                   dangerouslySetInnerHTML={{ __html: edu.description }}
@@ -135,7 +143,7 @@ const Education = () => {
                   onClick={() => handleRemoveEducation(index)}
                   className="text-red-500 mt-2"
                 >
-                  Remove
+                  {t("remove")}
                 </button>
               </details>
             ))}

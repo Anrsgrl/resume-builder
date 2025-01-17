@@ -14,18 +14,31 @@
       "step3": "CV-nizi yükləyin",
       "step3text": "CV-nizi PDF olaraq yükləyin."
     },
-      "Personal": {
-        "title": "Şəxsi Məlumatlar",
-        "name": "Ad",
-        "surname": "Soyad",
-        "email": "Email",
-        "phone": "Telefon",
-        "jobtitle": "Vəzifə",
-        "driving": "Sürücülük Vəsiqəsi",
-        "country": "Ölkə",
-        "city": "Şəhər",
-        "summary": "Xülasə",
-        "home": "Ana Səhifə"
-      }    
+    "Personal": {
+      "title": "Şəxsi Məlumatlar",
+      "name": "Ad",
+      "surname": "Soyad",
+      "email": "Email",
+      "phone": "Telefon",
+      "jobtitle": "Vəzifə",
+      "driving": "Sürücülük Vəsiqəsi",
+      "country": "Ölkə",
+      "city": "Şəhər",
+      "summary": "Xülasə",
+      "home": "Ana Səhifə"
+    },
+    "Education": {
+      "title": "Təhsil",
+      "institution": "Təhsil Müəssisəsi",
+      "degree": "Dərəcə",
+      "field": "İxtisas Sahəsi",
+      "city": "Şəhər",
+      "startDate": "Başlama Tarixi",
+      "endDate": "Bitmə Tarixi",
+      "description": "Əlavə qeydlər",
+      "add": "Əlavə Et",
+      "remove": "Sil",
+      "error": "Təhsil əlavə etmək üçün həm dərəcə, həm də təhsil müəssisəsi göstərilməlidir"
+    }
   }
   
