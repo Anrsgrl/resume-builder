@@ -6,17 +6,14 @@ import {
   BsDownload,
 } from "react-icons/bs";
 import { IoCloseCircleSharp } from "react-icons/io5";
+import Modal from "@/components/common/Modal";
+
 const HowItWorks = ({ setHowModal }) => {
   const t = useTranslations("How");
+
   return (
-    <div
-      onClick={() => setHowModal(false)}
-      className="fixed inset-0 w-full h-full z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
-    >
-      <div
-        onClick={(e) => e.stopPropagation()}
-        className="bg-white p-6 rounded-lg shadow-md w-full max-w-md text-center relative"
-      >
+    <Modal isOpen={true} onClose={() => setHowModal(false)}>
+      <div className="p-4 md:p-6 text-center relative bg-white rounded-md mx-4">
         <button
           onClick={() => setHowModal(false)}
           type="button"
@@ -31,7 +28,7 @@ const HowItWorks = ({ setHowModal }) => {
         <ol className="text-gray-700 text-left space-y-2 px-4">
           <li>
             <span className="font-semibold flex items-center gap-2 my-1 text-emerald-800 hover:text-emerald-600 animation-all cursor-help">
-              <BsPencilFill size={12} />
+              <BsPencilFill size={12} className="" />
               {t("step1")}:
             </span>{" "}
             {t("step1text")}
@@ -50,7 +47,7 @@ const HowItWorks = ({ setHowModal }) => {
           </li>
         </ol>
       </div>
-    </div>
+    </Modal>
   );
 };
 
