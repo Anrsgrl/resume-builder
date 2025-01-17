@@ -2,7 +2,7 @@ import { useState } from "react";
 import useStore from "@/store/store";
 import Input from "@/components/common/Input";
 import CustomLink from "@/components/common/CustomLink";
-import Editor from "../shared/Editor";
+import Editor from "./Editor";
 import Button from "../common/Button";
 import { FaPlus } from "react-icons/fa";
 

@@ -1,10 +1,10 @@
 "use client";
 import Additional from "@/components/layout/Additional";
-import Education from "@/components/layout/Education";
-import Experience from "@/components/layout/Experience";
-import Personal from "@/components/layout/Personal";
-import Project from "@/components/layout/Project";
-import Skills from "@/components/layout/Skills";
+import Education from "@/components/shared/Education";
+import Experience from "@/components/shared/Experience";
+import Personal from "@/components/shared/Personal";
+import Project from "@/components/shared/Project";
+import Skills from "@/components/shared/Skills";
 import { useSearchParams } from "next/navigation";
 
 const Build = () => {

@@ -5,7 +5,7 @@ import TextArea from "@/components/common/TextArea";
 import CustomLink from "@/components/common/CustomLink";
 import useStore from "@/store/store";
 import React from "react";
-import Editor from "../shared/Editor";
+import Editor from "./Editor";
 
 const Personal = () => {
   const {

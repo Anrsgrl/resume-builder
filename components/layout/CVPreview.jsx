@@ -37,7 +37,7 @@ const CVPreview = () => {
       <div
         className={`flex flex-col items-center justify-center  print:h-max ${
           show
-            ? "absolute inset-0 z-40 overflow-visible py-4 print:py-0 bg-black/80 h-[100dvh]"
+            ? "absolute inset-0 z-40 overflow-visible py-4 print:py-0 bg-black/80 h-dvh"
             : "hidden xl:block print:block h-[95dvh]"
         }`}
       >

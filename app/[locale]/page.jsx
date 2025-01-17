@@ -13,7 +13,7 @@ export default function Home() {
   const t = useTranslations("Home");
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center gap-8 p-6">
+    <div className="h-dvh flex flex-col items-center justify-center gap-8 p-6">
       <Image src={logo} alt="logo" width={300} className="drop-shadow-lg" />
       <h1 className="text-white text-3xl font-bold text-center">
         {t("title")}{" "}
