@@ -79,15 +79,26 @@ const Personal = () => {
           label={"Summary"}
         />
       </div>
-      <CustomLink
-        href={"/build?step=2"}
-        shallow={true}
-        replace
-        animation={true}
-        onClick={() => (window.location.href = "/build?step=2")}
-      >
-        Next Step
-      </CustomLink>
+      {/* Navigation Link */}
+      <nav className="flex items-center gap-2">
+        <CustomLink
+          prev={true}
+          href={"/"}
+          shallow={true}
+          replace
+          animation={true}
+        >
+          Home
+        </CustomLink>
+        <CustomLink
+          href={"/build?step=2"}
+          shallow={true}
+          replace
+          animation={true}
+        >
+          Next Step
+        </CustomLink>
+      </nav>
     </div>
   );
 };

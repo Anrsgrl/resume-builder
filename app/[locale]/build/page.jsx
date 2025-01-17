@@ -14,7 +14,7 @@ const Build = () => {
 
   return (
     <div className="max-w-xl mx-auto">
-      {step == 1 && <Personal />}
+      {(step == 1 || step == null) && <Personal />}
       {step == 2 && <Education />}
       {step == 3 && <Experience />}
       {step == 4 && <Skills />}
