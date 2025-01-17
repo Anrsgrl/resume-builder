@@ -1,11 +1,10 @@
 "use client";
 import ImageUpload from "@/components/common/ImageUpload";
 import Input from "@/components/common/Input";
-import TextArea from "@/components/common/TextArea";
-import CustomLink from "@/components/common/CustomLink";
 import useStore from "@/store/store";
 import React from "react";
-import Editor from "./Editor";
+import Editor from "@/components/shared/Editor";
+import Stepper from "@/components/shared/Stepper";
 
 const Personal = () => {
   const {
@@ -79,26 +78,7 @@ const Personal = () => {
           label={"Summary"}
         />
       </div>
-      {/* Navigation Link */}
-      <nav className="flex items-center gap-2">
-        <CustomLink
-          prev={true}
-          href={"/"}
-          shallow={true}
-          replace
-          animation={true}
-        >
-          Home
-        </CustomLink>
-        <CustomLink
-          href={"/build?step=2"}
-          shallow={true}
-          replace
-          animation={true}
-        >
-          Next Step
-        </CustomLink>
-      </nav>
+      <Stepper prev={`/`} prevTitle={"Home"} next={"/build?step=2"} />
     </div>
   );
 };

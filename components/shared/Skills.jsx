@@ -1,9 +1,9 @@
 import { useState } from "react";
 import useStore from "@/store/store";
 import Input from "@/components/common/Input";
-import Button from "../common/Button";
-import CustomLink from "@/components/common/CustomLink";
+import Button from "@/components/common/Button";
 import { FaPlus } from "react-icons/fa";
+import Stepper from "@/components/shared/Stepper";
 const Skills = () => {
   const { skills, addSkill, removeSkill } = useStore();
 
@@ -57,26 +57,7 @@ const Skills = () => {
         )}
       </div>
 
-      {/* Navigation Link */}
-      <nav className="flex items-center gap-2 mt-4">
-        <CustomLink
-          prev={true}
-          href={"/build?step=3"}
-          shallow={true}
-          replace
-          animation={true}
-        >
-          Prev Step
-        </CustomLink>
-        <CustomLink
-          href={"/build?step=5"}
-          shallow={true}
-          replace
-          animation={true}
-        >
-          Next Step
-        </CustomLink>
-      </nav>
+      <Stepper prev={`/build?step=3`} next={"/build?step=5"} />
     </div>
   );
 };

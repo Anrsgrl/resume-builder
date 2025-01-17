@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useStore from "@/store/store";
 import Input from "@/components/common/Input";
-import Button from "../common/Button";
+import Button from "@/components/common/Button";
 import { MdPlayArrow } from "react-icons/md";
 
 const References = () => {

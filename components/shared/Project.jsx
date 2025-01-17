@@ -1,10 +1,10 @@
 import { useState } from "react";
 import useStore from "@/store/store";
 import Input from "@/components/common/Input";
-import CustomLink from "@/components/common/CustomLink";
-import Editor from "./Editor";
-import Button from "../common/Button";
+import Editor from "@/components/shared/Editor";
+import Button from "@/components/common/Button";
 import { FaPlus } from "react-icons/fa";
+import Stepper from "@/components/shared/Stepper";
 
 const Project = () => {
   const { projects, addProject, removeProject } = useStore();
@@ -166,26 +166,7 @@ const Project = () => {
         )}
       </div>
 
-      {/* Navigation Link */}
-      <nav className="flex items-center gap-2">
-        <CustomLink
-          prev={true}
-          href={"/build?step=4"}
-          shallow={true}
-          replace
-          animation={true}
-        >
-          Prev Step
-        </CustomLink>
-        <CustomLink
-          href={"/build?step=6"}
-          shallow={true}
-          replace
-          animation={true}
-        >
-          Next Step
-        </CustomLink>
-      </nav>
+      <Stepper prev={`/build?step=4`} next={"/build?step=6"} />
     </div>
   );
 };

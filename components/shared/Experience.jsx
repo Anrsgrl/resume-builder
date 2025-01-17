@@ -1,10 +1,10 @@
 import { useState } from "react";
 import useStore from "@/store/store";
 import Input from "@/components/common/Input";
-import CustomLink from "@/components/common/CustomLink";
-import Editor from "./Editor";
-import Button from "../common/Button";
+import Editor from "@/components/shared/Editor";
+import Button from "@/components/common/Button";
 import { useFormattedTime } from "@/utils/helpers";
+import Stepper from "@/components/shared/Stepper";
 
 const Experience = () => {
   const { experience, addExperience, removeExperience } = useStore();
@@ -130,26 +130,7 @@ const Experience = () => {
         )}
       </div>
 
-      {/* Navigation Link */}
-      <nav className="flex items-center gap-2">
-        <CustomLink
-          prev={true}
-          href={"/build?step=2"}
-          shallow={true}
-          replace
-          animation={true}
-        >
-          Prev Step
-        </CustomLink>
-        <CustomLink
-          href={"/build?step=4"}
-          shallow={true}
-          replace
-          animation={true}
-        >
-          Next Step
-        </CustomLink>
-      </nav>
+      <Stepper prev={`/build?step=2`} next={"/build?step=4"} />
     </div>
   );
 };

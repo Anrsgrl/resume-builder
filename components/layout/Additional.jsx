@@ -3,7 +3,7 @@ import Certificates from "@/components/shared/Certificates";
 import Interests from "@/components/shared/Interests";
 import References from "@/components/shared/References";
 import Languages from "@/components/shared/Languages";
-import CustomLink from "@/components/common/CustomLink";
+import Stepper from "../shared/Stepper";
 
 const Additional = () => {
   return (
@@ -15,18 +15,7 @@ const Additional = () => {
       <Interests />
       <References />
       <Languages />
-      {/* Navigation Link */}
-      <nav className="flex items-center gap-2 mt-2">
-        <CustomLink
-          prev={true}
-          href={"/build?step=5"}
-          shallow={true}
-          replace
-          animation={true}
-        >
-          Prev Step
-        </CustomLink>
-      </nav>
+      <Stepper prev={`/build?step=5`} />
     </div>
   );
 };
