@@ -5,6 +5,7 @@ import useStore from "@/store/store";
 import React from "react";
 import Stepper from "@/components/shared/Stepper";
 import dynamic from "next/dynamic";
+import { useTranslations } from "next-intl";
 const Editor = dynamic(() => import("@/components/shared/Editor"), {
   ssr: false,
 });
@@ -30,58 +31,74 @@ const Personal = () => {
     summary,
     setSummary,
   } = useStore();
+  const t = useTranslations("Personal");
   return (
     <div className="mt-20 px-10 flex flex-col gap-2">
       <h1 className="text-center font-bold text-3xl text-main mb-4">
-        Personal Informations
+        {t("title")}
       </h1>
       <div className="flex items-center justify-center">
         <ImageUpload />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <Input state={name} setState={setName} name={"name"} label={"Name"} />
+        <Input
+          state={name}
+          setState={setName}
+          name={"name"}
+          label={t("name")}
+        />
         <Input
           state={surname}
           setState={setSurname}
           name={"surname"}
-          label={"Surname"}
+          label={t("surname")}
         />
-        <Input state={email} setState={setEmail} name={"mail"} label={"Mail"} />
+        <Input
+          state={email}
+          setState={setEmail}
+          name={"mail"}
+          label={t("email")}
+        />
         <Input
           state={phone}
           setState={setPhone}
           name={"phone"}
-          label={"Phone"}
+          label={t("phone")}
         />
         <Input
           state={jobTitle}
           setState={setJobTitle}
           name={"jobtitle"}
-          label={"Job Title"}
+          label={t("jobtitle")}
         />
         <Input
           state={driving}
           setState={setDriving}
           name={"drivingLicense"}
-          label={"Driving License"}
+          label={t("driving")}
         />
         <Input
           state={country}
           setState={setCountry}
           name={"country"}
-          label={"Country"}
+          label={t("country")}
         />
-        <Input state={city} setState={setCity} name={"city"} label={"City"} />
+        <Input
+          state={city}
+          setState={setCity}
+          name={"city"}
+          label={t("city")}
+        />
       </div>
       <div className="mt-2">
         <Editor
           state={summary}
           setState={setSummary}
           name={"summary"}
-          label={"Summary"}
+          label={t("summary")}
         />
       </div>
-      <Stepper prev={`/`} prevTitle={"Home"} next={"/build?step=2"} />
+      <Stepper prev={`/`} prevTitle={t("home")} next={"/build?step=2"} />
     </div>
   );
 };

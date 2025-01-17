@@ -13,5 +13,18 @@
         "step2text": "Choose from multiple template options and styles.",
         "step3": "Download your resume",
         "step3text": "Export your resume as a PDF."
+    },
+    "Personal":{
+        "title": "Personal Informations",
+        "name": "Name",
+        "surname": "Surname",
+        "email": "Email",
+        "phone": "Phone",
+        "jobtitle": "Job Title",
+        "driving": "Driving License",
+        "country": "Country",
+        "city": "City",
+        "summary": "Summary",
+        "home": "Home"
     }
 }
