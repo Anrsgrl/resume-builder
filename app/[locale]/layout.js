@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import "@/styles/editor.css";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+import { Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: "Resume Builder",
@@ -15,6 +16,7 @@ export default async function RootLayout({ children, locale }) {
     <html lang={locale}>
       <body>
         <NextIntlClientProvider messages={messages}>
+          <Toaster />
           <main className="">{children}</main>
         </NextIntlClientProvider>
       </body>
