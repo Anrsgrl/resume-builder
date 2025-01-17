@@ -67,6 +67,7 @@ const Experience = () => {
           setState={(value) =>
             setNewExperience({ ...newExperience, city: value })
           }
+          col={true}
           name={"city"}
           label={"City"}
         />{" "}

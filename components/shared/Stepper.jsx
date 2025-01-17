@@ -36,6 +36,9 @@ const Stepper = ({ prev, next, prevTitle, nextTitle }) => {
         <PiDotsThreeOutlineFill />
       </button>
       <Modal isOpen={modal} onClose={toggleModal}>
+        <CustomLink full={true} animation={true} href={`/`}>
+          Home
+        </CustomLink>
         {STEPS.map((step, index) => (
           <CustomLink
             full={true}
