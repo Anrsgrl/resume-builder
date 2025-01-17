@@ -3,7 +3,7 @@ import Certificates from "@/components/shared/Certificates";
 import Interests from "@/components/shared/Interests";
 import References from "@/components/shared/References";
 import Languages from "@/components/shared/Languages";
-import Stepper from "../shared/Stepper";
+import Stepper from "@/components/shared/Stepper";
 
 const Additional = () => {
   return (

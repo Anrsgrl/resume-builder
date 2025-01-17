@@ -1,5 +1,5 @@
 import React from "react";
-import CustomLink from "../common/CustomLink";
+import CustomLink from "@/components/common/CustomLink";
 
 const Stepper = ({ prev, next, prevTitle, nextTitle }) => {
   return (
