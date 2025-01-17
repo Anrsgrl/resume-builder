@@ -56,6 +56,17 @@
         "title": "Skils",
         "add": "Add Skill",
         "remove": "Remove"
+    },
+    "Projects": {
+        "title": "Projects",
+        "project": "Project Title",
+        "github": "Github Link",
+        "live": "Live Project",
+        "tech": "Technologies",
+        "add": "Add Technology",
+        "description": "Description",
+        "remove": "Remove",
+        "error": "Project title must be provided to add project"
     }
  }
  

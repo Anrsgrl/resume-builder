@@ -12,7 +12,7 @@ const Skills = () => {
   const [newSkill, setNewSkill] = useState("");
 
   const handleAddSkill = () => {
-    if (newSkill) {
+    if (newSkill.trim() !== "") {
       addSkill(newSkill);
       setNewSkill("");
     }

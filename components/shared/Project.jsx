@@ -8,8 +8,11 @@ const Editor = dynamic(() => import("@/components/shared/Editor"), {
 import Button from "@/components/common/Button";
 import { FaPlus } from "react-icons/fa";
 import Stepper from "@/components/shared/Stepper";
+import { useTranslations } from "next-intl";
+import toast from "react-hot-toast";
 
 const Project = () => {
+  const t = useTranslations("Projects");
   const { projects, addProject, removeProject } = useStore();
 
   const [newProject, setNewProject] = useState({
@@ -32,6 +35,8 @@ const Project = () => {
         githubLink: "",
         liveLink: "",
       });
+    } else {
+      toast.error(t("error"));
     }
   };
 
@@ -40,7 +45,7 @@ const Project = () => {
   };
 
   const handleAddTechnology = () => {
-    if (newTechnology) {
+    if (newTechnology.trim() !== "") {
       setNewProject((prev) => ({
         ...prev,
         technologies: [...prev.technologies, newTechnology.trim()],
@@ -52,7 +57,7 @@ const Project = () => {
   return (
     <div className="mt-20 px-10 flex flex-col gap-2">
       <h1 className="text-center font-bold text-3xl text-main mb-4">
-        Projects
+        {t("title")}
       </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -60,7 +65,7 @@ const Project = () => {
           state={newProject.title}
           setState={(value) => setNewProject({ ...newProject, title: value })}
           name={"title"}
-          label={"Project Title*"}
+          label={t("project") + "*"}
         />
         <Input
           state={newProject.githubLink}
@@ -68,7 +73,7 @@ const Project = () => {
             setNewProject({ ...newProject, githubLink: value })
           }
           name={"githubLink"}
-          label={"GitHub Link"}
+          label={t("github")}
         />
         <Input
           state={newProject.liveLink}
@@ -77,7 +82,7 @@ const Project = () => {
           }
           col={true}
           name={"liveLink"}
-          label={"Live Link"}
+          label={t("live")}
         />
         <div className="sm:col-span-2">
           <div className="flex gap-2">
@@ -85,7 +90,7 @@ const Project = () => {
               state={newTechnology}
               setState={setNewTechnology}
               name={"newTechnology"}
-              label={"Add Technology"}
+              label={t("tech")}
             />
             <Button onClick={handleAddTechnology}>
               <FaPlus />
@@ -105,10 +110,10 @@ const Project = () => {
           setState={(value) =>
             setNewProject({ ...newProject, description: value })
           }
-          label={"Description"}
+          label={t("description")}
         />
       </div>
-      <Button onClick={handleAddProject}>Add Project</Button>
+      <Button onClick={handleAddProject}>{t("add")}</Button>
 
       {/* List */}
       <div className="mt-6">
@@ -123,7 +128,7 @@ const Project = () => {
                   {project.title}
                 </summary>
                 <p>
-                  <strong className="text-main">Tech:</strong>{" "}
+                  <strong className="text-main">{t("tech")}:</strong>{" "}
                   {project.technologies.join(", ")}
                 </p>
                 <div
@@ -132,7 +137,7 @@ const Project = () => {
                 <div className="flex flex-col gap-1 mt-2">
                   {project.githubLink && (
                     <div className="flex items-center gap-1">
-                      GitHub Repo:
+                      {t("github")}:
                       <a
                         href={project.githubLink}
                         target="_blank"
@@ -145,7 +150,7 @@ const Project = () => {
                   )}
                   {project.liveLink && (
                     <div className="flex items-center gap-1">
-                      Live link:
+                      {t("live")}:
                       <a
                         href={project.liveLink}
                         target="_blank"
@@ -161,7 +166,7 @@ const Project = () => {
                   onClick={() => handleRemoveProject(index)}
                   className="text-red-500 mt-2"
                 >
-                  Remove
+                  {t("remove")}
                 </button>
               </details>
             ))}

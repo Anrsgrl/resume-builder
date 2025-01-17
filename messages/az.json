@@ -56,6 +56,17 @@
       "title": "Bacarıqlar",
       "add": "Əlavə Et",
       "remove": "Sil"
+    },
+    "Projects": {
+      "title": "Layihələr",
+      "project": "Layihənin Adı",
+      "github": "Github Linki",
+      "live": "Layihə Linki",
+      "tech": "Texnologiyalar",
+      "add": "Əlavə Et",
+      "description": "Əlavə qeydlər",
+      "remove": "Sil",
+      "error": "Layihə əlavə etmək üçün Layihənin Adı göstərilməlidir"
     }
   }
   
