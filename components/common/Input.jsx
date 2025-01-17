@@ -16,7 +16,7 @@ const Input = ({
   };
   // Normally, of course, I use twMerge and clsx for className merging in components. But I didn't see the need for this project.
   return (
-    <div className={`relative w-full ${col ? "col-span-2" : ""}`}>
+    <div className={`relative w-full ${col ? "sm:col-span-2" : ""}`}>
       <input
         type={type}
         name={name}

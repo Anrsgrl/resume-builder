@@ -46,7 +46,7 @@ const References = () => {
       </h2>
       {show && (
         <>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Input
               state={newReference.name}
               setState={(value) =>

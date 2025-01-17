@@ -42,7 +42,7 @@ const Experience = () => {
         Experience
       </h1>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Input
           state={newExperience.company}
           setState={(value) =>
@@ -64,7 +64,6 @@ const Experience = () => {
           setState={(value) =>
             setNewExperience({ ...newExperience, city: value })
           }
-          col={true}
           name={"city"}
           label={"City"}
         />{" "}

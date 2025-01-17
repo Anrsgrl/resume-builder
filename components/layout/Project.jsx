@@ -52,7 +52,7 @@ const Project = () => {
         Projects
       </h1>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Input
           state={newProject.title}
           setState={(value) => setNewProject({ ...newProject, title: value })}
@@ -76,7 +76,7 @@ const Project = () => {
           name={"liveLink"}
           label={"Live Link"}
         />
-        <div className="col-span-2">
+        <div className="sm:col-span-2">
           <div className="flex gap-2">
             <Input
               state={newTechnology}
@@ -170,7 +170,7 @@ const Project = () => {
       <nav className="flex items-center gap-2">
         <CustomLink
           prev={true}
-          href={"/build?step=2"}
+          href={"/build?step=4"}
           shallow={true}
           replace
           animation={true}

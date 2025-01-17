@@ -36,7 +36,7 @@ const Personal = () => {
       <div className="flex items-center justify-center">
         <ImageUpload />
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Input state={name} setState={setName} name={"name"} label={"Name"} />
         <Input
           state={surname}
