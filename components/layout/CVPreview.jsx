@@ -1,9 +1,13 @@
 "use client";
-import Template1 from "@/components/templates/Template1";
+import dynamic from "next/dynamic";
 import { useState } from "react";
-import { FaWindowMinimize } from "react-icons/fa";
 import { PiReadCvLogo } from "react-icons/pi";
 import { FiMinimize } from "react-icons/fi";
+
+const Template1 = dynamic(() => import("@/components/templates/Template1"), {
+  ssr: false,
+});
+
 const CVPreview = () => {
   const handlePrint = () => {
     window.print();
