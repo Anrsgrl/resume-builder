@@ -58,7 +58,7 @@ export default function Home() {
           <BsPatchQuestionFill size={16} />
         </button>
       </div>
-      {howModal && <HowItWorks setHowModal={setHowModal} />}
+      <HowItWorks howModal={howModal} setHowModal={setHowModal} />
     </div>
   );
 }

@@ -8,11 +8,11 @@ import {
 import { IoCloseCircleSharp } from "react-icons/io5";
 import Modal from "@/components/common/Modal";
 
-const HowItWorks = ({ setHowModal }) => {
+const HowItWorks = ({ howModal, setHowModal }) => {
   const t = useTranslations("How");
 
   return (
-    <Modal isOpen={true} onClose={() => setHowModal(false)}>
+    <Modal isOpen={howModal} onClose={() => setHowModal(false)}>
       <div className="p-4 md:p-6 text-center relative bg-white rounded-md mx-4">
         <button
           onClick={() => setHowModal(false)}
