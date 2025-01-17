@@ -93,6 +93,14 @@
       "add": "Əlavə Et",
       "remove": "Sil",
       "error": "Həm Ad, həm də Şirkət məlumatları göstərilməlidir"
+    },
+    "Languages": {
+        "title": "Dillər",
+        "language": "Dil",
+        "level": "Səviyyə",
+        "add": "Əlavə Et",
+        "remove": "Sil",
+        "error": "Dil və səviyyə daxil edilməlidir"
     }
   }
   

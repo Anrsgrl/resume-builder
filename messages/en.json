@@ -93,6 +93,14 @@
         "add": "Add Reference",
         "remove": "Remove",
         "error":"Both Full name and Company must be provided to add reference"
+    },
+    "Languages": {
+        "title": "Languages",
+        "language": "Language",
+        "level": "Level",
+        "add": "Add Language",
+        "remove": "Remove",
+        "error": "Both Language and level must be provided to add language"
     }
  }
  
