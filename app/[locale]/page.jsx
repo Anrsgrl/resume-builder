@@ -1,11 +1,11 @@
 "use client";
-import { useTranslations } from "next-intl";
+import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
+import { useTranslations } from "next-intl";
 import logo from "@/assets/images/logo.svg";
 import HowItWorks from "@/components/HowItWorks";
 import { MdArrowRightAlt, MdKeyboardArrowRight } from "react-icons/md";
-import Link from "next/link";
-import { useState } from "react";
 import { BsPatchQuestionFill } from "react-icons/bs";
 
 export default function Home() {
@@ -33,22 +33,22 @@ export default function Home() {
         <span className="font-bold">Resume Builder</span>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-        <div className="w-full flex items-center gap-1 animation-all group overflow-hidden bg-main w-fit p-3 rounded-full font-bold text-white cursor-pointer hover:bg-main/80">
+        <Link
+          href="/build?step=1"
+          className="w-full flex items-center gap-1 animation-all group overflow-hidden bg-main w-fit p-3 rounded-full font-bold text-white cursor-pointer hover:bg-main/80"
+        >
           <MdArrowRightAlt
             size={24}
-            className="transform -translate-x-5 animation-all group-hover:translate-x-0 opacity-0 group-hover:opacity-100"
+            className="transform -translate-x-5 animation-all group-hover:translate-x-0 opacity-0 group-hover:opacity-100 group-hover:ml-2"
           />
-          <Link
-            href="/build?step=1"
-            className="uppercase text-sm animation-all -translate-x-3 group-hover:translate-x-0"
-          >
+          <span className="uppercase text-sm animation-all -translate-x-3 group-hover:translate-x-0">
             {t("startButton")}
-          </Link>
+          </span>
           <MdArrowRightAlt
             size={24}
-            className="transform -translate-x-5 animation-all group-hover:translate-x-0 group-hover:opacity-0 opacity-100 ml-2"
+            className="transform -translate-x-5 animation-all group-hover:translate-x-0 group-hover:opacity-0 opacity-100 ml-2 group-hover:ml-0"
           />
-        </div>
+        </Link>
         <button
           onClick={() => setHowModal(true)}
           type="button"
