@@ -6,7 +6,9 @@
       "how": "Necə işləyir?"
     },
     "General":{
-      "present": "Hal-hazırda"
+      "present": "Hal-hazırda",
+      "edit": "Düzəliş et",
+      "remove": "Sil"
     },
     "How": {
       "how": "Necə işləyir?",
@@ -51,7 +53,10 @@
       "endDate": "Bitmə Tarixi",
       "description": "Əlavə qeydlər",
       "add": "Əlavə Et",
+      "edit": "Düzəliş et",
       "remove": "Sil",
+      "success": "Uğurla düzəldildi!",
+      "close": "Ləğv et",
       "error": "Təhsil əlavə etmək üçün həm Dərəcə, həm də Təhsil müəssisəsi göstərilməlidir"
     },
     "Experience": {

@@ -6,7 +6,9 @@
         "how": "How It Works"
     },
     "General":{
-        "present": "Present"
+        "present": "Present",
+        "edit": "Update",
+        "remove": "Remove"
     },
     "How": {
         "how": "How It Works",
@@ -52,6 +54,8 @@
         "description": "Description",
         "add": "Add Education",
         "remove": "Remove",
+        "success": "Successfully edited!",
+        "close": "Close",
         "error": "Both Degree and Institution must be provided to add education"
     },
     "Experience": {
@@ -79,8 +83,8 @@
         "tech": "Technologies",
         "add": "Add Technology",
         "description": "Description",
-        "edit": "Update",
         "remove": "Remove",
+        "edit": "Update",
         "success": "Successfully edited!",
         "close": "Close",
         "error": "Project title must be provided to add project"

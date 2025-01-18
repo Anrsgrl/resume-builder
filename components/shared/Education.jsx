@@ -6,15 +6,21 @@ const Editor = dynamic(() => import("@/components/shared/Editor"), {
   ssr: false,
 });
 import Button from "@/components/common/Button";
-import { useFormattedTime } from "@/utils/helpers";
 import Stepper from "@/components/shared/Stepper";
 import toast from "react-hot-toast";
-import { useLocale, useTranslations } from "next-intl";
-import { LOCALES } from "@/utils/constants";
+import { useTranslations } from "next-intl";
+import { handleMoveItem } from "@/utils/helpers";
+import Example from "./Example";
 
 const Education = () => {
   const t = useTranslations("Education");
-  const { education, addEducation, removeEducation } = useStore();
+  const {
+    education,
+    addEducation,
+    editEducation,
+    removeEducation,
+    updateEducationOrder,
+  } = useStore();
 
   const [newEducation, setNewEducation] = useState({
     institution: "",
@@ -25,6 +31,9 @@ const Education = () => {
     endDate: "",
     description: "",
   });
+
+  // Edit state
+  const [editedIndex, setEditedIndex] = useState(null);
 
   const handleAddEducation = () => {
     if (newEducation.institution && newEducation.degree) {
@@ -43,18 +52,84 @@ const Education = () => {
     }
   };
 
+  const handleEditEducation = () => {
+    try {
+      editEducation(editedIndex, newEducation);
+      toast.success(t("success"));
+      setEditedIndex(null);
+      setNewEducation({
+        institution: "",
+        city: "",
+        degree: "",
+        fieldOfStudy: "",
+        startDate: "",
+        endDate: "",
+        description: "",
+      });
+    } catch (error) {
+      console.error(error);
+      toast.error(error);
+    }
+  };
+
+  const handleChooseEducation = (index) => {
+    setEditedIndex(index);
+    const educationItem = education[index];
+    setNewEducation({
+      institution: educationItem.institution,
+      city: educationItem.city,
+      degree: educationItem.degree,
+      fieldOfStudy: educationItem.fieldOfStudy,
+      startDate: educationItem.startDate,
+      endDate: educationItem.endDate,
+      description: educationItem.description,
+    });
+    // Temporary solution
+    setTimeout(() => {
+      setNewEducation({
+        institution: educationItem.institution,
+        city: educationItem.city,
+        degree: educationItem.degree,
+        fieldOfStudy: educationItem.fieldOfStudy,
+        startDate: educationItem.startDate,
+        endDate: educationItem.endDate,
+        description: educationItem.description,
+      });
+    }, [200]);
+  };
+
+  const handleCloseEdit = () => {
+    setEditedIndex(null);
+    setNewEducation({
+      institution: "",
+      city: "",
+      degree: "",
+      fieldOfStudy: "",
+      startDate: "",
+      endDate: "",
+      description: "",
+    });
+  };
+
   const handleRemoveEducation = (index) => {
     removeEducation(index);
   };
 
-  const locale = useLocale();
-  const localeIso = LOCALES.find((lang) => lang.value === locale).iso;
+  //* Sort functions
+  const handleMoveEducationUp = (index) => {
+    handleMoveItem(education, updateEducationOrder, index, "up");
+  };
+
+  const handleMoveEducationDown = (index) => {
+    handleMoveItem(education, updateEducationOrder, index, "down");
+  };
 
   return (
     <div className="mt-20 px-10 flex flex-col gap-2">
       <h1 className="text-center font-bold text-3xl text-main mb-4">
         {t("title")}
       </h1>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Input
           state={newEducation.institution}
@@ -73,22 +148,6 @@ const Education = () => {
           label={t("degree") + "*"}
         />
         <Input
-          state={newEducation.fieldOfStudy}
-          setState={(value) =>
-            setNewEducation({ ...newEducation, fieldOfStudy: value })
-          }
-          name={"fieldOfStudy"}
-          label={t("field")}
-        />
-        <Input
-          state={newEducation.city}
-          setState={(value) =>
-            setNewEducation({ ...newEducation, city: value })
-          }
-          name={"city"}
-          label={t("city")}
-        />
-        <Input
           state={newEducation.startDate}
           setState={(value) =>
             setNewEducation({ ...newEducation, startDate: value })
@@ -103,13 +162,22 @@ const Education = () => {
             setNewEducation({ ...newEducation, endDate: value })
           }
           type="month"
-          present={true}
           name={"endDate"}
           label={t("endDate")}
         />
+        <Input
+          state={newEducation.city}
+          setState={(value) =>
+            setNewEducation({ ...newEducation, city: value })
+          }
+          name={"city"}
+          label={t("city")}
+        />
       </div>
+
       <div className="mt-2">
         <Editor
+          editedIndex={editedIndex}
           state={newEducation.description}
           setState={(value) =>
             setNewEducation({ ...newEducation, description: value })
@@ -117,41 +185,55 @@ const Education = () => {
           label={t("description")}
         />
       </div>
-      <Button onClick={handleAddEducation}>{t("add")}</Button>
+
+      <Button
+        onClick={() =>
+          editedIndex === null ? handleAddEducation() : handleEditEducation()
+        }
+      >
+        {editedIndex !== null ? t("edit") : t("add")}
+      </Button>
+      {editedIndex !== null && (
+        <Button onClick={() => handleCloseEdit()}>{t("close")}</Button>
+      )}
 
       {/* List */}
       <div className="mt-6">
         {education.length > 0 && (
           <div className="space-y-4 text-white/80">
-            {education.map((edu, index) => (
-              <details
+            {education.map((item, index) => (
+              <Example
                 key={index}
-                className="border border-white/50 p-4 rounded-md animation-all"
+                index={index}
+                remove={handleRemoveEducation}
+                edit={handleChooseEducation}
+                down={handleMoveEducationDown}
+                up={handleMoveEducationUp}
+                title={item.institution}
+                state={education}
               >
-                <summary className="font-bold text-white/80">
-                  {edu.institution} - {edu.degree}
-                </summary>
-                <p>{edu.fieldOfStudy}</p>
                 <p>
-                  {useFormattedTime(edu.startDate, localeIso)} -{" "}
-                  {useFormattedTime(edu.endDate, localeIso)}
+                  <strong>{t("degree")}:</strong> {item.degree}
+                </p>
+                <p>
+                  <strong>{t("startDate")}:</strong> {item.startDate} -{" "}
+                  {item.endDate}
                 </p>
                 <div
-                  dangerouslySetInnerHTML={{ __html: edu.description }}
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      item?.description !== "<p><br></p>"
+                        ? item.description
+                        : "",
+                  }}
                 ></div>
-                <button
-                  onClick={() => handleRemoveEducation(index)}
-                  className="text-red-500 mt-2"
-                >
-                  {t("remove")}
-                </button>
-              </details>
+              </Example>
             ))}
           </div>
         )}
       </div>
 
-      <Stepper prev={`/build?step=1`} next={"/build?step=3"} />
+      <Stepper prev={`/build?step=4`} next={"/build?step=6"} />
     </div>
   );
 };
