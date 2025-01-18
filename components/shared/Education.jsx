@@ -2,15 +2,16 @@ import { useState } from "react";
 import useStore from "@/store/store";
 import Input from "@/components/common/Input";
 import dynamic from "next/dynamic";
-const Editor = dynamic(() => import("@/components/shared/Editor"), {
-  ssr: false,
-});
 import Button from "@/components/common/Button";
 import Stepper from "@/components/shared/Stepper";
 import toast from "react-hot-toast";
-import { useTranslations } from "next-intl";
-import { handleMoveItem } from "@/utils/helpers";
-import Example from "./Example";
+import { useLocale, useTranslations } from "next-intl";
+import { handleMoveItem, useFormattedTime } from "@/utils/helpers";
+import Example from "@/components/shared/Example";
+import { LOCALES } from "@/utils/constants";
+const Editor = dynamic(() => import("@/components/shared/Editor"), {
+  ssr: false,
+});
 
 const Education = () => {
   const t = useTranslations("Education");
@@ -124,6 +125,10 @@ const Education = () => {
     handleMoveItem(education, updateEducationOrder, index, "down");
   };
 
+  //* ISO
+  const locale = useLocale();
+  const localeIso = LOCALES.find((lang) => lang.value === locale).iso;
+
   return (
     <div className="mt-20 px-10 flex flex-col gap-2">
       <h1 className="text-center font-bold text-3xl text-main mb-4">
@@ -216,8 +221,9 @@ const Education = () => {
                   <strong>{t("degree")}:</strong> {item.degree}
                 </p>
                 <p>
-                  <strong>{t("startDate")}:</strong> {item.startDate} -{" "}
-                  {item.endDate}
+                  <strong>{t("startDate")}:</strong>{" "}
+                  {useFormattedTime(item.startDate, localeIso)} -{" "}
+                  {useFormattedTime(item.endDate, localeIso)}
                 </p>
                 <div
                   dangerouslySetInnerHTML={{
