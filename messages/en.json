@@ -79,6 +79,7 @@
         "tech": "Technologies",
         "add": "Add Technology",
         "description": "Description",
+        "edit": "Update",
         "remove": "Remove",
         "error": "Project title must be provided to add project"
     },
@@ -118,6 +119,13 @@
     },
     "Template": {
         "save": "Save Resume as PDF"
+    },
+    "Footer": {
+        "starOnGitHub": "Star on GitHub",
+        "codeOfConduct": "Code of Conduct",
+        "contributing": "Contributing",
+        "security": "Security",
+        "copyright": "© {year} Resume Builder. All rights reserved."
     }
  }
  

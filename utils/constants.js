@@ -24,6 +24,6 @@ export const LANGUAGE_OPTIONS_AZ = [
 ];
 
 export const LOCALES = [
-  { value: "az", label: "AZ", iso: "az-AZ" },
-  { value: "en", label: "US", iso: "en-US" },
+  { value: "az", label: "AZ", iso: "az-AZ", description: "Azərbaycan dili" },
+  { value: "en", label: "US", iso: "en-US", description: "English" },
 ];

@@ -9,6 +9,7 @@ export default {
     extend: {
       colors: {
         main: "#009e67",
+        back: "#161616",
       },
       screens: {
         xs: "475px",

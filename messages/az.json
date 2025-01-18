@@ -79,6 +79,7 @@
       "tech": "Texnologiyalar",
       "add": "Əlavə Et",
       "description": "Əlavə qeydlər",
+      "edit": "Düzəliş et",
       "remove": "Sil",
       "error": "Layihə əlavə etmək üçün Layihənin Adı göstərilməlidir"
     },
@@ -118,6 +119,13 @@
     },
     "Template": {
       "save": "CV-ni PDF şəklində yüklə"
-  }
+    },
+    "Footer": {
+      "starOnGitHub": "GitHub-da Ulduzla",
+      "codeOfConduct": "Davranış Kodu",
+      "contributing": "Töhfə Vermək",
+      "security": "Təhlükəsizlik",
+      "copyright": "© {year} Resume Builder. Bütün hüquqlar qorunur."
+    }
 }
   
