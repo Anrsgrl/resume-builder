@@ -34,7 +34,7 @@ export default function Home() {
         href="https://github.com/Anrsgrl/resume-builder"
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center gap-2 px-4  rounded-md font-medium text-white hover:bg-gray-700 hover:bg-gray-600 transition duration-300"
+        className="flex items-center gap-2 px-4 py-2 rounded-md font-medium text-white hover:bg-gray-700 hover:bg-gray-600 transition duration-300"
       >
         <SiGithub size={20} />
         <span className="hidden md:block">Star on GitHub</span>
