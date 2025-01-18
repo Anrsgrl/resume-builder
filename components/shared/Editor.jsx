@@ -2,7 +2,7 @@ import { useQuill } from "react-quilljs";
 import "quill/dist/quill.snow.css";
 import { useEffect, useState, useRef } from "react";
 
-export default function Editor({ state, setState, label }) {
+export default function Editor({ state, setState, editedIndex, label }) {
   const [editorFocused, setEditorFocused] = useState(false);
   const isInitialLoad = useRef(true);
   const theme = "snow";
@@ -27,7 +27,7 @@ export default function Editor({ state, setState, label }) {
   });
 
   useEffect(() => {
-    if (quill && isInitialLoad.current && state) {
+    if (quill && (isInitialLoad.current || editedIndex !== null) && state) {
       quill.clipboard.dangerouslyPasteHTML(state);
       isInitialLoad.current = false;
     }

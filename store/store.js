@@ -40,6 +40,12 @@ const useStore = create(
         set((state) => ({
           certificates: state.certificates.filter((_, i) => i !== index),
         })),
+      editCertificate: (index, updatedCertificate) =>
+        set((state) => ({
+          certificates: state.certificates.map((cert, i) =>
+            i === index ? updatedCertificate : cert
+          ),
+        })),
 
       //! Experiences
       experience: [],
@@ -50,6 +56,12 @@ const useStore = create(
       removeExperience: (index) =>
         set((state) => ({
           experience: state.experience.filter((_, i) => i !== index),
+        })),
+      editExperience: (index, updatedExperience) =>
+        set((state) => ({
+          experience: state.experience.map((exp, i) =>
+            i === index ? updatedExperience : exp
+          ),
         })),
 
       //! Languages
@@ -62,6 +74,12 @@ const useStore = create(
         set((state) => ({
           languages: state.languages.filter((_, i) => i !== index),
         })),
+      editLanguage: (index, updatedLanguage) =>
+        set((state) => ({
+          languages: state.languages.map((lang, i) =>
+            i === index ? updatedLanguage : lang
+          ),
+        })),
 
       //! Education
       education: [],
@@ -72,6 +90,12 @@ const useStore = create(
       removeEducation: (index) =>
         set((state) => ({
           education: state.education.filter((_, i) => i !== index),
+        })),
+      editEducation: (index, updatedEducation) =>
+        set((state) => ({
+          education: state.education.map((edu, i) =>
+            i === index ? updatedEducation : edu
+          ),
         })),
 
       //! Skills
@@ -84,6 +108,12 @@ const useStore = create(
         set((state) => ({
           skills: state.skills.filter((_, i) => i !== index),
         })),
+      editSkill: (index, updatedSkill) =>
+        set((state) => ({
+          skills: state.skills.map((skill, i) =>
+            i === index ? updatedSkill : skill
+          ),
+        })),
 
       //! Projects
       projects: [],
@@ -95,6 +125,14 @@ const useStore = create(
         set((state) => ({
           projects: state.projects.filter((_, i) => i !== index),
         })),
+      editProject: (index, updatedProject) =>
+        set((state) => ({
+          projects: state.projects.map((proj, i) =>
+            i === index ? updatedProject : proj
+          ),
+        })),
+      updateProjectOrder: (updatedProjects) =>
+        set({ projects: updatedProjects }),
 
       //! Interests
       interests: [],
@@ -106,6 +144,12 @@ const useStore = create(
         set((state) => ({
           interests: state.interests.filter((_, i) => i !== index),
         })),
+      editInterest: (index, updatedInterest) =>
+        set((state) => ({
+          interests: state.interests.map((interest, i) =>
+            i === index ? updatedInterest : interest
+          ),
+        })),
 
       //! References
       references: [],
@@ -116,6 +160,12 @@ const useStore = create(
       removeReference: (index) =>
         set((state) => ({
           references: state.references.filter((_, i) => i !== index),
+        })),
+      editReference: (index, updatedReference) =>
+        set((state) => ({
+          references: state.references.map((ref, i) =>
+            i === index ? updatedReference : ref
+          ),
         })),
     }),
     {

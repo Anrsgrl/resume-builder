@@ -6,14 +6,20 @@ const Editor = dynamic(() => import("@/components/shared/Editor"), {
   ssr: false,
 });
 import Button from "@/components/common/Button";
-import { FaPlus } from "react-icons/fa";
+import { FaArrowDown, FaArrowUp, FaPlus } from "react-icons/fa";
 import Stepper from "@/components/shared/Stepper";
 import { useTranslations } from "next-intl";
 import toast from "react-hot-toast";
-
+import { TbClick } from "react-icons/tb";
 const Project = () => {
   const t = useTranslations("Projects");
-  const { projects, addProject, removeProject } = useStore();
+  const {
+    projects,
+    addProject,
+    editProject,
+    removeProject,
+    updateProjectOrder,
+  } = useStore();
 
   const [newProject, setNewProject] = useState({
     title: "",
@@ -40,6 +46,60 @@ const Project = () => {
     }
   };
 
+  //* Edit
+  const [editedIndex, setEditedIndex] = useState(null);
+  const handleEditProject = () => {
+    try {
+      editProject(editedIndex, newProject);
+      toast.success(t("success"));
+      setEditedIndex(null);
+      setNewProject({
+        title: "",
+        description: "",
+        technologies: [],
+        githubLink: "",
+        liveLink: "",
+      });
+    } catch (error) {
+      console.error(error);
+      toast.error(error);
+    }
+  };
+  const handleChooseProject = (index) => {
+    setEditedIndex(index);
+    const project = projects[index];
+    console.log("Project", project);
+    console.log("Project", project.title);
+    setNewProject({
+      title: project.title,
+      description: project.description,
+      technologies: project.technologies,
+      githubLink: project.githubLink,
+      liveLink: project.liveLink,
+    });
+    // Temporary solution
+    setTimeout(() => {
+      setNewProject({
+        title: project.title,
+        description: project.description,
+        technologies: project.technologies,
+        githubLink: project.githubLink,
+        liveLink: project.liveLink,
+      });
+    }, [200]);
+  };
+
+  const handleCloseEdit = () => {
+    setEditedIndex(null);
+    setNewProject({
+      title: "",
+      description: "",
+      technologies: [],
+      githubLink: "",
+      liveLink: "",
+    });
+  };
+
   const handleRemoveProject = (index) => {
     removeProject(index);
   };
@@ -51,6 +111,25 @@ const Project = () => {
         technologies: [...prev.technologies, newTechnology.trim()],
       }));
       setNewTechnology("");
+    }
+  };
+
+  //* Sort functions
+  const handleMoveProjectUp = (index) => {
+    if (index > 0) {
+      const updatedProjects = [...projects];
+      const [movedProject] = updatedProjects.splice(index, 1);
+      updatedProjects.splice(index - 1, 0, movedProject);
+      updateProjectOrder(updatedProjects);
+    }
+  };
+
+  const handleMoveProjectDown = (index) => {
+    if (index < projects.length - 1) {
+      const updatedProjects = [...projects];
+      const [movedProject] = updatedProjects.splice(index, 1);
+      updatedProjects.splice(index + 1, 0, movedProject);
+      updateProjectOrder(updatedProjects);
     }
   };
 
@@ -98,7 +177,23 @@ const Project = () => {
           </div>
           <div className="mt-2">
             <p className="text-gray-400">
-              {newProject.technologies.join(", ")}
+              {newProject?.technologies?.map((tech, index) => (
+                <span
+                  key={index}
+                  className="cursor-pointer hover:underline"
+                  onClick={() =>
+                    setNewProject((prev) => ({
+                      ...prev,
+                      technologies: prev.technologies.filter(
+                        (_, i) => i !== index
+                      ),
+                    }))
+                  }
+                >
+                  {tech}
+                  {index !== newProject.technologies.length - 1 && ", "}
+                </span>
+              ))}
             </p>
           </div>
         </div>
@@ -106,6 +201,7 @@ const Project = () => {
 
       <div className="mt-2">
         <Editor
+          editedIndex={editedIndex}
           state={newProject.description}
           setState={(value) =>
             setNewProject({ ...newProject, description: value })
@@ -113,7 +209,16 @@ const Project = () => {
           label={t("description")}
         />
       </div>
-      <Button onClick={handleAddProject}>{t("add")}</Button>
+      <Button
+        onClick={() =>
+          editedIndex === null ? handleAddProject() : handleEditProject()
+        }
+      >
+        {editedIndex !== null ? t("edit") : t("add")}
+      </Button>
+      {editedIndex !== null && (
+        <Button onClick={() => handleCloseEdit()}>{t("close")}</Button>
+      )}
 
       {/* List */}
       <div className="mt-6">
@@ -124,15 +229,39 @@ const Project = () => {
                 key={index}
                 className="border border-white/50 p-4 rounded-md animation-all"
               >
-                <summary className="font-bold text-white/80">
-                  {project.title}
+                <summary className="font-bold text-white/80 flex items-center justify-between cursor-pointer">
+                  <span className="flex items-center gap-1">
+                    {project.title} <TbClick />
+                  </span>
+                  <div className="flex items-center gap-2 mt-2">
+                    <button
+                      onClick={() => handleMoveProjectUp(index)}
+                      disabled={index === 0}
+                      className="disabled:opacity-50"
+                    >
+                      <FaArrowUp />
+                    </button>
+                    <button
+                      onClick={() => handleMoveProjectDown(index)}
+                      disabled={index === projects.length - 1}
+                      className="disabled:opacity-50"
+                    >
+                      <FaArrowDown />
+                    </button>
+                  </div>
                 </summary>
                 <p>
                   <strong className="text-main">{t("tech")}:</strong>{" "}
                   {project.technologies.join(", ")}
                 </p>
                 <div
-                  dangerouslySetInnerHTML={{ __html: project.description }}
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      project.description &&
+                      project.description !== "<p><br></p>"
+                        ? project.description
+                        : "",
+                  }}
                 ></div>
                 <div className="flex flex-col gap-1 mt-2">
                   {project.githubLink && (
@@ -162,12 +291,20 @@ const Project = () => {
                     </div>
                   )}
                 </div>
-                <button
-                  onClick={() => handleRemoveProject(index)}
-                  className="text-red-500 mt-2"
-                >
-                  {t("remove")}
-                </button>
+                <div className="flex items-center gap-2 mt-2">
+                  <button
+                    onClick={() => handleChooseProject(index)}
+                    className="text-blue-500"
+                  >
+                    {t("edit")}
+                  </button>
+                  <button
+                    onClick={() => handleRemoveProject(index)}
+                    className="text-red-500"
+                  >
+                    {t("remove")}
+                  </button>
+                </div>
               </details>
             ))}
           </div>
