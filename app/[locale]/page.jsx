@@ -22,7 +22,7 @@ export default function Home() {
       .catch((err) => console.error("Failed to fetch GitHub stars:", err));
   }, []);
   return (
-    <div className="min-h-dvh flex flex-col items-center justify-center gap-8 p-6">
+    <div className="min-h-dvh flex flex-col items-center justify-center gap-6 sm:gap-8 p-6">
       <Image src={logo} alt="logo" width={300} className="drop-shadow-lg" />
       <h1 className="text-white text-3xl font-bold text-center">
         {t("title")}{" "}
@@ -34,7 +34,7 @@ export default function Home() {
         href="https://github.com/Anrsgrl/resume-builder"
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center gap-2 px-4 py-2 rounded-md font-medium text-white hover:bg-gray-700 hover:bg-gray-600 transition duration-300"
+        className="flex items-center gap-2 px-4  rounded-md font-medium text-white hover:bg-gray-700 hover:bg-gray-600 transition duration-300"
       >
         <SiGithub size={20} />
         <span className="hidden md:block">Star on GitHub</span>
