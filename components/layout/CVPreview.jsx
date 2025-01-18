@@ -18,6 +18,11 @@ const CVPreview = () => {
 
   const openReview = () => {
     setShow(!show);
+    if (show) {
+      document.documentElement.style.overflow = "unset";
+    } else {
+      document.documentElement.style.overflow = "hidden";
+    }
   };
   return (
     <>
@@ -41,9 +46,9 @@ const CVPreview = () => {
         )}
       </button>
       <div
-        className={`flex flex-col items-center justify-center  print:h-max ${
+        className={`flex flex-col items-center justify-center print:h-max ${
           show
-            ? "absolute inset-0 z-40 overflow-visible py-4 print:py-0 bg-black/80 h-dvh"
+            ? "fixed inset-0 z-40 overflow-visible py-4 print:py-0 bg-black/80 h-dvh"
             : "hidden xl:block print:block h-[95dvh]"
         }`}
       >

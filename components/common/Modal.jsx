@@ -13,7 +13,7 @@ const Modal = ({ isOpen, onClose, children }) => {
 
   return (
     <div
-      className="fixed inset-0 bg-black/80 flex justify-center items-center z-[60]"
+      className="fixed top-0 left-0 bg-black/80 flex justify-center items-center z-[60] h-full w-full"
       onClick={handleOutsideClick}
     >
       <div

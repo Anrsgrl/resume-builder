@@ -17,7 +17,7 @@ export default async function RootLayout({ children, locale }) {
       <body>
         <NextIntlClientProvider messages={messages}>
           <Toaster />
-          <main className="">{children}</main>
+          <main className="min-h-dvh">{children}</main>
         </NextIntlClientProvider>
       </body>
     </html>
