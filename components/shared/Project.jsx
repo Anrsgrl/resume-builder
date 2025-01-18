@@ -11,6 +11,7 @@ import Stepper from "@/components/shared/Stepper";
 import { useTranslations } from "next-intl";
 import toast from "react-hot-toast";
 import { TbClick } from "react-icons/tb";
+import { handleMoveItem } from "@/utils/helpers";
 const Project = () => {
   const t = useTranslations("Projects");
   const {
@@ -116,21 +117,11 @@ const Project = () => {
 
   //* Sort functions
   const handleMoveProjectUp = (index) => {
-    if (index > 0) {
-      const updatedProjects = [...projects];
-      const [movedProject] = updatedProjects.splice(index, 1);
-      updatedProjects.splice(index - 1, 0, movedProject);
-      updateProjectOrder(updatedProjects);
-    }
+    handleMoveItem(projects, updateProjectOrder, index, "up");
   };
 
   const handleMoveProjectDown = (index) => {
-    if (index < projects.length - 1) {
-      const updatedProjects = [...projects];
-      const [movedProject] = updatedProjects.splice(index, 1);
-      updatedProjects.splice(index + 1, 0, movedProject);
-      updateProjectOrder(updatedProjects);
-    }
+    handleMoveItem(projects, updateProjectOrder, index, "down");
   };
 
   return (
@@ -250,15 +241,17 @@ const Project = () => {
                     </button>
                   </div>
                 </summary>
-                <p>
-                  <strong className="text-main">{t("tech")}:</strong>{" "}
-                  {project.technologies.join(", ")}
-                </p>
+                {project?.technologies?.length > 0 && (
+                  <p>
+                    <strong className="text-main">{t("tech")}:</strong>{" "}
+                    {project.technologies.join(", ")}
+                  </p>
+                )}
+
                 <div
                   dangerouslySetInnerHTML={{
                     __html:
-                      project.description &&
-                      project.description !== "<p><br></p>"
+                      project?.description !== "<p><br></p>"
                         ? project.description
                         : "",
                   }}

@@ -30,3 +30,20 @@ export const useFormattedTime = (time, locale) => {
 
   return formattedDate;
 };
+
+//* Sort functions
+export const handleMoveItem = (Items, updateItemOrder, index, direction) => {
+  if (
+    (direction === "up" && index > 0) ||
+    (direction === "down" && index < Items.length - 1)
+  ) {
+    const updatedItems = [...Items];
+    const [movedItem] = updatedItems.splice(index, 1);
+    updatedItems.splice(
+      direction === "up" ? index - 1 : index + 1,
+      0,
+      movedItem
+    );
+    updateItemOrder(updatedItems);
+  }
+};
