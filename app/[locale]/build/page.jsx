@@ -1,4 +1,5 @@
 "use client";
+import EasterEgg from "@/components/EasterEgg";
 import Additional from "@/components/layout/Additional";
 import Education from "@/components/shared/Education";
 import Experience from "@/components/shared/Experience";
@@ -20,6 +21,7 @@ const Build = () => {
       {step == 4 && <Skills />}
       {step == 5 && <Project />}
       {step == 6 && <Additional />}
+      {step > 6 && <EasterEgg />}
     </div>
   );
 };
