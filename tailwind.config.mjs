@@ -10,6 +10,9 @@ export default {
       colors: {
         main: "#009e67",
       },
+      screens: {
+        xs: "475px",
+      },
       keyframes: {
         glow: {
           "0%, 100%": {

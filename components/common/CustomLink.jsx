@@ -9,6 +9,7 @@ const CustomLink = ({
   icon,
   prev,
   full,
+  closeXs,
   ...props
 }) => {
   return (
@@ -35,6 +36,8 @@ const CustomLink = ({
       )}
       <p
         className={`uppercase text-sm animation-all group-hover:text-white ${
+          closeXs ? "" : "hidden xs:block"
+        } ${
           animation && !prev
             ? "-translate-x-3 group-hover:translate-x-0"
             : animation && prev
@@ -43,6 +46,11 @@ const CustomLink = ({
         }`}
       >
         {children}
+      </p>
+      <p>
+        <span className={`${`${closeXs ? "hidden" : "block xs:hidden"}`}`}>
+          <MdArrowRightAlt size={24} className={`${prev && "rotate-180"}`} />
+        </span>
       </p>
     </Link>
   );
