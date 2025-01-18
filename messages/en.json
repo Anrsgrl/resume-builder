@@ -55,8 +55,10 @@
         "add": "Add Education",
         "remove": "Remove",
         "success": "Successfully edited!",
+        "edit": "Update",
         "close": "Close",
-        "error": "Both Degree and Institution must be provided to add education"
+        "error": "Both Degree and Institution must be provided to add education",
+              "present": "Present"
     },
     "Experience": {
         "title": "Professional Experience",
@@ -68,7 +70,11 @@
         "description": "Description",
         "add":"Add Experience",
         "remove":"Remove",
-        "error":"Both Company and Job title must be provided to add experience"
+        "edit": "Update",
+        "close": "Close",
+        "success": "Successfully edited!",
+        "error":"Both Company and Job title must be provided to add experience",
+              "present": "Present"
     },
     "Skills": {
         "title": "Skils",

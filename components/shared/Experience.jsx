@@ -6,15 +6,22 @@ const Editor = dynamic(() => import("@/components/shared/Editor"), {
   ssr: false,
 });
 import Button from "@/components/common/Button";
-import { useFormattedTime } from "@/utils/helpers";
+import { handleMoveItem, useFormattedTime } from "@/utils/helpers";
 import Stepper from "@/components/shared/Stepper";
 import { useLocale, useTranslations } from "next-intl";
 import toast from "react-hot-toast";
 import { LOCALES } from "@/utils/constants";
+import Example from "./Example";
 
 const Experience = () => {
   const t = useTranslations("Experience");
-  const { experience, addExperience, removeExperience } = useStore();
+  const {
+    experience,
+    addExperience,
+    editExperience,
+    removeExperience,
+    updateExperienceOrder,
+  } = useStore();
 
   const [newExperience, setNewExperience] = useState({
     company: "",
@@ -40,11 +47,77 @@ const Experience = () => {
       toast.error(t("error"));
     }
   };
+  //* Edit
+  const [editedIndex, setEditedIndex] = useState(null);
+  const handleEditExperience = () => {
+    try {
+      editExperience(editedIndex, newExperience);
+      toast.success(t("success"));
+      setEditedIndex(null);
+      setNewExperience({
+        company: "",
+        jobTitle: "",
+        city: "",
+        startDate: "",
+        endDate: "",
+        description: "",
+      });
+    } catch (error) {
+      console.error(error);
+      toast.error(error);
+    }
+  };
+
+  const handleChooseExperience = (index) => {
+    setEditedIndex(index);
+    const experienceItem = experience[index];
+    setNewExperience({
+      company: experienceItem.company,
+      jobTitle: experienceItem.jobTitle,
+      city: experienceItem.city,
+      startDate: experienceItem.startDate,
+      endDate: experienceItem.endDate,
+      description: experienceItem.description,
+    });
+    // Temporary solution
+    setTimeout(() => {
+      setNewExperience({
+        company: experienceItem.company,
+        jobTitle: experienceItem.jobTitle,
+        city: experienceItem.city,
+        startDate: experienceItem.startDate,
+        endDate: experienceItem.endDate,
+        description: experienceItem.description,
+      });
+    }, [200]);
+  };
+
+  const handleCloseEdit = () => {
+    setEditedIndex(null);
+    setNewExperience({
+      company: "",
+      jobTitle: "",
+      city: "",
+      startDate: "",
+      endDate: "",
+      description: "",
+    });
+  };
 
   const handleRemoveExperience = (index) => {
     removeExperience(index);
   };
 
+  //* Sort functions
+  const handleMoveExperienceUp = (index) => {
+    handleMoveItem(experience, updateExperienceOrder, index, "up");
+  };
+
+  const handleMoveExperienceDown = (index) => {
+    handleMoveItem(experience, updateExperienceOrder, index, "down");
+  };
+
+  //* ISO
   const locale = useLocale();
   const localeIso = LOCALES.find((lang) => lang.value === locale).iso;
 
@@ -109,35 +182,44 @@ const Experience = () => {
           label={t("description")}
         />
       </div>
-      <Button onClick={handleAddExperience}>{t("add")}</Button>
+
+      <Button
+        onClick={() =>
+          editedIndex === null ? handleAddExperience() : handleEditExperience()
+        }
+      >
+        {editedIndex !== null ? t("edit") : t("add")}
+      </Button>
+      {editedIndex !== null && (
+        <Button onClick={() => handleCloseEdit()}>{t("close")}</Button>
+      )}
 
       {/* List */}
       <div className="mt-6">
         {experience.length > 0 && (
           <div className="space-y-4 text-white/80">
             {experience.map((exp, index) => (
-              <details
+              <Example
                 key={index}
-                className="border border-white/50 p-4 rounded-md animation-all"
+                index={index}
+                remove={handleRemoveExperience}
+                edit={handleChooseExperience}
+                down={handleMoveExperienceDown}
+                up={handleMoveExperienceUp}
+                title={exp.company + " " + exp.jobTitle}
+                state={experience}
               >
-                <summary className="font-bold text-white/80">
-                  {exp.company} - {exp.jobTitle}
-                </summary>
                 <p>{exp.city}</p>
                 <p>
                   {useFormattedTime(exp.startDate, localeIso)} -{" "}
-                  {useFormattedTime(exp.endDate, localeIso)}
+                  {exp.endDate
+                    ? useFormattedTime(exp.endDate, localeIso)
+                    : t("present")}
                 </p>
                 <div
                   dangerouslySetInnerHTML={{ __html: exp.description }}
                 ></div>
-                <button
-                  onClick={() => handleRemoveExperience(index)}
-                  className="text-red-500 mt-2"
-                >
-                  {t("remove")}
-                </button>
-              </details>
+              </Example>
             ))}
           </div>
         )}

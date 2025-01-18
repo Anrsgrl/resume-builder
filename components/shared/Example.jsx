@@ -18,14 +18,14 @@ const Example = ({ children, index, state, title, edit, remove, up, down }) => {
             <button
               onClick={() => up(index)}
               disabled={index === 0}
-              className="disabled:opacity-50"
+              className="disabled:opacity-50 disabled:cursor-not-allowed hover:scale-90 disabled:hover:scale-100 animation-all"
             >
               <FaArrowUp />
             </button>
             <button
               onClick={() => down(index)}
               disabled={index === state.length - 1}
-              className="disabled:opacity-50"
+              className="disabled:opacity-50 disabled:cursor-not-allowed hover:scale-90 disabled:hover:scale-100 animation-all"
             >
               <FaArrowDown />
             </button>

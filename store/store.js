@@ -63,6 +63,8 @@ const useStore = create(
             i === index ? updatedExperience : exp
           ),
         })),
+      updateExperienceOrder: (updatedExperience) =>
+        set({ experience: updatedExperience }),
 
       //! Languages
       languages: [],

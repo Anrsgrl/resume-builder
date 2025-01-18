@@ -53,11 +53,12 @@
       "endDate": "Bitmə Tarixi",
       "description": "Əlavə qeydlər",
       "add": "Əlavə Et",
-      "edit": "Düzəliş et",
       "remove": "Sil",
       "success": "Uğurla düzəldildi!",
+      "edit": "Düzəliş et",
       "close": "Ləğv et",
-      "error": "Təhsil əlavə etmək üçün həm Dərəcə, həm də Təhsil müəssisəsi göstərilməlidir"
+      "error": "Təhsil əlavə etmək üçün həm Dərəcə, həm də Təhsil müəssisəsi göstərilməlidir",
+      "present": "Hal-hazırda"
     },
     "Experience": {
       "title": "Təcrübə",
@@ -69,7 +70,11 @@
       "description": "Əlavə qeydlər",
       "add": "Əlavə Et",
       "remove": "Sil",
-      "error": "Təcrübə əlavə etmək üçün həm Şirkət, həm də Vəzifə göstərilməlidir"
+      "success": "Uğurla düzəldildi!",
+      "edit": "Düzəliş et",
+      "close": "Ləğv et",
+      "error": "Təcrübə əlavə etmək üçün həm Şirkət, həm də Vəzifə göstərilməlidir",
+      "present": "Hal-hazırda"
     },
     "Skills": {
       "title": "Bacarıqlar",
@@ -84,9 +89,9 @@
       "tech": "Texnologiyalar",
       "add": "Əlavə Et",
       "description": "Əlavə qeydlər",
-      "edit": "Düzəliş et",
       "remove": "Sil",
       "success": "Uğurla düzəldildi!",
+      "edit": "Düzəliş et",
       "close": "Ləğv et",
       "error": "Layihə əlavə etmək üçün Layihənin Adı göstərilməlidir"
     },
@@ -117,12 +122,12 @@
       "error": "Həm Ad, həm də Şirkət məlumatları göstərilməlidir"
     },
     "Languages": {
-        "title": "Dillər",
-        "language": "Dil",
-        "level": "Səviyyə",
-        "add": "Əlavə Et",
-        "remove": "Sil",
-        "error": "Dil və səviyyə daxil edilməlidir"
+      "title": "Dillər",
+      "language": "Dil",
+      "level": "Səviyyə",
+      "add": "Əlavə Et",
+      "remove": "Sil",
+      "error": "Dil və səviyyə daxil edilməlidir"
     },
     "Template": {
       "save": "CV-ni PDF şəklində yüklə"

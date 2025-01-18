@@ -223,7 +223,9 @@ const Education = () => {
                 <p>
                   <strong>{t("startDate")}:</strong>{" "}
                   {useFormattedTime(item.startDate, localeIso)} -{" "}
-                  {useFormattedTime(item.endDate, localeIso)}
+                  {item.endDate
+                    ? useFormattedTime(item.endDate, localeIso)
+                    : t("present")}
                 </p>
                 <div
                   dangerouslySetInnerHTML={{
