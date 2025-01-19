@@ -176,6 +176,8 @@ const useStore = create(
             i === index ? updatedReference : ref
           ),
         })),
+      updateReferencesOrder: (updatedReference) =>
+        set({ references: updatedReference }),
     }),
     {
       name: "resume-data",

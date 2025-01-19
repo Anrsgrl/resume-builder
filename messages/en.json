@@ -129,7 +129,10 @@
         "email": "Email",
         "add": "Add Reference",
         "remove": "Remove",
-        "error":"Both Full name and Company must be provided to add reference"
+        "error":"Both Full name and Company must be provided to add reference",
+        "close": "Close",
+        "edit": "Update",
+        "success": "Successfully edited!"
     },
     "Languages": {
         "title": "Languages",

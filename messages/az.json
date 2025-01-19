@@ -131,7 +131,10 @@
       "email": "Email",
       "add": "Əlavə Et",
       "remove": "Sil",
-      "error": "Həm Ad, həm də Şirkət məlumatları göstərilməlidir"
+      "error": "Həm Ad, həm də Şirkət məlumatları göstərilməlidir",
+      "close": "Ləğv et",
+      "success": "Uğurla düzəldildi!",
+      "edit": "Düzəliş et"
     },
     "Languages": {
       "title": "Dillər",
