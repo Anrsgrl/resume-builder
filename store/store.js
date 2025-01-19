@@ -46,6 +46,8 @@ const useStore = create(
             i === index ? updatedCertificate : cert
           ),
         })),
+      updateCertificatesOrder: (updatedCertificates) =>
+        set({ certificates: updatedCertificates }),
 
       //! Experiences
       experience: [],

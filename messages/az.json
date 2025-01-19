@@ -109,7 +109,11 @@
         "date": "Tarix",
         "add": "Əlavə Et",
         "remove": "Sil",
-        "error": "Sertifikatın Başlığı və Tarixi əlavə olunmalıdır"
+        "error": "Sertifikatın Başlığı və Tarixi əlavə olunmalıdır",
+        "description": "Əlavə qeydlər",
+        "close": "Ləğv et",
+        "success": "Uğurla düzəldildi!",
+      "edit": "Düzəliş et"
     },
     "Interests":{
         "title": "Maraqlar və Hobbilər",

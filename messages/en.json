@@ -58,7 +58,7 @@
         "edit": "Update",
         "close": "Close",
         "error": "Both Degree and Institution must be provided to add education",
-              "present": "Present"
+        "present": "Present"
     },
     "Experience": {
         "title": "Professional Experience",
@@ -106,8 +106,12 @@
         "certificate": "Title",
         "date": "Date",
         "add": "Add Certificate",
+        "close": "Close",
         "remove": "Remove",
-        "error":"Both Title and Date must be provided to add certificate or award"
+        "edit": "Update",
+        "success": "Successfully edited!",
+        "error":"Both Title and Date must be provided to add certificate or award",
+        "description": "Description"
     },
     "Interests":{
         "title": "Interests & Hobbies",

@@ -1,23 +1,37 @@
 import { useState } from "react";
 import useStore from "@/store/store";
+import dynamic from "next/dynamic";
 import Input from "@/components/common/Input";
 import Button from "@/components/common/Button";
-import { useFormattedTime } from "@/utils/helpers";
+import { handleMoveItem, useFormattedTime } from "@/utils/helpers";
 import { MdPlayArrow } from "react-icons/md";
 import toast from "react-hot-toast";
 import { useLocale, useTranslations } from "next-intl";
 import { LOCALES } from "@/utils/constants";
+import Example from "@/components/shared/Example";
+const Editor = dynamic(() => import("@/components/shared/Editor"), {
+  ssr: false,
+});
 
 const Certificates = () => {
   const t = useTranslations("Certificates");
-  const { certificates, addCertificate, removeCertificate } = useStore();
+  const {
+    certificates,
+    addCertificate,
+    editCertificate,
+    removeCertificate,
+    updateCertificatesOrder,
+  } = useStore();
 
   const [show, setShow] = useState(false);
 
   const [newCertificate, setNewCertificate] = useState({
     title: "",
     date: "",
+    description: "",
   });
+
+  const [editedIndex, setEditedIndex] = useState(null);
 
   const handleAddCertificate = () => {
     if (newCertificate.title && newCertificate.date) {
@@ -25,6 +39,7 @@ const Certificates = () => {
       setNewCertificate({
         title: "",
         date: "",
+        description: "",
       });
     } else {
       toast.error(t("error"));
@@ -35,6 +50,60 @@ const Certificates = () => {
     removeCertificate(index);
   };
 
+  //* Edit
+  const handleEditCertificate = () => {
+    try {
+      editCertificate(editedIndex, newCertificate);
+      toast.success(t("success"));
+      setEditedIndex(null);
+      setNewCertificate({
+        title: "",
+        date: "",
+        description: "",
+      });
+    } catch (error) {
+      console.error(error);
+      toast.error(error);
+    }
+  };
+
+  const handleChooseCertificate = (index) => {
+    setEditedIndex(index);
+    const certificateItem = certificates[index];
+    setNewCertificate({
+      title: certificateItem.title,
+      date: certificateItem.date,
+      description: certificateItem.description,
+    });
+    // Temporary solution
+    setTimeout(() => {
+      setNewCertificate({
+        title: certificateItem.title,
+        date: certificateItem.date,
+        description: certificateItem.description,
+      });
+    }, [200]);
+  };
+
+  const handleCloseEdit = () => {
+    setEditedIndex(null);
+    setNewCertificate({
+      title: "",
+      date: "",
+      description: "",
+    });
+  };
+
+  //* Sort functions
+  const handleMoveCertificatesUp = (index) => {
+    handleMoveItem(certificates, updateCertificatesOrder, index, "up");
+  };
+
+  const handleMoveCertificatesDown = (index) => {
+    handleMoveItem(certificates, updateCertificatesOrder, index, "down");
+  };
+
+  //* ISO
   const locale = useLocale();
   const localeIso = LOCALES.find((lang) => lang.value === locale).iso;
 
@@ -68,33 +137,58 @@ const Certificates = () => {
                 setNewCertificate({ ...newCertificate, date: value })
               }
               type="month"
+              lang={localeIso}
               name="date"
               label={t("date") + "*"}
             />
           </div>
-
-          <Button onClick={handleAddCertificate}>{t("add")}</Button>
-
+          <div className="mt-2">
+            <Editor
+              editedIndex={editedIndex}
+              state={newCertificate.description}
+              setState={(value) =>
+                setNewCertificate({ ...newCertificate, description: value })
+              }
+              label={t("description")}
+            />
+          </div>
+          <Button
+            onClick={() =>
+              editedIndex === null
+                ? handleAddCertificate()
+                : handleEditCertificate()
+            }
+          >
+            {t(editedIndex !== null ? "edit" : "add")}
+          </Button>
+          {editedIndex !== null && (
+            <Button onClick={() => handleCloseEdit()}>{t("close")}</Button>
+          )}
           {/* List */}
           <div className="my-6">
             {certificates.length > 0 && (
               <div className="space-y-4 text-white/80">
                 {certificates.map((cert, index) => (
-                  <details
+                  <Example
                     key={index}
-                    className="border border-white/50 p-4 rounded-md animation-all"
+                    index={index}
+                    remove={handleRemoveCertificate}
+                    edit={handleChooseCertificate}
+                    down={handleMoveCertificatesDown}
+                    up={handleMoveCertificatesUp}
+                    title={cert.title}
+                    state={certificates}
                   >
-                    <summary className="font-bold text-white/80">
-                      {cert.title}
-                    </summary>
                     <p>{useFormattedTime(cert.date, localeIso)}</p>
-                    <button
-                      onClick={() => handleRemoveCertificate(index)}
-                      className="text-red-500 mt-2"
-                    >
-                      {t("remove")}
-                    </button>
-                  </details>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html:
+                          cert?.description !== "<p><br></p>"
+                            ? cert.description
+                            : "",
+                      }}
+                    ></div>
+                  </Example>
                 ))}
               </div>
             )}
