@@ -137,10 +137,7 @@ const Template1 = ({}) => {
           <h2 className="pb-1 border-b-2 font-bold uppercase w-full text-base text-center">
             {t("Skills.title")}
           </h2>
-          <div className="">
-            <h3 className="mr-1 float-left font-semibold">Skills:</h3>{" "}
-            {skills.join(", ")}
-          </div>
+          <p className="text-center">{skills.join(", ")}</p>
         </section>
       )}
       {projects?.length > 0 && (

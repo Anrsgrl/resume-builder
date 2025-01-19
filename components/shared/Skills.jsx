@@ -2,24 +2,53 @@ import { useState } from "react";
 import useStore from "@/store/store";
 import Input from "@/components/common/Input";
 import Button from "@/components/common/Button";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaCheck, FaTimes } from "react-icons/fa";
 import Stepper from "@/components/shared/Stepper";
 import { useTranslations } from "next-intl";
+import Example from "@/components/shared/Example";
+import { handleMoveItem } from "@/utils/helpers";
+
 const Skills = () => {
   const t = useTranslations("Skills");
-  const { skills, addSkill, removeSkill } = useStore();
+  const { skills, addSkill, editSkill, removeSkill, updateSkillsOrder } =
+    useStore();
 
   const [newSkill, setNewSkill] = useState("");
+  const [editedIndex, setEditedIndex] = useState(null);
 
   const handleAddSkill = () => {
     if (newSkill.trim() !== "") {
-      addSkill(newSkill);
+      if (editedIndex === null) {
+        addSkill(newSkill);
+      } else {
+        editSkill(editedIndex, newSkill);
+        setEditedIndex(null);
+      }
       setNewSkill("");
     }
   };
 
+  const handleEditSkill = (index) => {
+    setEditedIndex(index);
+    setNewSkill(skills[index]);
+  };
+
+  const handleCloseEdit = () => {
+    setEditedIndex(null);
+    setNewSkill("");
+  };
+
   const handleRemoveSkill = (index) => {
     removeSkill(index);
+  };
+
+  //* Sort functions
+  const handleMoveSkillUp = (index) => {
+    handleMoveItem(skills, updateSkillsOrder, index, "up");
+  };
+
+  const handleMoveSkillDown = (index) => {
+    handleMoveItem(skills, updateSkillsOrder, index, "down");
   };
 
   return (
@@ -32,11 +61,16 @@ const Skills = () => {
           state={newSkill}
           setState={setNewSkill}
           name={"skill"}
-          label={t("add")}
+          label={t(editedIndex === null ? "add" : "edit")}
         />
         <Button onClick={handleAddSkill}>
-          <FaPlus />
+          {editedIndex === null ? <FaPlus /> : <FaCheck />}
         </Button>
+        {editedIndex !== null && (
+          <Button onClick={handleCloseEdit} variant="danger">
+            <FaTimes />
+          </Button>
+        )}
       </div>
 
       {/* Skills List */}
@@ -44,18 +78,16 @@ const Skills = () => {
         {skills.length > 0 && (
           <div className="space-y-4 text-white/80">
             {skills.map((skill, index) => (
-              <div
+              <Example
                 key={index}
-                className="border border-white/50 p-4 rounded-md flex justify-between items-center"
-              >
-                <span className="max-w-32 truncate">{skill}</span>
-                <button
-                  onClick={() => handleRemoveSkill(index)}
-                  className="text-red-500"
-                >
-                  {t("remove")}
-                </button>
-              </div>
+                index={index}
+                up={handleMoveSkillUp}
+                down={handleMoveSkillDown}
+                remove={handleRemoveSkill}
+                edit={handleEditSkill}
+                title={skill}
+                state={skills}
+              ></Example>
             ))}
           </div>
         )}

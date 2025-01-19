@@ -188,7 +188,7 @@ const Experience = () => {
           editedIndex === null ? handleAddExperience() : handleEditExperience()
         }
       >
-        {editedIndex !== null ? t("edit") : t("add")}
+        {t(editedIndex !== null ? "edit" : "add")}
       </Button>
       {editedIndex !== null && (
         <Button onClick={() => handleCloseEdit()}>{t("close")}</Button>

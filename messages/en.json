@@ -78,8 +78,13 @@
     },
     "Skills": {
         "title": "Skills",
+        "main": "Main",
+        "soft": "Soft",
         "add": "Add Skill",
-        "remove": "Remove"
+        "remove": "Remove",
+        "edit": "Update",
+        "success": "Successfully edited!",
+        "close": "Close"
     },
     "Projects": {
         "title": "Projects",

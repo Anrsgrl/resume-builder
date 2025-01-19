@@ -196,7 +196,7 @@ const Education = () => {
           editedIndex === null ? handleAddEducation() : handleEditEducation()
         }
       >
-        {editedIndex !== null ? t("edit") : t("add")}
+        {t(editedIndex !== null ? "edit" : "add")}
       </Button>
       {editedIndex !== null && (
         <Button onClick={() => handleCloseEdit()}>{t("close")}</Button>

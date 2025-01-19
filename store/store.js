@@ -118,6 +118,7 @@ const useStore = create(
             i === index ? updatedSkill : skill
           ),
         })),
+      updateSkillsOrder: (updatedSkills) => set({ skills: updatedSkills }),
 
       //! Projects
       projects: [],
