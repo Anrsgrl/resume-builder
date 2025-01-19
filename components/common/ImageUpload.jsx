@@ -40,14 +40,15 @@ const ImageUpload = () => {
           <img
             src={imagePreview}
             alt="Preview"
+            loading="lazy"
             className="w-full h-full object-cover rounded-full"
           />
         ) : (
-          <img
-            src="https://placehold.co/240x240"
-            alt="Preview"
-            className="w-full h-full object-cover rounded-full"
-          />
+          <div className="w-full h-full rounded-full bg-gray-200 flex items-center justify-center">
+            <span className="select-none text-gray-900">
+              200x200
+            </span>
+          </div>
         )}
         {(image && imagePreview) !== null && (
           <button

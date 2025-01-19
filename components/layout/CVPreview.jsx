@@ -55,12 +55,12 @@ const CVPreview = () => {
         <div className="mb-2 text-center">
           <button
             onClick={handlePrint}
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 print:hidden"
+            className="px-4 py-2 mt-2 bg-blue-500 text-white rounded hover:bg-blue-600 print:hidden"
           >
             {t("save")}
           </button>
         </div>
-        <div className="w-full max-h-[90dvh] overflow-auto print:overflow-visible scale-75 lg:scale-100 print:scale-100">
+        <div className="w-full max-h-[90lvh] overflow-auto print:overflow-visible scale-75 lg:scale-100 print:scale-100">
           <Template1 />
         </div>
       </div>

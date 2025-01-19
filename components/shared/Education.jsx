@@ -153,6 +153,22 @@ const Education = () => {
           label={t("degree") + "*"}
         />
         <Input
+          state={newEducation.fieldOfStudy}
+          setState={(value) =>
+            setNewEducation({ ...newEducation, fieldOfStudy: value })
+          }
+          name={"fieldOfStudy"}
+          label={t("field")}
+        />
+        <Input
+          state={newEducation.city}
+          setState={(value) =>
+            setNewEducation({ ...newEducation, city: value })
+          }
+          name={"city"}
+          label={t("city")}
+        />
+        <Input
           state={newEducation.startDate}
           setState={(value) =>
             setNewEducation({ ...newEducation, startDate: value })
@@ -169,14 +185,6 @@ const Education = () => {
           type="month"
           name={"endDate"}
           label={t("endDate")}
-        />
-        <Input
-          state={newEducation.city}
-          setState={(value) =>
-            setNewEducation({ ...newEducation, city: value })
-          }
-          name={"city"}
-          label={t("city")}
         />
       </div>
 
@@ -219,6 +227,7 @@ const Education = () => {
               >
                 <p>
                   <strong>{t("degree")}:</strong> {item.degree}
+                  {` - ${item.fieldOfStudy}`}
                 </p>
                 <p>
                   <strong>{t("startDate")}:</strong>{" "}

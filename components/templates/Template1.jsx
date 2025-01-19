@@ -7,13 +7,16 @@ import {
 } from "@/utils/constants";
 import useStore from "@/store/store";
 import { useLocale, useTranslations } from "next-intl";
+import Image from "next/image";
 
 const Template1 = ({}) => {
   const {
+    image,
     name,
     surname,
     email,
     phone,
+    driving,
     country,
     city,
     summary,
@@ -33,15 +36,24 @@ const Template1 = ({}) => {
   return (
     <div className="w-[240mm] min-h-[296mm] bg-white my-0 mx-auto p-2 rounded overflow-x-hidden">
       <div className="flex flex-col items-center justify-between w-full bg- text-center">
+        {image && (
+          <Image
+            src={image}
+            height={80}
+            width={80}
+            alt="profileImage"
+            className="rounded-full"
+          />
+        )}
         <h1 className="text-lg font-medium whitespace-nowrap w-full uppercase font-bold">
           {name} {surname}
         </h1>
         <p className="text-sm">
           {city && city}
-          {country && <>, {country}</>}
+          {country && `${city && ", "} ${country}`}
           {email && (
             <>
-              {" • "}
+              {(city || country) && " • "}
               <a href={`mailto:${email}`} className="text-sky-600">
                 {email}
               </a>
@@ -49,10 +61,18 @@ const Template1 = ({}) => {
           )}
           {phone && (
             <>
-              {" • "}
+              {(city || country || email) && " • "}
               <a href={`tel:${phone}`} className="text-sky-600">
                 {phone}
               </a>
+            </>
+          )}
+          {driving && (
+            <>
+              {(city || country || email || phone) && " • "}
+              <span className="text-sky-600">{`${t(
+                "Personal.driving"
+              )}: ${driving}`}</span>
             </>
           )}
         </p>
@@ -125,6 +145,10 @@ const Template1 = ({}) => {
               <h4 className="font-normal me-auto">
                 {edu.institution}, {edu.city}
               </h4>
+              <p
+                dangerouslySetInnerHTML={{ __html: edu.description }}
+                className="text-left mt-2 text-sm opacity-80"
+              ></p>
             </div>
           ))}
         </section>
