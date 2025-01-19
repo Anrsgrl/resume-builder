@@ -241,7 +241,7 @@ const Education = () => {
         )}
       </div>
 
-      <Stepper prev={`/build?step=4`} next={"/build?step=6"} />
+      <Stepper prev={`/build?step=1`} next={"/build?step=3"} />
     </div>
   );
 };
