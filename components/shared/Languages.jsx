@@ -7,10 +7,18 @@ import Select from "@/components/common/Select";
 import { LANGUAGE_OPTIONS, LANGUAGE_OPTIONS_AZ } from "@/utils/constants";
 import { useLocale, useTranslations } from "next-intl";
 import toast from "react-hot-toast";
+import { handleMoveItem } from "@/utils/helpers";
+import Example from "@/components/shared/Example";
 
 const Languages = () => {
   const t = useTranslations("Languages");
-  const { languages, addLanguage, removeLanguage } = useStore();
+  const {
+    languages,
+    addLanguage,
+    editLanguage,
+    removeLanguage,
+    updateLanguagesOrder,
+  } = useStore();
 
   const [show, setShow] = useState(false);
 
@@ -35,6 +43,50 @@ const Languages = () => {
     removeLanguage(index);
   };
 
+  //* Edit
+  const [editedIndex, setEditedIndex] = useState(null);
+  const handleEditLanguage = () => {
+    try {
+      editLanguage(editedIndex, newLanguage);
+      toast.success(t("success"));
+      setEditedIndex(null);
+      setNewLanguage({
+        language: "",
+        level: "",
+      });
+    } catch (error) {
+      console.error(error);
+      toast.error(error);
+    }
+  };
+
+  const handleChooseLanguage = (index) => {
+    setEditedIndex(index);
+    const languageItem = languages[index];
+    setNewLanguage({
+      language: languageItem.language,
+      level: languageItem.level,
+    });
+  };
+
+  const handleCloseEdit = () => {
+    setEditedIndex(null);
+    setNewLanguage({
+      language: "",
+      level: "",
+    });
+  };
+
+  //* Sort
+  const handleMoveLanguageUp = (index) => {
+    handleMoveItem(languages, updateLanguagesOrder, index, "up");
+  };
+
+  const handleMoveLanguageDown = (index) => {
+    handleMoveItem(languages, updateLanguagesOrder, index, "down");
+  };
+
+  //* ISO
   const locale = useLocale();
   const LANG_OPTIONS = locale === "en" ? LANGUAGE_OPTIONS : LANGUAGE_OPTIONS_AZ;
 
@@ -73,30 +125,36 @@ const Languages = () => {
             />
           </div>
 
-          <Button onClick={handleAddLanguage}>{t("add")}</Button>
+          <Button
+            onClick={() =>
+              editedIndex === null ? handleAddLanguage() : handleEditLanguage()
+            }
+          >
+            {t(editedIndex !== null ? "edit" : "add")}
+          </Button>
+          {editedIndex !== null && (
+            <Button onClick={() => handleCloseEdit()}>{t("close")}</Button>
+          )}
 
           {/* List */}
           <div className="my-6">
             {languages.length > 0 && (
               <div className="space-y-4 text-white/80">
                 {languages.map((lang, index) => (
-                  <details
+                  <Example
                     key={index}
-                    className="border border-white/50 p-4 rounded-md animation-all"
+                    index={index}
+                    remove={handleRemoveLanguage}
+                    edit={handleChooseLanguage}
+                    down={handleMoveLanguageDown}
+                    up={handleMoveLanguageUp}
+                    title={lang.language}
+                    state={languages}
                   >
-                    <summary className="font-bold text-white/80">
-                      {lang.language}
-                    </summary>
                     <p>
                       {LANG_OPTIONS.find((e) => e.value === lang.level).label}
                     </p>
-                    <button
-                      onClick={() => handleRemoveLanguage(index)}
-                      className="text-red-500 mt-2"
-                    >
-                      {t("remove")}
-                    </button>
-                  </details>
+                  </Example>
                 ))}
               </div>
             )}

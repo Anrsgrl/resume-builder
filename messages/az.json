@@ -142,7 +142,10 @@
       "level": "Səviyyə",
       "add": "Əlavə Et",
       "remove": "Sil",
-      "error": "Dil və səviyyə daxil edilməlidir"
+      "error": "Dil və səviyyə daxil edilməlidir",
+      "close": "Ləğv et",
+      "success": "Uğurla düzəldildi!",
+      "edit": "Düzəliş et"
     },
     "Template": {
       "save": "CV-ni PDF şəklində yüklə"

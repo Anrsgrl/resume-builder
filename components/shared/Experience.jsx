@@ -11,7 +11,7 @@ import Stepper from "@/components/shared/Stepper";
 import { useLocale, useTranslations } from "next-intl";
 import toast from "react-hot-toast";
 import { LOCALES } from "@/utils/constants";
-import Example from "./Example";
+import Example from "@/components/shared/Example";
 
 const Experience = () => {
   const t = useTranslations("Experience");

@@ -84,6 +84,8 @@ const useStore = create(
             i === index ? updatedLanguage : lang
           ),
         })),
+      updateLanguagesOrder: (updatedLanguage) =>
+        set({ languages: updatedLanguage }),
 
       //! Education
       education: [],

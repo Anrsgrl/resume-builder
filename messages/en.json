@@ -140,7 +140,10 @@
         "level": "Level",
         "add": "Add Language",
         "remove": "Remove",
-        "error": "Both Language and level must be provided to add language"
+        "error": "Both Language and level must be provided to add language",
+        "close": "Close",
+        "edit": "Update",
+        "success": "Successfully edited!"
     },
     "Template": {
         "save": "Save Resume as PDF"

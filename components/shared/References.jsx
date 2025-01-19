@@ -5,7 +5,7 @@ import Button from "@/components/common/Button";
 import { MdPlayArrow } from "react-icons/md";
 import { useTranslations } from "next-intl";
 import toast from "react-hot-toast";
-import Example from "./Example";
+import Example from "@/components/shared/Example";
 import { handleMoveItem } from "@/utils/helpers";
 
 const References = () => {
