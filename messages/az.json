@@ -81,7 +81,10 @@
       "main": "Əsas",
       "soft": "Əlavə",
       "add": "Əlavə Et",
-      "remove": "Sil"
+      "remove": "Sil",
+      "edit": "Düzəliş et",
+      "success": "Uğurla düzəldildi!",
+      "close": "Ləğv et"
     },
     "Projects": {
       "title": "Layihələr",

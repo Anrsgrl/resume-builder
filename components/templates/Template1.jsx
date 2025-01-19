@@ -31,7 +31,7 @@ const Template1 = ({}) => {
   const LANG_OPTIONS = locale === "en" ? LANGUAGE_OPTIONS : LANGUAGE_OPTIONS_AZ;
   const localeIso = LOCALES.find((lang) => lang.value === locale).iso;
   return (
-    <div className="w-[240mm] min-h-[296mm] bg-white my-0 mx-auto p-2 rounded">
+    <div className="w-[240mm] min-h-[296mm] bg-white my-0 mx-auto p-2 rounded overflow-x-hidden">
       <div className="flex flex-col items-center justify-between w-full bg- text-center">
         <h1 className="text-lg font-medium whitespace-nowrap w-full uppercase font-bold">
           {name} {surname}
