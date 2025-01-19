@@ -2,11 +2,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import logo from "@/assets/images/logo.svg";
 import { MdArrowRightAlt, MdKeyboardArrowDown } from "react-icons/md";
-import { SiBuymeacoffee } from "react-icons/si";
 import LanguageSwitcher from "@/components/shared/LanguageSwitcher";
-import { FaArrowDown } from "react-icons/fa";
+import logo from "@/assets/images/logo.svg";
 
 export default function Home() {
   const t = useTranslations("Home");
@@ -17,7 +15,7 @@ export default function Home() {
     });
   };
   return (
-    <div className="min-h-dvh flex flex-col items-center justify-center gap-6 sm:gap-8 p-6 relative">
+    <div className="min-h-lvh flex flex-col items-center justify-center gap-6 sm:gap-8 p-6 relative">
       <Image
         src={logo}
         alt="logo"
@@ -32,7 +30,7 @@ export default function Home() {
         </span>
       </h1>
 
-      <div className="flex items-center flex-col-reverse md:flex-row gap-3 md:gap-4">
+      <div className="flex items-center flex-row-reverse gap-3 md:gap-4">
         <Link
           href="/build?step=1"
           className="w-full flex items-center gap-1 animation-all group overflow-hidden bg-main w-fit p-3 rounded-full font-bold text-white cursor-pointer hover:bg-main/80"
@@ -49,16 +47,7 @@ export default function Home() {
             className="transform -translate-x-5 animation-all group-hover:translate-x-0 group-hover:opacity-0 opacity-100 ml-2 group-hover:ml-0"
           />
         </Link>
-        <div className="flex items-center gap-2">
-          <a
-            href="https://buymeacoffee.com/asgarlianar"
-            target="_blank"
-            className="animation-all flex gap-1 whitespace-nowrap items-center justify-center p-3 rounded-full font-bold text-white cursor-pointer bg-yellow-600 hover:bg-yellow-600/80 w-fit aspect-square"
-          >
-            <SiBuymeacoffee size={20} />
-          </a>
-          <LanguageSwitcher />
-        </div>
+        <LanguageSwitcher />
       </div>
 
       <button

@@ -41,7 +41,7 @@ export default function Footer() {
           </span>
         </a>
 
-        <div className="flex flex-wrap justify-center gap-4 text-sm">
+        <div className="flex flex-wrap justify-center gap-4 text-sm px-2">
           <a
             target="_blank"
             rel="noopener noreferrer"

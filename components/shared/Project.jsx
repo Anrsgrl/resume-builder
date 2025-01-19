@@ -125,7 +125,7 @@ const Project = () => {
   };
 
   return (
-    <div className="mt-20 px-10 flex flex-col gap-2">
+    <div className="my-14 lg:my-20 px-10 flex flex-col gap-2">
       <h1 className="text-center font-bold text-3xl text-main mb-4">
         {t("title")}
       </h1>
