@@ -27,11 +27,17 @@ export default function Editor({ state, setState, editedIndex, label }) {
   });
 
   useEffect(() => {
-    if (quill && (isInitialLoad.current || editedIndex !== null) && state) {
+    if (quill && isInitialLoad.current && state) {
       quill.clipboard.dangerouslyPasteHTML(state);
       isInitialLoad.current = false;
     }
   }, [quill, state]);
+
+  useEffect(() => {
+    if (quill && editedIndex !== null) {
+      quill.clipboard.dangerouslyPasteHTML(state);
+    }
+  }, [editedIndex]);
 
   useEffect(() => {
     if (quill) {
