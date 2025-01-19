@@ -10,15 +10,6 @@
         "edit": "Update",
         "remove": "Remove"
     },
-    "How": {
-        "how": "How It Works",
-        "step1": "Fill out your details",
-        "step1text": "Enter your personal, educational, and professional information.",
-        "step2": "Customize your template",
-        "step2text": "Choose from multiple template options and styles.",
-        "step3": "Download your resume",
-        "step3text": "Export your resume as a PDF."
-    },
     "Steps": {
         "1": "Personal Informations",
         "2": "Education",

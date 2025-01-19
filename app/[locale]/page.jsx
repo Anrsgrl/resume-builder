@@ -15,7 +15,7 @@ export default function Home() {
     });
   };
   return (
-    <div className="min-h-lvh flex flex-col items-center justify-center gap-6 sm:gap-8 p-6 relative">
+    <div className="min-h-[90lvh] sm:min-h-lvh flex flex-col items-center justify-center gap-6 sm:gap-8 p-6 relative">
       <Image
         src={logo}
         alt="logo"
@@ -33,13 +33,13 @@ export default function Home() {
       <div className="flex items-center flex-row-reverse gap-3 md:gap-4">
         <Link
           href="/build?step=1"
-          className="w-full flex items-center gap-1 animation-all group overflow-hidden bg-main w-fit p-3 rounded-full font-bold text-white cursor-pointer hover:bg-main/80"
+          className="w-full flex items-center gap-1 animation-all group overflow-hidden bg-main/95 w-fit p-3 rounded-full font-bold text-white cursor-pointer hover:bg-main/80"
         >
           <MdArrowRightAlt
             size={24}
             className="transform -translate-x-5 animation-all group-hover:translate-x-0 opacity-0 group-hover:opacity-100 group-hover:ml-2"
           />
-          <span className="uppercase text-sm animation-all -translate-x-3 group-hover:translate-x-0">
+          <span className="uppercase text-sm animation-all -translate-x-3 group-hover:translate-x-0 text-white">
             {t("startButton")}
           </span>
           <MdArrowRightAlt
@@ -53,6 +53,7 @@ export default function Home() {
       <button
         type="button"
         className="flex justify-center items-center absolute bottom-1"
+        aria-label="scroll-down"
         onClick={scrollToBottom}
       >
         <MdKeyboardArrowDown className="text-white/60 w-8 h-8 animate-bounce" />

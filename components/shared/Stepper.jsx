@@ -19,7 +19,7 @@ const Stepper = ({ prev, next, prevTitle, nextTitle }) => {
     setModal(!modal);
   };
   return (
-    <nav className="flex items-center gap-2">
+    <nav className="flex items-center gap-2 mt-2">
       {prev && (
         <CustomLink
           prev={true}

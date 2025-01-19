@@ -10,15 +10,6 @@
       "edit": "Düzəliş et",
       "remove": "Sil"
     },
-    "How": {
-      "how": "Necə işləyir?",
-      "step1": "Şəxsi məlumatlarınızı doldurun",
-      "step1text": "Təhsil, iş və şəxsi məlumatlarınızı daxil edin.",
-      "step2": "Şablon seçin",
-      "step2text": "Sizə verilən şablonlardan birini seçin.",
-      "step3": "CV-nizi yükləyin",
-      "step3text": "CV-nizi PDF olaraq yükləyin."
-    },
     "Steps": {
       "1": "Şəxsi Məlumatlar",
       "2": "Təhsil",

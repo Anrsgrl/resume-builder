@@ -27,7 +27,9 @@ export default function LanguageSwitcher() {
   return (
     <div className="relative">
       <button
+        type="button"
         onClick={toggleModal}
+        aria-label="language switch button"
         className="p-1 rounded-full shadow-sm hover:shadow-lg shadow-main animation-all aspect-square w-11 h-11"
       >
         <Flag code={findLocale(locale)} width={36} />
@@ -43,7 +45,11 @@ export default function LanguageSwitcher() {
               onClick={() => handleHtmlLang(localeItem.value)}
               className="py-2 px-4 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center gap-2 animation-all"
             >
-              <Flag code={findLocale(localeItem.value)} width={36} />
+              <Flag
+                code={findLocale(localeItem.value)}
+                width={36}
+                alt={findLocale(localeItem.value)}
+              />
               <span className="text-base font-semibold">
                 {localeItem.description}
               </span>
