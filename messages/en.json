@@ -106,8 +106,8 @@
         "certificate": "Title",
         "date": "Date",
         "add": "Add Certificate",
-        "close": "Close",
         "remove": "Remove",
+        "close": "Close",
         "edit": "Update",
         "success": "Successfully edited!",
         "error":"Both Title and Date must be provided to add certificate or award",
@@ -116,7 +116,10 @@
     "Interests":{
         "title": "Interests & Hobbies",
         "add": "Add Interest",
-        "remove": "Remove"
+        "remove": "Remove",
+        "close": "Close",
+        "edit": "Update",
+        "success": "Successfully edited!"
     },
     "References": {
         "title": "References",

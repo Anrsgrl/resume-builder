@@ -2,26 +2,60 @@ import { useState } from "react";
 import useStore from "@/store/store";
 import Input from "@/components/common/Input";
 import Button from "@/components/common/Button";
-import { MdPlayArrow } from "react-icons/md";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaCheck, FaTimes } from "react-icons/fa";
+import Stepper from "@/components/shared/Stepper";
 import { useTranslations } from "next-intl";
+import Example from "@/components/shared/Example";
+import { handleMoveItem } from "@/utils/helpers";
+import { MdPlayArrow } from "react-icons/md";
+
 const Interests = () => {
   const t = useTranslations("Interests");
-  const { interests, addInterest, removeInterest } = useStore();
+  const {
+    interests,
+    addInterest,
+    editInterest,
+    removeInterest,
+    updateInterestsOrder,
+  } = useStore();
 
+  const [newInterests, setNewInterests] = useState("");
+  const [editedIndex, setEditedIndex] = useState(null);
   const [show, setShow] = useState(false);
 
-  const [newInterest, setNewInterest] = useState("");
-
-  const handleAddInterest = () => {
-    if (newInterest) {
-      addInterest(newInterest);
-      setNewInterest("");
+  const handleAddInterests = () => {
+    if (newInterests.trim() !== "") {
+      if (editedIndex === null) {
+        addInterest(newInterests);
+      } else {
+        editInterest(editedIndex, newInterests);
+        setEditedIndex(null);
+      }
+      setNewInterests("");
     }
   };
 
-  const handleRemoveInterest = (index) => {
+  const handleEditInterests = (index) => {
+    setEditedIndex(index);
+    setNewInterests(interests[index]);
+  };
+
+  const handleCloseEdit = () => {
+    setEditedIndex(null);
+    setNewInterests("");
+  };
+
+  const handleRemoveInterests = (index) => {
     removeInterest(index);
+  };
+
+  //* Sort functions
+  const handleMoveInterestsUp = (index) => {
+    handleMoveItem(interests, updateInterestsOrder, index, "up");
+  };
+
+  const handleMoveInterestsDown = (index) => {
+    handleMoveItem(interests, updateInterestsOrder, index, "down");
   };
 
   return (
@@ -36,38 +70,40 @@ const Interests = () => {
           className={`mt-1 animation-all ${show ? "rotate-90" : ""}`}
         />
       </h2>
-
       {show && (
         <>
           <div className="flex justify-between gap-2 mb-4">
             <Input
-              state={newInterest}
-              setState={setNewInterest}
-              name={"Interests"}
-              label={t("add")}
+              state={newInterests}
+              setState={setNewInterests}
+              name={"interests"}
+              label={t(editedIndex === null ? "add" : "edit")}
             />
-            <Button onClick={handleAddInterest}>
-              <FaPlus />
+            <Button onClick={handleAddInterests}>
+              {editedIndex === null ? <FaPlus /> : <FaCheck />}
             </Button>
+            {editedIndex !== null && (
+              <Button onClick={handleCloseEdit} variant="danger">
+                <FaTimes />
+              </Button>
+            )}
           </div>
 
           {/* Interests List */}
           <div className="max-h-56 overflow-auto snap-y mb-6">
             {interests.length > 0 && (
               <div className="space-y-4 text-white/80">
-                {interests.map((interest, index) => (
-                  <div
+                {interests.map((interests, index) => (
+                  <Example
                     key={index}
-                    className="border border-white/50 p-4 rounded-md flex justify-between items-center"
-                  >
-                    <span className="max-w-32 truncate">{interest}</span>
-                    <button
-                      onClick={() => handleRemoveInterest(index)}
-                      className="text-red-500"
-                    >
-                      {t("remove")}
-                    </button>
-                  </div>
+                    index={index}
+                    up={handleMoveInterestsUp}
+                    down={handleMoveInterestsDown}
+                    remove={handleRemoveInterests}
+                    edit={handleEditInterests}
+                    title={interests}
+                    state={interests}
+                  ></Example>
                 ))}
               </div>
             )}

@@ -113,12 +113,15 @@
         "description": "Əlavə qeydlər",
         "close": "Ləğv et",
         "success": "Uğurla düzəldildi!",
-      "edit": "Düzəliş et"
+        "edit": "Düzəliş et"
     },
     "Interests":{
         "title": "Maraqlar və Hobbilər",
         "add": "Əlavə Et",
-        "remove": "Sil"
+        "remove": "Sil",
+        "close": "Ləğv et",
+        "success": "Uğurla düzəldildi!",
+        "edit": "Düzəliş et"
     },
     "References": {
       "title": "Referanslar",

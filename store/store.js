@@ -157,6 +157,8 @@ const useStore = create(
             i === index ? updatedInterest : interest
           ),
         })),
+      updateInterestsOrder: (updatedInterests) =>
+        set({ interests: updatedInterests }),
 
       //! References
       references: [],
