@@ -17,6 +17,11 @@ const Input = ({
     setPresentStatus(!presentStatus);
   };
   // Normally, of course, I use twMerge and clsx for className merging in components. But I didn't see the need for this project.
+
+  //* Maximum & minimum
+  const currentYear = new Date().getFullYear();
+  const maxMonth = `${currentYear}-12`;
+  const minMonth = `${currentYear - 100}-12`;
   return (
     <div className={`relative w-full ${col ? "sm:col-span-2" : ""}`}>
       <input
@@ -28,6 +33,8 @@ const Input = ({
         placeholder=" "
         disabled={presentStatus}
         onChange={(e) => setState(e.target.value)}
+        max={type === "month" ? maxMonth : undefined}
+        min={type === "month" ? minMonth : undefined}
       />
       <label
         title={state}
