@@ -10,6 +10,18 @@ import useStore from "@/store/store";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 
+const Section = ({ id, title, children }) => (
+  <section
+    id={id}
+    className="flex items-center justify-center flex-col gap-2 text-center w-full px-8 mt-4"
+  >
+    <h2 className="pb-1 border-b-2 font-bold uppercase w-full text-base text-center">
+      {title}
+    </h2>
+    {children}
+  </section>
+);
+
 const Template1 = ({}) => {
   const {
     image,
@@ -34,17 +46,21 @@ const Template1 = ({}) => {
   const t = useTranslations();
   const locale = useLocale();
   const LANG_OPTIONS = locale === "en" ? LANGUAGE_OPTIONS : LANGUAGE_OPTIONS_AZ;
-  const localeIso = LOCALES.find((lang) => lang.value === locale).iso;
-  console.log(socialLinks.length);
+
+  const localeIso = React.useMemo(
+    () => LOCALES.find((lang) => lang.value === locale)?.iso || "en-US",
+    [locale]
+  );
+
   return (
     <div className="w-[240mm] min-h-[296mm] bg-white my-0 mx-auto p-2 rounded overflow-x-hidden">
-      <div className="flex flex-col items-center justify-between w-full bg- text-center">
+      <div className="flex flex-col items-center justify-between w-full text-center">
         {image && (
           <Image
             src={image}
             height={80}
             width={80}
-            alt="profileImage"
+            alt={t("Personal.title")}
             className="rounded-full"
           />
         )}
@@ -81,27 +97,15 @@ const Template1 = ({}) => {
         </p>
       </div>
       {summary !== "" && (
-        <section
-          id="summary"
-          className="flex items-center justify-center flex-col gap-2 text-center w-full mt-4 px-8"
-        >
-          <h2 className="pb-1 border-b-2 font-bold uppercase w-full text-base">
-            {t("Personal.summary")}
-          </h2>
+        <Section id="summary" title={t("Personal.summary")}>
           <p
             dangerouslySetInnerHTML={{ __html: summary }}
             className="text-sm"
           ></p>
-        </section>
+        </Section>
       )}
-      {Object.values(socialLinks).some((link) => link) && (
-        <section
-          id="socials"
-          className="flex items-center justify-center flex-col gap-4 text-center w-full mt-4 px-8"
-        >
-          <h2 className="pb-1 border-b-2 font-bold uppercase w-full text-base">
-            {t("Social.title")}
-          </h2>
+      {Object.values(socialLinks || {}).some((link) => link) && (
+        <Section id="socials" title={t("Social.title")}>
           <div className="flex items-center justify-center flex-wrap gap-4">
             {Object.keys(socialLinks).map((key) => {
               const social = SOCIALS.find((e) => e.name.toLowerCase() === key);
@@ -129,16 +133,10 @@ const Template1 = ({}) => {
               return null;
             })}
           </div>
-        </section>
+        </Section>
       )}
       {experience?.length > 0 && (
-        <section
-          id="experience"
-          className="flex items-center justify-center flex-col gap-2 text-center w-full mt-4 px-8"
-        >
-          <h2 className="pb-1 border-b-2 font-bold uppercase w-full text-base">
-            {t("Experience.title")}
-          </h2>
+        <Section id="experience" title={t("Experience.title")}>
           {experience.map((exp, index) => (
             <div key={index} className="flex flex-col w-full mb-5">
               <div className="flex items-center justify-between w-full">
@@ -159,21 +157,15 @@ const Template1 = ({}) => {
               ></p>
             </div>
           ))}
-        </section>
+        </Section>
       )}
       {education?.length > 0 && (
-        <section
-          id="experience"
-          className="flex items-center justify-center flex-col gap-2 text-center w-full mt-4 px-8"
-        >
-          <h2 className="pb-1 border-b-2 font-bold uppercase w-full text-base">
-            {t("Education.title")}
-          </h2>
+        <Section id="education" title={t("Education.title")}>
           {education.map((edu, index) => (
             <div key={index} className="flex flex-col w-full mb-2">
               <div className="flex items-center justify-between w-full">
                 <h3 className="font-semibold">
-                  {edu.degree} of {edu.fieldOfStudy}
+                  {edu.degree} {locale === "en" ? "of" : "-"} {edu.fieldOfStudy}
                 </h3>
                 <p>
                   {useFormattedTime(edu.startDate, localeIso)} -{" "}
@@ -191,27 +183,15 @@ const Template1 = ({}) => {
               ></p>
             </div>
           ))}
-        </section>
+        </Section>
       )}
       {skills?.length > 0 && (
-        <section
-          id="skills"
-          className="flex items-center justify-center flex-col gap-2 w-full mt-4 px-8"
-        >
-          <h2 className="pb-1 border-b-2 font-bold uppercase w-full text-base text-center">
-            {t("Skills.title")}
-          </h2>
+        <Section id="skills" title={t("Skills.title")}>
           <p className="text-center">{skills.join(", ")}</p>
-        </section>
+        </Section>
       )}
       {projects?.length > 0 && (
-        <section
-          id="projects"
-          className="flex items-center justify-center flex-col gap-2 w-full mt-4 px-8"
-        >
-          <h2 className="pb-1 border-b-2 font-bold uppercase w-full text-base text-center">
-            {t("Projects.title")}
-          </h2>
+        <Section id="projects" title={t("Projects.title")}>
           <div className="flex flex-col gap-4 w-full">
             {projects.map((project, index) => (
               <div key={index} className="flex flex-col w-full">
@@ -224,20 +204,20 @@ const Template1 = ({}) => {
                       </a>
                     )}
                     {project.liveLink && project.githubLink && (
-                      <span className="mx-2 font-light">|</span>
+                      <span className="mx-2 opacity-75">|</span>
                     )}
                     {project.githubLink && (
-                      <>
-                        <a href={project.githubLink} className="text-sky-600">
-                          {t("Projects.github")}
-                        </a>
-                      </>
+                      <a href={project.githubLink} className="text-sky-600">
+                        {t("Projects.github")}
+                      </a>
                     )}
                   </p>
                 </div>
                 {project?.technologies?.length > 0 && (
                   <div className="font-normal me-auto">
-                    <h3 className="mr-1 float-left font-semibold">Tech:</h3>{" "}
+                    <h3 className="mr-1 float-left font-semibold">
+                      {t("Projects.tech")}:
+                    </h3>{" "}
                     {project.technologies.join(", ")}
                   </div>
                 )}
@@ -249,16 +229,10 @@ const Template1 = ({}) => {
               </div>
             ))}
           </div>
-        </section>
+        </Section>
       )}
       {certificates?.length > 0 && (
-        <section
-          id="certificates"
-          className="flex items-center justify-center flex-col gap-2 text-center w-full px-8 mt-4"
-        >
-          <h2 className="pb-1 border-b-2 font-bold uppercase w-full text-base">
-            {t("Certificates.title")}
-          </h2>
+        <Section id="certificates" title={t("Certificates.title")}>
           {certificates.map((certificate, index) => (
             <div key={index} className="flex flex-col w-full mb-2">
               <div className="flex items-center justify-between w-full">
@@ -267,16 +241,10 @@ const Template1 = ({}) => {
               </div>
             </div>
           ))}
-        </section>
+        </Section>
       )}
       {references?.length > 0 && (
-        <section
-          id="references"
-          className="flex items-center justify-center flex-col gap-2 text-center w-full px-8 mt-4"
-        >
-          <h2 className="pb-1 border-b-2 font-bold uppercase w-full text-base">
-            {t("References.title")}
-          </h2>
+        <Section id="references" title={t("References.title")}>
           {references.map((ref, index) => (
             <div key={index} className="flex flex-col w-full mb-2">
               <div className="flex items-center justify-between w-full">
@@ -301,16 +269,10 @@ const Template1 = ({}) => {
               </div>
             </div>
           ))}
-        </section>
+        </Section>
       )}
       {languages?.length > 0 && (
-        <section
-          id="languages"
-          className="flex items-center justify-center flex-col gap-2 text-center w-full px-8 mt-4"
-        >
-          <h2 className="pb-1 border-b-2 font-bold uppercase w-full text-base">
-            {t("Languages.title")}
-          </h2>
+        <Section id="languages" title={t("Languages.title")}>
           {languages.map((lang, index) => (
             <div key={index} className="flex flex-col w-full mb-2">
               <div className="flex items-center justify-between w-full">
@@ -319,18 +281,12 @@ const Template1 = ({}) => {
               </div>
             </div>
           ))}
-        </section>
+        </Section>
       )}
       {interests?.length > 0 && (
-        <section
-          id="interests"
-          className="flex items-center justify-center flex-col gap-2 w-full mt-4 px-8"
-        >
-          <h2 className="pb-1 border-b-2 font-bold uppercase w-full text-base text-center">
-            {t("Interests.title")}
-          </h2>
+        <Section id="interests" title={t("Interests.title")}>
           <p>{interests.join(", ")}</p>
-        </section>
+        </Section>
       )}
     </div>
   );
