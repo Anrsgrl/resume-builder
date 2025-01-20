@@ -9,7 +9,7 @@ const useTemplateStore = create(
       sectionHeadingColor: "",
       headingColor: "",
       hyperlinkColor: "",
-      projectLink: "icon",
+      projectLink: "",
       fontFamily: "",
       setName: (value) => set({ name: value }),
       setTemplateNumber: (value) => set({ templateNumber: value }),
