@@ -12,6 +12,7 @@ import { useLocale, useTranslations } from "next-intl";
 import toast from "react-hot-toast";
 import { LOCALES } from "@/utils/constants";
 import Example from "@/components/shared/Example";
+import { MdDateRange, MdMap, MdPin, MdPinDrop } from "react-icons/md";
 
 const Experience = () => {
   const t = useTranslations("Experience");
@@ -209,15 +210,27 @@ const Experience = () => {
                 title={exp.company + " " + exp.jobTitle}
                 state={experience}
               >
-                <p>{exp.city}</p>
-                <p>
+                <p className="flex items-center gap-1">
+                  <strong className="text-main">
+                    <MdPinDrop />
+                  </strong>{" "}
+                  {exp.city}
+                </p>
+                <p className="flex items-center gap-1">
+                  <strong className="text-main">
+                    <MdDateRange />
+                  </strong>{" "}
                   {useFormattedTime(exp.startDate, localeIso)} -{" "}
                   {exp.endDate
                     ? useFormattedTime(exp.endDate, localeIso)
                     : t("present")}
                 </p>
                 <div
-                  dangerouslySetInnerHTML={{ __html: exp.description }}
+                  className="text-left mt-2 text-sm opacity-80"
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      exp?.description !== "<p><br></p>" ? exp.description : "",
+                  }}
                 ></div>
               </Example>
             ))}

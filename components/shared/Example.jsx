@@ -7,27 +7,28 @@ const Example = ({ children, index, state, title, edit, remove, up, down }) => {
   return (
     <details
       key={index}
-      className="border border-white/50 p-4 rounded-md animation-all mt-2"
+      className="border border-white/50 px-4 py-2 rounded-md animation-all mt-2 text-sm group"
     >
-      <summary className="font-bold text-white/80 flex items-center justify-between cursor-pointer">
+      <summary className="font-bold text-white/80 flex items-center justify-between cursor-pointer text-base">
         <span className="flex items-center gap-1">
-          <span className="max-w-[90%] truncate">{title}</span> <TbClick />
+          <span className="max-w-[90%] truncate text-sm">{title}</span>{" "}
+          <TbClick className={`group-hover:text-main animation-all`} />
         </span>
         {up && down && (
-          <div className="flex items-center gap-2 mt-2">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => up(index)}
               disabled={index === 0}
               className="disabled:opacity-50 disabled:cursor-not-allowed hover:scale-90 disabled:hover:scale-100 animation-all"
             >
-              <FaArrowUp />
+              <FaArrowUp size={16} />
             </button>
             <button
               onClick={() => down(index)}
               disabled={index === state.length - 1}
               className="disabled:opacity-50 disabled:cursor-not-allowed hover:scale-90 disabled:hover:scale-100 animation-all"
             >
-              <FaArrowDown />
+              <FaArrowDown size={16} />
             </button>
           </div>
         )}
@@ -36,13 +37,13 @@ const Example = ({ children, index, state, title, edit, remove, up, down }) => {
       <div className="flex items-center gap-2 mt-2 pt-2 border-t">
         <button
           onClick={() => edit(index)}
-          className="text-blue-500 hover:text-blue-700 p-2 rounded-full animation-all flex items-center gap-1"
+          className="text-blue-500 hover:text-blue-700 p-2 rounded-full animation-all flex items-center gap-1 text-xs"
         >
           <FaEdit size={16} /> {t("edit")}
         </button>
         <button
           onClick={() => remove(index)}
-          className="text-red-500 hover:text-red-700 p-2 rounded-full animation-all flex items-center gap-1"
+          className="text-red-500 hover:text-red-700 p-2 rounded-full animation-all flex items-center gap-1 text-xs"
         >
           <FaTrash size={16} /> {t("remove")}
         </button>

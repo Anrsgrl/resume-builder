@@ -17,7 +17,7 @@ const Modal = ({ isOpen, onClose, children }) => {
       onClick={handleOutsideClick}
     >
       <div
-        className="rounded-lg shadow-lg w-96 grid grid-cols-1 gap-2"
+        className="rounded-md shadow-lg w-96 grid grid-cols-1 gap-2"
         onClick={handleModalClick}
       >
         {children}

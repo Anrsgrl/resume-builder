@@ -9,6 +9,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { handleMoveItem, useFormattedTime } from "@/utils/helpers";
 import Example from "@/components/shared/Example";
 import { LOCALES } from "@/utils/constants";
+import { MdDateRange, MdTextFields } from "react-icons/md";
 const Editor = dynamic(() => import("@/components/shared/Editor"), {
   ssr: false,
 });
@@ -225,18 +226,24 @@ const Education = () => {
                 title={item.institution}
                 state={education}
               >
-                <p>
-                  <strong>{t("degree")}:</strong> {item.degree}
+                <p className="flex items-center gap-1">
+                  <strong className="text-main">
+                    <MdTextFields />
+                  </strong>{" "}
+                  {item.degree}
                   {` - ${item.fieldOfStudy}`}
                 </p>
-                <p>
-                  <strong>{t("startDate")}:</strong>{" "}
+                <p className="flex items-center gap-1">
+                  <strong className="text-main">
+                    <MdDateRange />
+                  </strong>{" "}
                   {useFormattedTime(item.startDate, localeIso)} -{" "}
                   {item.endDate
                     ? useFormattedTime(item.endDate, localeIso)
                     : t("present")}
                 </p>
                 <div
+                  className="text-left mt-2 text-sm opacity-80"
                   dangerouslySetInnerHTML={{
                     __html:
                       item?.description !== "<p><br></p>"

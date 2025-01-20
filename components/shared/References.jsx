@@ -2,7 +2,7 @@ import { useState } from "react";
 import useStore from "@/store/store";
 import Input from "@/components/common/Input";
 import Button from "@/components/common/Button";
-import { MdPlayArrow } from "react-icons/md";
+import { MdEmail, MdPhone, MdPlayArrow } from "react-icons/md";
 import { useTranslations } from "next-intl";
 import toast from "react-hot-toast";
 import Example from "@/components/shared/Example";
@@ -174,8 +174,18 @@ const References = () => {
                     title={ref.name + " - " + ref.company}
                     state={references}
                   >
-                    <p>{ref.phone}</p>
-                    <p>{ref.email}</p>
+                    <p className="flex items-center gap-1">
+                      <strong className="text-main">
+                        <MdPhone />
+                      </strong>{" "}
+                      {ref.phone}
+                    </p>
+                    <p className="flex items-center gap-1">
+                      <strong className="text-main">
+                        <MdEmail />
+                      </strong>{" "}
+                      {ref.email}
+                    </p>
                   </Example>
                 ))}
               </div>

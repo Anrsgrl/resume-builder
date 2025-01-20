@@ -12,6 +12,9 @@ import { useTranslations } from "next-intl";
 import toast from "react-hot-toast";
 import { TbClick } from "react-icons/tb";
 import { handleMoveItem } from "@/utils/helpers";
+import Example from "./Example";
+import { MdLink, MdOutlineArrowOutward } from "react-icons/md";
+import { SiGithub } from "react-icons/si";
 const Project = () => {
   const t = useTranslations("Projects");
   const {
@@ -166,27 +169,25 @@ const Project = () => {
               <FaPlus />
             </Button>
           </div>
-          <div className="mt-2">
-            <p className="text-gray-400">
-              {newProject?.technologies?.map((tech, index) => (
-                <span
-                  key={index}
-                  className="cursor-pointer hover:underline"
-                  onClick={() =>
-                    setNewProject((prev) => ({
-                      ...prev,
-                      technologies: prev.technologies.filter(
-                        (_, i) => i !== index
-                      ),
-                    }))
-                  }
-                >
-                  {tech}
-                  {index !== newProject.technologies.length - 1 && ", "}
-                </span>
-              ))}
-            </p>
-          </div>
+          <p className="text-gray-400 text-xs mt-2">
+            {newProject?.technologies?.map((tech, index) => (
+              <span
+                key={index}
+                className="cursor-pointer hover:underline"
+                onClick={() =>
+                  setNewProject((prev) => ({
+                    ...prev,
+                    technologies: prev.technologies.filter(
+                      (_, i) => i !== index
+                    ),
+                  }))
+                }
+              >
+                {tech}
+                {index !== newProject.technologies.length - 1 && ", "}
+              </span>
+            ))}
+          </p>
         </div>
       </div>
 
@@ -216,55 +217,32 @@ const Project = () => {
         {projects.length > 0 && (
           <div className="space-y-4 text-white/80">
             {projects.map((project, index) => (
-              <details
+              <Example
                 key={index}
-                className="border border-white/50 p-4 rounded-md animation-all"
+                index={index}
+                remove={handleRemoveProject}
+                edit={handleChooseProject}
+                down={handleMoveProjectDown}
+                up={handleMoveProjectUp}
+                title={project.title}
+                state={projects}
               >
-                <summary className="font-bold text-white/80 flex items-center justify-between cursor-pointer">
-                  <span className="flex items-center gap-1">
-                    {project.title} <TbClick />
-                  </span>
-                  <div className="flex items-center gap-2 mt-2">
-                    <button
-                      onClick={() => handleMoveProjectUp(index)}
-                      disabled={index === 0}
-                      className="disabled:opacity-50"
-                    >
-                      <FaArrowUp />
-                    </button>
-                    <button
-                      onClick={() => handleMoveProjectDown(index)}
-                      disabled={index === projects.length - 1}
-                      className="disabled:opacity-50"
-                    >
-                      <FaArrowDown />
-                    </button>
-                  </div>
-                </summary>
                 {project?.technologies?.length > 0 && (
                   <p>
                     <strong className="text-main">{t("tech")}:</strong>{" "}
                     {project.technologies.join(", ")}
                   </p>
                 )}
-
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      project?.description !== "<p><br></p>"
-                        ? project.description
-                        : "",
-                  }}
-                ></div>
                 <div className="flex flex-col gap-1 mt-2">
                   {project.githubLink && (
                     <div className="flex items-center gap-1">
-                      {t("github")}:
+                      <strong className="text-main">
+                        <SiGithub />
+                      </strong>{" "}
                       <a
                         href={project.githubLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-main"
                       >
                         {project.githubLink}
                       </a>
@@ -272,33 +250,30 @@ const Project = () => {
                   )}
                   {project.liveLink && (
                     <div className="flex items-center gap-1">
-                      {t("live")}:
+                      <strong className="text-main">
+                        <MdOutlineArrowOutward />
+                      </strong>{" "}
                       <a
                         href={project.liveLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-main"
                       >
                         {project.liveLink}
                       </a>
                     </div>
                   )}
+
+                  <div
+                    className="text-left mt-2 text-sm opacity-80"
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        project?.description !== "<p><br></p>"
+                          ? project.description
+                          : "",
+                    }}
+                  ></div>
                 </div>
-                <div className="flex items-center gap-2 mt-2">
-                  <button
-                    onClick={() => handleChooseProject(index)}
-                    className="text-blue-500"
-                  >
-                    {t("edit")}
-                  </button>
-                  <button
-                    onClick={() => handleRemoveProject(index)}
-                    className="text-red-500"
-                  >
-                    {t("remove")}
-                  </button>
-                </div>
-              </details>
+              </Example>
             ))}
           </div>
         )}

@@ -17,7 +17,7 @@ const CustomLink = ({
       href={href}
       {...props}
       type="button"
-      className={`flex items-center gap-1 animation-all group overflow-hidden px-3 py-1 rounded-lg text-main cursor-pointer border border-main hover:border-main hover:bg-main group font-semibold ${
+      className={`flex items-center gap-1 animation-all group overflow-hidden px-3 py-1 rounded-md text-main cursor-pointer border border-main hover:border-main hover:bg-main font-semibold ${
         full ? "w-full" : "w-fit"
       } ${prev && "flex-row-reverse"}`}
     >
@@ -46,11 +46,6 @@ const CustomLink = ({
         }`}
       >
         {children}
-      </p>
-      <p>
-        <span className={`${`${closeXs ? "hidden" : "block xs:hidden"}`}`}>
-          <MdArrowRightAlt size={24} className={`${prev && "rotate-180"}`} />
-        </span>
       </p>
     </Link>
   );

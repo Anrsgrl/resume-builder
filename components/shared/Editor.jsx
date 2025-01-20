@@ -58,7 +58,7 @@ export default function Editor({ state, setState, editedIndex, label }) {
   }, [quill, state]);
 
   return (
-    <div className="relative border-gray-600 focus:outline-none focus:ring-0 focus:border-main border rounded-lg !font-[inherit]">
+    <div className="relative border-gray-600 focus:outline-none focus:ring-0 focus:border-main border rounded-md !font-[inherit]">
       <div
         className={`absolute text-sm text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 ${
           (state || editorFocused) && "bg-gray-900 text-main"
@@ -68,7 +68,7 @@ export default function Editor({ state, setState, editedIndex, label }) {
       </div>
       <div
         ref={quillRef}
-        className="block w-full text-sm bg-transparent rounded-lg border-1 appearance-none text-white"
+        className="block w-full text-sm bg-transparent rounded-md border-1 appearance-none text-white"
       />
     </div>
   );

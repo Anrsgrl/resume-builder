@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import Input from "@/components/common/Input";
 import Button from "@/components/common/Button";
 import { handleMoveItem, useFormattedTime } from "@/utils/helpers";
-import { MdPlayArrow } from "react-icons/md";
+import { MdDateRange, MdPlayArrow } from "react-icons/md";
 import toast from "react-hot-toast";
 import { useLocale, useTranslations } from "next-intl";
 import { LOCALES } from "@/utils/constants";
@@ -179,7 +179,12 @@ const Certificates = () => {
                     title={cert.title}
                     state={certificates}
                   >
-                    <p>{useFormattedTime(cert.date, localeIso)}</p>
+                    <p className="flex items-center gap-1">
+                      <strong className="text-main">
+                        <MdDateRange />
+                      </strong>{" "}
+                      {useFormattedTime(cert.date, localeIso)}
+                    </p>
                     <div
                       dangerouslySetInnerHTML={{
                         __html:

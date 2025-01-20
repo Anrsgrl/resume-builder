@@ -9,6 +9,8 @@ import { useLocale, useTranslations } from "next-intl";
 import toast from "react-hot-toast";
 import { handleMoveItem } from "@/utils/helpers";
 import Example from "@/components/shared/Example";
+import { GiLevelTwo } from "react-icons/gi";
+import { TbProgress } from "react-icons/tb";
 
 const Languages = () => {
   const t = useTranslations("Languages");
@@ -151,7 +153,10 @@ const Languages = () => {
                     title={lang.language}
                     state={languages}
                   >
-                    <p>
+                    <p className="flex items-center gap-1">
+                      <strong className="text-main">
+                        <TbProgress />
+                      </strong>{" "}
                       {LANG_OPTIONS.find((e) => e.value === lang.level).label}
                     </p>
                   </Example>

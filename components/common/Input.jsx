@@ -29,7 +29,7 @@ const Input = ({
         name={name}
         value={state}
         id={name}
-        className="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-1 appearance-none text-white border-gray-600 dark:focus:border-main focus:outline-none focus:ring-0 focus:border-main peer border disabled:opacity-50 h-12"
+        className="block px-4 py-2 w-full text-sm bg-transparent rounded-md border-1 appearance-none text-white border-gray-600 dark:focus:border-main focus:outline-none focus:ring-0 focus:border-main peer border disabled:opacity-50 h-10"
         placeholder=" "
         disabled={presentStatus}
         onChange={(e) => setState(e.target.value)}
@@ -47,7 +47,7 @@ const Input = ({
         {present && (
           <button
             type="button"
-            className={`bg-gray-800 px-2 rounded-lg flex items-center gap-1 whitespace-nowrap ${
+            className={`bg-gray-800 px-2 rounded-md flex items-center gap-1 whitespace-nowrap ${
               presentStatus ? "text-main" : "text-gray-400"
             }`}
             onClick={setPresent}
