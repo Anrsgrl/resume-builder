@@ -61,7 +61,7 @@ const Interests = () => {
   return (
     <div className="flex flex-col gap-2 border-b border-dashed border-gray-400">
       <h2
-        className="font-bold text-2xl text-main hover:text-main/80 animation-all mb-4 cursor-pointer flex items-center gap-1"
+        className="font-bold text-xl text-main hover:text-main/80 animation-all mb-4 cursor-pointer flex items-center gap-1"
         onClick={() => setShow(!show)}
       >
         {t("title")}

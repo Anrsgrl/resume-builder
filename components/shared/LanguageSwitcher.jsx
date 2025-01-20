@@ -30,9 +30,9 @@ export default function LanguageSwitcher() {
         type="button"
         onClick={toggleModal}
         aria-label="language switch button"
-        className="p-1 rounded-full shadow-sm hover:shadow-lg shadow-main animation-all aspect-square w-11 h-11"
+        className="p-1 rounded-full shadow-sm hover:shadow-lg shadow-main animation-all aspect-square w-11 h-11 flex items-center justify-center"
       >
-        <Flag code={findLocale(locale)} width={36} />
+        <Flag code={findLocale(locale)} width={32} />
       </button>
 
       <Modal isOpen={isModalOpen} onClose={toggleModal}>

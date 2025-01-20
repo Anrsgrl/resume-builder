@@ -33,7 +33,7 @@ export default function Home() {
       <div className="flex items-center flex-row-reverse gap-3 md:gap-4">
         <Link
           href="/build?step=1"
-          className="w-full flex items-center gap-1 animation-all group overflow-hidden bg-main/95 w-fit p-3 rounded-full font-bold text-white cursor-pointer hover:bg-main/80"
+          className="w-full flex items-center gap-1 animation-all group overflow-hidden bg-main/95 w-fit py-3 px-1.5 rounded-full font-bold text-white cursor-pointer hover:bg-main/80"
         >
           <MdArrowRightAlt
             size={24}
