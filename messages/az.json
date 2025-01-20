@@ -12,12 +12,13 @@
     },
     "Steps": {
       "1": "Şəxsi Məlumatlar",
-      "2": "Təhsil",
-      "3": "Təcrübə",
-      "4": "Bacarıqlar",
-      "5": "Layihələr",
-      "6": "Əlavə Məlumatlar",
-      "7": "Əsas Səhifə",
+      "2": "Sosial şəbəkələr",
+      "3": "Təhsil",
+      "4": "Təcrübə",
+      "5": "Bacarıqlar",
+      "6": "Layihələr",
+      "7": "Əlavə Məlumatlar",
+      "8": "Əsas Səhifə",
       "prev": "Əvvəlki Addım",
       "next": "Sonraki Addım"
     },
@@ -33,6 +34,9 @@
       "city": "Şəhər",
       "summary": "Xülasə",
       "home": "Ana Səhifə"
+    },
+    "Social": {
+      "title": "Sosial şəbəkələr"
     },
     "Education": {
       "title": "Təhsil",

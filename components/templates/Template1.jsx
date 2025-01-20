@@ -4,6 +4,7 @@ import {
   LANGUAGE_OPTIONS,
   LANGUAGE_OPTIONS_AZ,
   LOCALES,
+  SOCIALS,
 } from "@/utils/constants";
 import useStore from "@/store/store";
 import { useLocale, useTranslations } from "next-intl";
@@ -20,6 +21,7 @@ const Template1 = ({}) => {
     country,
     city,
     summary,
+    socialLinks,
     experience,
     education,
     skills,
@@ -33,6 +35,7 @@ const Template1 = ({}) => {
   const locale = useLocale();
   const LANG_OPTIONS = locale === "en" ? LANGUAGE_OPTIONS : LANGUAGE_OPTIONS_AZ;
   const localeIso = LOCALES.find((lang) => lang.value === locale).iso;
+  console.log(socialLinks.length);
   return (
     <div className="w-[240mm] min-h-[296mm] bg-white my-0 mx-auto p-2 rounded overflow-x-hidden">
       <div className="flex flex-col items-center justify-between w-full bg- text-center">
@@ -89,6 +92,43 @@ const Template1 = ({}) => {
             dangerouslySetInnerHTML={{ __html: summary }}
             className="text-sm"
           ></p>
+        </section>
+      )}
+      {Object.values(socialLinks).some((link) => link) && (
+        <section
+          id="socials"
+          className="flex items-center justify-center flex-col gap-4 text-center w-full mt-4 px-8"
+        >
+          <h2 className="pb-1 border-b-2 font-bold uppercase w-full text-base">
+            {t("Social.title")}
+          </h2>
+          <div className="flex items-center justify-center flex-wrap gap-4">
+            {Object.keys(socialLinks).map((key) => {
+              const social = SOCIALS.find((e) => e.name.toLowerCase() === key);
+              if (social && socialLinks[key]) {
+                const url = socialLinks[key];
+                const username = url.replace(
+                  /^https?:\/\/(?:www\.)?(?:linkedin\.com\/in\/|github\.com\/|twitter\.com\/|facebook\.com\/|instagram\.com\/|xing\.com\/|medium\.com\/)(.*)$/,
+                  "$1"
+                );
+
+                return (
+                  <div key={key} className="flex items-center gap-1">
+                    <span className="text-sky-600">{social.logo}</span>
+                    <a
+                      href={socialLinks[key]}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm"
+                    >
+                      {username}
+                    </a>
+                  </div>
+                );
+              }
+              return null;
+            })}
+          </div>
         </section>
       )}
       {experience?.length > 0 && (

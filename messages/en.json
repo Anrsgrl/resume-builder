@@ -12,12 +12,13 @@
     },
     "Steps": {
         "1": "Personal Informations",
-        "2": "Education",
-        "3": "Experience",
-        "4": "Skills",
-        "5": "Projects",
-        "6": "Additional Informations",
-        "7": "Home",
+        "2": "Social",
+        "3": "Education",
+        "4": "Experience",
+        "5": "Skills",
+        "6": "Projects",
+        "7": "Additional Informations",
+        "8": "Home",
         "prev": "Prev Step",
         "next": "Next Step"
     },
@@ -33,6 +34,9 @@
         "city": "City",
         "summary": "Summary",
         "home": "Home"
+    },
+    "Social": {
+        "title": "Social"
     },
     "Education": {
         "title": "Education",

@@ -45,7 +45,7 @@ const ImageUpload = () => {
           />
         ) : (
           <div className="w-full h-full rounded-full bg-gray-200 flex items-center justify-center">
-            <span className="select-none text-gray-900 text-xs">80x80</span>
+            <span className="select-none text-gray-900 text-xs">80 x 80</span>
           </div>
         )}
         {(image && imagePreview) !== null && (

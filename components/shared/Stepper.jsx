@@ -14,6 +14,7 @@ const Stepper = ({ prev, next, prevTitle, nextTitle }) => {
     { value: 4, label: t("4") },
     { value: 5, label: t("5") },
     { value: 6, label: t("6") },
+    { value: 7, label: t("7") },
   ];
   const toggleModal = () => {
     setModal(!modal);
@@ -40,7 +41,7 @@ const Stepper = ({ prev, next, prevTitle, nextTitle }) => {
       </button>
       <Modal isOpen={modal} onClose={toggleModal}>
         <CustomLink closeXs={true} full={true} animation={true} href={`/`}>
-          {t("7")}
+          {t("8")}
         </CustomLink>
         {STEPS.map((step, index) => (
           <CustomLink

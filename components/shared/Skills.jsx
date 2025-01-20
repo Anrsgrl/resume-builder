@@ -93,7 +93,7 @@ const Skills = () => {
         )}
       </div>
 
-      <Stepper prev={`/build?step=3`} next={"/build?step=5"} />
+      <Stepper prev={`/build?step=4`} next={"/build?step=6"} />
     </div>
   );
 };

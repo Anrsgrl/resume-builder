@@ -13,14 +13,68 @@ const useStore = create(
       country: "",
       city: "",
       driving: "",
-      setName: (newName) => set({ name: newName }),
-      setSurname: (newSurname) => set({ surname: newSurname }),
-      setEmail: (newEmail) => set({ email: newEmail }),
-      setPhone: (newPhone) => set({ phone: newPhone }),
-      setJobTitle: (newJobTitle) => set({ jobTitle: newJobTitle }),
-      setDriving: (newDriving) => set({ driving: newDriving }),
-      setCountry: (newCountry) => set({ country: newCountry }),
-      setCity: (newCity) => set({ city: newCity }),
+      setName: (value) => set({ name: value }),
+      setSurname: (value) => set({ surname: value }),
+      setEmail: (value) => set({ email: value }),
+      setPhone: (value) => set({ phone: value }),
+      setJobTitle: (value) => set({ jobTitle: value }),
+      setDriving: (value) => set({ driving: value }),
+      setCountry: (value) => set({ country: value }),
+      setCity: (value) => set({ city: value }),
+
+      //! Social
+      socialLinks: {
+        linkedin: "",
+        github: "",
+        twitter: "",
+        facebook: "",
+        instagram: "",
+        website: "",
+        xing: "",
+        medium: "",
+        figma: "",
+        dribbble: "",
+      },
+      setLinkedin: (url) =>
+        set((state) => ({
+          socialLinks: { ...state.socialLinks, linkedin: url },
+        })),
+      setGithub: (url) =>
+        set((state) => ({
+          socialLinks: { ...state.socialLinks, github: url },
+        })),
+      setTwitter: (url) =>
+        set((state) => ({
+          socialLinks: { ...state.socialLinks, twitter: url },
+        })),
+      setFacebook: (url) =>
+        set((state) => ({
+          socialLinks: { ...state.socialLinks, facebook: url },
+        })),
+      setInstagram: (url) =>
+        set((state) => ({
+          socialLinks: { ...state.socialLinks, instagram: url },
+        })),
+      setWebsite: (url) =>
+        set((state) => ({
+          socialLinks: { ...state.socialLinks, website: url },
+        })),
+      setXing: (url) =>
+        set((state) => ({
+          socialLinks: { ...state.socialLinks, xing: url },
+        })),
+      setMedium: (url) =>
+        set((state) => ({
+          socialLinks: { ...state.socialLinks, medium: url },
+        })),
+      setFigma: (url) =>
+        set((state) => ({
+          socialLinks: { ...state.socialLinks, figma: url },
+        })),
+      setDribbble: (url) =>
+        set((state) => ({
+          socialLinks: { ...state.socialLinks, dribbble: url },
+        })),
 
       //! Photo
       image: null,

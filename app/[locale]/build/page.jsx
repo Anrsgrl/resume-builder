@@ -6,6 +6,7 @@ import Something from "@/components/shared/Something";
 import Personal from "@/components/shared/Personal";
 import Project from "@/components/shared/Project";
 import Skills from "@/components/shared/Skills";
+import Social from "@/components/shared/Social";
 import { useSearchParams } from "next/navigation";
 
 const Build = () => {
@@ -16,12 +17,13 @@ const Build = () => {
   return (
     <div className="max-w-xl mx-auto">
       {(step == 1 || step == null) && <Personal />}
-      {step == 2 && <Education />}
-      {step == 3 && <Experience />}
-      {step == 4 && <Skills />}
-      {step == 5 && <Project />}
-      {step == 6 && <Additional />}
-      {step > 6 && <Something />}
+      {step == 2 && <Social />}
+      {step == 3 && <Education />}
+      {step == 4 && <Experience />}
+      {step == 5 && <Skills />}
+      {step == 6 && <Project />}
+      {step == 7 && <Additional />}
+      {step > 7 && <Something />}
     </div>
   );
 };

@@ -279,7 +279,7 @@ const Project = () => {
         )}
       </div>
 
-      <Stepper prev={`/build?step=4`} next={"/build?step=6"} />
+      <Stepper prev={`/build?step=5`} next={"/build?step=7"} />
     </div>
   );
 };
