@@ -183,6 +183,7 @@ const Education = () => {
           setState={(value) =>
             setNewEducation({ ...newEducation, endDate: value })
           }
+          present={true}
           type="month"
           name={"endDate"}
           label={t("endDate")}

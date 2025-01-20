@@ -58,7 +58,7 @@ const CVPreview = () => {
             {t("save")}
           </button>
         </div>
-        <div className="w-full max-h-[90lvh] overflow-hidden print:overflow-visible scale-75 lg:scale-100 print:scale-100 flex">
+        <div className="w-full max-h-[90lvh] overflow-hidden lg:overflow-auto print:overflow-visible scale-75 lg:scale-100 print:scale-100 flex">
           <Template1 />
         </div>
       </div>
