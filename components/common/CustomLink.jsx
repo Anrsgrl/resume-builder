@@ -23,11 +23,11 @@ const CustomLink = ({
     >
       {animation && (
         <span
-          className={`transform animation-all  opacity-0 group-hover:opacity-100 group-hover:text-white ${
+          className={`transform animation-all xs:opacity-0 group-hover:opacity-100 group-hover:text-white ${
             animation && !prev
-              ? "-translate-x-5  group-hover:translate-x-0"
+              ? "xs:-translate-x-5  group-hover:xs:translate-x-0"
               : animation && prev
-              ? "translate-x-5  group-hover:translate-x-0"
+              ? "xs:translate-x-5  group-hover:xs:translate-x-0"
               : ""
           }`}
         >
