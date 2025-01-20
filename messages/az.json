@@ -143,7 +143,16 @@
       "edit": "Düzəliş et"
     },
     "Template": {
-      "save": "CV-ni PDF şəklində yüklə"
+      "save": "PDF şəklində yüklə",
+      "success": "Ayarlar sıfırlandı",
+      "settings": "Ayarlar",
+      "change": "Şablonu dəyişdir",
+      "name": "CV adı",
+      "section": "Bölüm başlıqları",
+      "heading": "Başlıqlar",
+      "hyperlink": "Linklər",
+      "project": "Proyekt linki",
+      "reset": "Ayarları sıfırla"
     },
     "Footer": {
       "starOnGitHub": "GitHub-da Ulduzla",

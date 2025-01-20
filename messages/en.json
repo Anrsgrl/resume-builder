@@ -141,7 +141,16 @@
         "success": "Successfully edited!"
     },
     "Template": {
-        "save": "Save Resume as PDF"
+        "save": "Save Resume as PDF",
+        "success": "Settings have been reset",
+        "settings": "Settings",
+        "change": "Change template",
+        "name": "Resume name",
+        "section": "Section headings",
+        "heading": "Headings",
+        "hyperlink": "Hyperlinks",
+        "project": "Project link",
+        "reset": "Reset settings"
     },
     "Footer": {
         "starOnGitHub": "Star on GitHub",

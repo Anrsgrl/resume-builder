@@ -34,7 +34,7 @@ const CustomLink = ({
           <MdArrowRightAlt size={24} className={`${prev && "rotate-180"}`} />
         </span>
       )}
-      <p
+      <div
         className={`uppercase text-sm animation-all group-hover:text-white ${
           closeXs ? "" : "hidden xs:block"
         } ${
@@ -46,7 +46,7 @@ const CustomLink = ({
         }`}
       >
         {children}
-      </p>
+      </div>
     </Link>
   );
 };

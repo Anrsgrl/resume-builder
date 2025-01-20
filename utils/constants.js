@@ -53,3 +53,6 @@ export const SOCIALS = [
   { name: "Figma", logo: <SiFigma /> },
   { name: "Dribbble", logo: <SiDribbble /> },
 ];
+
+export const FONTS = ["monospace", "cursive", "sans-serif", "fantasy"];
+export const uiSans = `ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji`;

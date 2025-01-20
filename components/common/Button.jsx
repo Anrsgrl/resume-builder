@@ -13,13 +13,13 @@ const Button = ({ children, animation, icon, ...props }) => {
           <MdArrowRightAlt size={24} />
         </span>
       )}
-      <p
+      <div
         className={`uppercase text-sm animation-all group-hover:text-white ${
           animation && "-translate-x-3 group-hover:translate-x-0"
         }`}
       >
         {children}
-      </p>
+      </div>
     </button>
   );
 };

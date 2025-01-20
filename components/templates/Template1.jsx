@@ -47,7 +47,6 @@ const Template1 = ({}) => {
     surname,
     email,
     phone,
-    driving,
     country,
     city,
     summary,
@@ -93,7 +92,7 @@ const Template1 = ({}) => {
       style={{
         fontFamily: settingsDefault.fontFamily,
       }}
-      className="w-[240mm] print:min-h-[296mm] bg-white my-0 mx-auto p-2 rounded overflow-x-hidden overflow-y-visible"
+      className="w-[240mm] min-h-[296mm] print:min-h-[296mm] bg-white my-0 mx-auto p-2 rounded overflow-x-hidden overflow-y-visible"
     >
       <div className="flex flex-col items-center justify-between w-full text-center">
         {image && (
@@ -105,7 +104,7 @@ const Template1 = ({}) => {
             className="rounded-full"
           />
         )}
-        <h1 className="text-base xs:text-lg font-semibold whitespace-nowrap w-full uppercase font-bold">
+        <h1 className="text-base xs:text-lg whitespace-nowrap w-full uppercase font-bold">
           {name} {surname}
         </h1>
         <p className="text-xs xs:text-sm">
@@ -135,12 +134,6 @@ const Template1 = ({}) => {
               >
                 {phone}
               </a>
-            </>
-          )}
-          {driving && (
-            <>
-              {(city || country || email || phone) && " • "}
-              <span>{`${t("Personal.driving")}: ${driving}`}</span>
             </>
           )}
         </p>
