@@ -111,6 +111,15 @@ const useStore = create(
             [section]: updatedItems,
           },
         })),
+
+      //! Example data
+      loadSampleData: async () => {
+        const response = await fetch("/sampleData.json");
+        const sampleData = await response.json();
+        set((state) => ({
+          store: { ...state.store, ...sampleData },
+        }));
+      },
     }),
     {
       name: "resume-data",

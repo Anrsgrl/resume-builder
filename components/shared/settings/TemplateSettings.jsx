@@ -10,7 +10,9 @@ import ColorMenu from "@/components/shared/settings/ColorMenu";
 import SectionMenu from "@/components/shared/settings/SectionMenu";
 import FontMenu from "@/components/shared/settings/FontMenu";
 import { MdSaveAlt } from "react-icons/md";
-
+import Settings from "./Settings";
+import { FaPaintBrush } from "react-icons/fa";
+import { RiSettings3Fill } from "react-icons/ri";
 const TemplateSettings = () => {
   const {
     templateName,
@@ -38,6 +40,7 @@ const TemplateSettings = () => {
   const { name, surname } = useStore();
   const t = useTranslations("Template");
 
+  //* Print function
   const handlePrint = () => {
     const originalTitle = document.title;
     document.title = templateName || `${name} ${surname} - CV`;
@@ -45,6 +48,7 @@ const TemplateSettings = () => {
     document.title = originalTitle;
   };
 
+  //* Template reset functions
   const resetFonts = (message) => {
     try {
       setFontFamily("");
@@ -97,37 +101,46 @@ const TemplateSettings = () => {
   };
 
   return (
-    <div className="my-4 text-center flex items-center justify-center gap-1 print:hidden">
-      <Button onClick={handlePrint}>
+    <div className="my-4 text-center flex flex-col xs:flex-row items-center justify-center gap-1 sticky top-0 lg:left-2/4 print:hidden">
+      <Button
+        onClick={handlePrint}
+        className={`bg-sky-800 border-2 border-sky-700 text-white hover:bg-sky-800/90 block`}
+      >
         <div className="flex items-center gap-1">
-          <MdSaveAlt size={20} /> {t("save")}
+          {t("save")}
+          <MdSaveAlt size={20} />
         </div>
       </Button>
-      <Menu label={t("settings")}>
-        {
+      <div className="flex items-center gap-2">
+        <Menu label={t("customize")} icon={<FaPaintBrush size={16} />}>
           {
-            main: <MainMenu setTabMenu={setTabMenu} reset={resetAll} />,
-            sections: (
-              <SectionMenu
-                setTabMenu={setTabMenu}
-                reset={() => resetSections(true)}
-              />
-            ),
-            colors: (
-              <ColorMenu
-                setTabMenu={setTabMenu}
-                reset={() => resetColors(true)}
-              />
-            ),
-            fonts: (
-              <FontMenu
-                setTabMenu={setTabMenu}
-                reset={() => resetFonts(true)}
-              />
-            ),
-          }[tabMenu || "main"]
-        }
-      </Menu>
+            {
+              main: <MainMenu setTabMenu={setTabMenu} reset={resetAll} />,
+              sections: (
+                <SectionMenu
+                  setTabMenu={setTabMenu}
+                  reset={() => resetSections(true)}
+                />
+              ),
+              colors: (
+                <ColorMenu
+                  setTabMenu={setTabMenu}
+                  reset={() => resetColors(true)}
+                />
+              ),
+              fonts: (
+                <FontMenu
+                  setTabMenu={setTabMenu}
+                  reset={() => resetFonts(true)}
+                />
+              ),
+            }[tabMenu || "main"]
+          }
+        </Menu>
+        <Menu label={t("settings")} icon={<RiSettings3Fill size={16} />}>
+          <Settings />
+        </Menu>
+      </div>
     </div>
   );
 };

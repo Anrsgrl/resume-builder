@@ -1,0 +1,55 @@
+{
+    "general": {
+      "name": "John",
+      "surname": "Doe",
+      "email": "johndoe@example.com",
+      "phone": "+123456789",
+      "jobTitle": "Software Engineer",
+      "country": "USA",
+      "city": "San Francisco",
+      "driving": "Yes"
+    },
+    "socialLinks": {
+      "linkedin": "https://linkedin.com/in/johndoe",
+      "github": "https://github.com/johndoe",
+      "twitter": "@johndoe",
+      "facebook": "johndoe",
+      "instagram": "@johndoe",
+      "website": "https://johndoe.dev",
+      "xing": "",
+      "medium": "@johndoe",
+      "figma": "",
+      "dribbble": ""
+    },
+    "summary": "A passionate software engineer with 5 years of experience...",
+    "certificates": ["Certified Kubernetes Administrator", "AWS Solutions Architect"],
+    "experience": [
+      {
+        "company": "Google",
+        "jobTitle": "Frontend Developer",
+        "city": "San Francisco",
+        "startDate": "2019-01",
+        "endDate": "2021-12",
+        "description": "Developed scalable web applications using React.js"
+      }
+    ],
+    "education": [
+      {
+        "institution": "MIT",
+        "degree": "B.Sc.",
+        "city": "San Francisco",
+        "fieldOfStudy": "Computer Science",
+        "startDate": "2015-01",
+        "endDate": "2018-12"
+      }
+    ],
+    "skills": ["JavaScript", "React.js", "Node.js"],
+    "projects": [
+      {
+        "title": "Personal Portfolio",
+        "description": "A portfolio website showcasing my projects and skills."
+      }
+    ],
+    "interests": ["Reading", "Traveling"]
+  }
+  

@@ -41,25 +41,7 @@ const Description = ({ state }) => {
 };
 
 const Template1 = ({}) => {
-  const {
-    image,
-    name,
-    surname,
-    email,
-    phone,
-    country,
-    city,
-    summary,
-    socialLinks,
-    experience,
-    education,
-    skills,
-    projects,
-    certificates,
-    references,
-    languages,
-    interests,
-  } = useStore();
+  const { store } = useStore();
   const {
     sectionHeadingColor,
     headingColor,
@@ -95,9 +77,9 @@ const Template1 = ({}) => {
       className="w-[240mm] min-h-[296mm] print:min-h-[296mm] bg-white my-0 mx-auto p-2 rounded overflow-x-hidden overflow-y-visible"
     >
       <div className="flex flex-col items-center justify-between w-full text-center">
-        {image && (
+        {store.image && (
           <Image
-            src={image}
+            src={store.image}
             height={80}
             width={80}
             alt={t("Personal.title")}
@@ -105,62 +87,66 @@ const Template1 = ({}) => {
           />
         )}
         <h1 className="text-base xs:text-lg whitespace-nowrap w-full uppercase font-bold">
-          {name} {surname}
+          {store.general.name} {store.general.surname}
         </h1>
         <p className="text-xs xs:text-sm">
-          {city && city}
-          {country && `${city && ", "} ${country}`}
-          {email && (
+          {store.general.city && store.general.city}
+          {store.general.country &&
+            `${store.general.city && ", "} ${store.general.country}`}
+          {store.general.email && (
             <>
-              {(city || country) && " • "}
+              {(store.general.city || store.general.country) && " • "}
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                href={`mailto:${email}`}
+                href={`mailto:${store.general.email}`}
                 style={{ color: settingsDefault.hyperlinkColor }}
               >
-                {email}
+                {store.general.email}
               </a>
             </>
           )}
-          {phone && (
+          {store.general.phone && (
             <>
-              {(city || country || email) && " • "}
+              {(store.general.city ||
+                store.general.country ||
+                store.general.email) &&
+                " • "}
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                href={`tel:${phone}`}
+                href={`tel:${store.general.phone}`}
                 style={{ color: settingsDefault.hyperlinkColor }}
               >
-                {phone}
+                {store.general.phone}
               </a>
             </>
           )}
         </p>
       </div>
-      {summary !== "" && (
+      {store.summary !== "" && (
         <Section
           id="summary"
           title={t("Personal.summary")}
           headingColor={settingsDefault.sectionHeadingColor}
         >
           <p
-            dangerouslySetInnerHTML={{ __html: summary }}
+            dangerouslySetInnerHTML={{ __html: store.summary }}
             className="text-xs xs:text-sm"
           ></p>
         </Section>
       )}
-      {Object.values(socialLinks || {}).some((link) => link) && (
+      {Object.values(store.socialLinks || {}).some((link) => link) && (
         <Section
           id="socials"
           title={t("Social.title")}
           headingColor={settingsDefault.sectionHeadingColor}
         >
           <div className="flex items-center justify-center flex-wrap gap-4">
-            {Object.keys(socialLinks).map((key) => {
+            {Object.keys(store.socialLinks).map((key) => {
               const social = SOCIALS.find((e) => e.name.toLowerCase() === key);
-              if (social && socialLinks[key]) {
-                const rawPart = socialLinks[key];
+              if (social && store.socialLinks[key]) {
+                const rawPart = store.socialLinks[key];
                 const url =
                   rawPart.startsWith("http://") ||
                   rawPart.startsWith("https://")
@@ -200,13 +186,13 @@ const Template1 = ({}) => {
           </div>
         </Section>
       )}
-      {experience?.length > 0 && (
+      {store.experience?.length > 0 && (
         <Section
           id="experience"
           title={t("Experience.title")}
           headingColor={settingsDefault.sectionHeadingColor}
         >
-          {experience.map((exp, index) => (
+          {store.experience.map((exp, index) => (
             <div key={index} className="flex flex-col w-full mb-2">
               <div className="flex items-center justify-between w-full">
                 <h3
@@ -230,13 +216,13 @@ const Template1 = ({}) => {
           ))}
         </Section>
       )}
-      {education?.length > 0 && (
+      {store.education?.length > 0 && (
         <Section
           id="education"
           title={t("Education.title")}
           headingColor={settingsDefault.sectionHeadingColor}
         >
-          {education.map((edu, index) => (
+          {store.education.map((edu, index) => (
             <div key={index} className="flex flex-col w-full mb-2">
               <div className="flex items-center justify-between w-full">
                 <h3
@@ -260,23 +246,23 @@ const Template1 = ({}) => {
           ))}
         </Section>
       )}
-      {skills?.length > 0 && (
+      {store.skills?.length > 0 && (
         <Section
           id="skills"
           title={t("Skills.title")}
           headingColor={settingsDefault.sectionHeadingColor}
         >
-          <p className="text-center">{skills.join(", ")}</p>
+          <p className="text-center">{store.skills.join(", ")}</p>
         </Section>
       )}
-      {projects?.length > 0 && (
+      {store.projects?.length > 0 && (
         <Section
           id="projects"
           title={t("Projects.title")}
           headingColor={settingsDefault.sectionHeadingColor}
         >
           <div className="flex flex-col gap-4 w-full">
-            {projects.map((project, index) => (
+            {store.projects.map((project, index) => (
               <div key={index} className="flex flex-col w-full">
                 <div className="flex items-center justify-between w-full">
                   <h3
@@ -339,13 +325,13 @@ const Template1 = ({}) => {
           </div>
         </Section>
       )}
-      {certificates?.length > 0 && (
+      {store.certificates?.length > 0 && (
         <Section
           id="certificates"
           title={t("Certificates.title")}
           headingColor={settingsDefault.sectionHeadingColor}
         >
-          {certificates.map((certificate, index) => (
+          {store.certificates.map((certificate, index) => (
             <div key={index} className="flex flex-col w-full mb-2">
               <div className="flex items-center justify-between w-full">
                 <h3
@@ -363,13 +349,13 @@ const Template1 = ({}) => {
           ))}
         </Section>
       )}
-      {references?.length > 0 && (
+      {store.references?.length > 0 && (
         <Section
           id="references"
           title={t("References.title")}
           headingColor={settingsDefault.sectionHeadingColor}
         >
-          {references.map((ref, index) => (
+          {store.references.map((ref, index) => (
             <div key={index} className="flex flex-col w-full mb-2">
               <div className="flex items-center justify-between w-full">
                 <h3
@@ -408,13 +394,13 @@ const Template1 = ({}) => {
           ))}
         </Section>
       )}
-      {languages?.length > 0 && (
+      {store.languages?.length > 0 && (
         <Section
           id="languages"
           title={t("Languages.title")}
           headingColor={settingsDefault.sectionHeadingColor}
         >
-          {languages.map((lang, index) => (
+          {store.languages.map((lang, index) => (
             <div key={index} className="flex flex-col w-full mb-2">
               <div className="flex items-center justify-between w-full">
                 <h3
@@ -424,20 +410,20 @@ const Template1 = ({}) => {
                   {lang.language}
                 </h3>
                 <p className="text-xs xs:text-sm">
-                  {LANG_OPTIONS.find((e) => e.value === lang.level).label}
+                  {LANG_OPTIONS.find((e) => e.value === lang.level)?.label}
                 </p>
               </div>
             </div>
           ))}
         </Section>
       )}
-      {interests?.length > 0 && (
+      {store.interests?.length > 0 && (
         <Section
           id="interests"
           title={t("Interests.title")}
           headingColor={settingsDefault.sectionHeadingColor}
         >
-          <p>{interests.join(", ")}</p>
+          <p>{store.interests.join(", ")}</p>
         </Section>
       )}
     </div>

@@ -141,9 +141,15 @@
         "success": "Successfully edited!"
     },
     "Template": {
+        "clean": "Clear all data",
+        "sample": "Add sample data",
+        "sampleSuccess": "Sample data loaded successfully!",
+        "cleanConfirm": "Are you sure you want to delete all informations?",
+        "cleanSuccess": "Informations have been cleared!",
         "save": "Save Resume as PDF",
         "success": "Successfully reset",
-        "settings": "Customize",
+        "customize": "Customize",
+        "settings": "Settings",
         "change": "Change template",
         "settingColor": "Color settings",
         "settingSection": "Section settings",
