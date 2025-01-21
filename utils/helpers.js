@@ -45,3 +45,8 @@ export const handleMoveItem = (
     updateItemOrder(place, updatedItems);
   }
 };
+
+//* Copy to Clipboard
+export const copyToClipboard = (text) => {
+  navigator.clipboard.writeText(text);
+};
