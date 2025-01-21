@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import { useTranslations } from "next-intl";
+import toast from "react-hot-toast";
 import useStore from "@/store/store";
+import useTemplateStore from "@/store/template";
 import Menu from "@/components/shared/settings/Menu";
 import Button from "@/components/common/Button";
+import MainMenu from "@/components/shared/settings/MainMenu";
+import ColorMenu from "@/components/shared/settings/ColorMenu";
+import SectionMenu from "@/components/shared/settings/SectionMenu";
+import FontMenu from "@/components/shared/settings/FontMenu";
 import { MdSaveAlt } from "react-icons/md";
-import MainMenu from "./MainMenu";
-import ColorMenu from "./ColorMenu";
-import SectionMenu from "./SectionMenu";
-import FontMenu from "./FontMenu";
-import useTemplateStore from "@/store/template";
-import toast from "react-hot-toast";
 
 const TemplateSettings = () => {
   const {
+    templateName,
     setFontFamily,
     seth1FontSize,
     seth2FontSize,
@@ -31,6 +32,7 @@ const TemplateSettings = () => {
     setProjectLink,
     setSpaceBetween,
     seth2Align,
+    setTitleCase,
   } = useTemplateStore();
   const [tabMenu, setTabMenu] = useState("main");
   const { name, surname } = useStore();
@@ -76,6 +78,7 @@ const TemplateSettings = () => {
       setProjectLink("");
       setSpaceBetween("");
       seth2Align("");
+      setTitleCase("");
       message && toast.success(t("success"));
     } catch (error) {
       console.error("Error: " + error);

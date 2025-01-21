@@ -29,10 +29,12 @@ const useTemplateStore = create(
       projectLink: "",
       spaceBetween: "",
       h2Align: "",
+      titleCase: "",
       setImageSize: (value) => set({ imageSize: value }),
       setProjectLink: (value) => set({ projectLink: value }),
       setSpaceBetween: (value) => set({ spaceBetween: value }),
       seth2Align: (value) => set({ h2Align: value }),
+      setTitleCase: (value) => set({ titleCase: value }),
 
       //! Font
       fontFamily: "",

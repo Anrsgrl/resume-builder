@@ -145,7 +145,7 @@
     "Template": {
       "save": "PDF şəklində yüklə",
       "success": "Uğurla sıfırlandı!",
-      "settings": "Ayarlar",
+      "settings": "Özəlləşdir",
       "change": "Şablonu dəyişdir",
       "settingColor": "Rəng ayarları",
       "settingSection": "Bölüm ayarları",
@@ -160,10 +160,16 @@
       "text": "Yazı",
       "hyperlink": "Link",
       "description": "Əlavə qeydlər",
+      "titles": "Başlıqlar",
       "small": "balaca",
       "large": "böyük",
+      "less": "az",
+      "more": "çox",
+      "imageSize": "Şəkil ölçüsü",
+      "space": "Aradaki məsafə",
       "resetFont": "Font ayarlarını sıfırla",
-      "resetColor": "Rəng ayarlarını sıfırla"
+      "resetColor": "Rəng ayarlarını sıfırla",
+      "resetSection": "Bölüm ayarlarını sıfırla"
     },
     "Footer": {
       "starOnGitHub": "GitHub-da Ulduzla",

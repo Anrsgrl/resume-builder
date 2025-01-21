@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { AiFillSetting } from "react-icons/ai";
-import Button from "../../common/Button";
+import Button from "@/components/common/Button";
 
 const Menu = ({ label, children }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);

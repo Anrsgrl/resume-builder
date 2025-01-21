@@ -16,7 +16,7 @@ const FontSelect = ({ label, options, state, setState, i }) => {
         value={state}
         title={state}
         onChange={(e) => setState(e.target.value)}
-        className="bg-transparent text-white/80 outline-none border-0 cursor-pointer animation-all max-w-[66px] truncate"
+        className="bg-transparent text-white/80 outline-none border-0 cursor-pointer animation-all text-right"
       >
         <option
           value=""
@@ -29,7 +29,6 @@ const FontSelect = ({ label, options, state, setState, i }) => {
         {options?.map((e, index) => (
           <option
             key={index}
-            title={`${e.value} --- ${state}`}
             value={e.value ? e.value : e}
             hidden={state === e || state === e.value}
             style={{ fontFamily: i !== 0 ? uiSans : e }}

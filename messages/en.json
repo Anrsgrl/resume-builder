@@ -142,8 +142,8 @@
     },
     "Template": {
         "save": "Save Resume as PDF",
-        "success": "Settings have been reset",
-        "settings": "Settings",
+        "success": "Successfully reset",
+        "settings": "Customize",
         "change": "Change template",
         "settingColor": "Color settings",
         "settingSection": "Section settings",
@@ -158,10 +158,16 @@
         "text": "Text",
         "hyperlink": "Link",
         "description": "Description",
+        "titles": "Titles",
         "small": "small",
         "large": "large",
+        "less": "less",
+        "more": "more",
+        "imageSize": "Image size",
+        "space": "Space between",
         "resetFont": "Reset font settings",
-        "resetColor": "Reset color settings"
+        "resetColor": "Reset color settings",
+        "resetSection": "Reset section settings"
     },
     "Footer": {
         "starOnGitHub": "Star on GitHub",
