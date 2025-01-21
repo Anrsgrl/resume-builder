@@ -1,30 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import useStore from "@/store/store";
-import useTemplateStore from "@/store/template";
-import { FONTS, uiSans } from "@/utils/constants";
 import Menu from "@/components/shared/settings/Menu";
 import Button from "@/components/common/Button";
-import ColorPicker from "@/components/shared/ColorPicker";
-import { BiText } from "react-icons/bi";
-import { MdInsertEmoticon, MdSaveAlt } from "react-icons/md";
+import { MdSaveAlt } from "react-icons/md";
+import MainMenu from "./MainMenu";
+import ColorMenu from "./ColorMenu";
+import SectionMenu from "./SectionMenu";
+import FontMenu from "./FontMenu";
+import useTemplateStore from "@/store/template";
 import toast from "react-hot-toast";
 
 const TemplateSettings = () => {
   const {
-    name: templateName,
-    setName: setTemplateName,
-    sectionHeadingColor,
-    setSectionHeadingColor,
-    headingColor,
-    setHeadingColor,
-    hyperlinkColor,
-    setHyperlinkColor,
-    projectLink,
-    setProjectLink,
-    fontFamily,
     setFontFamily,
+    seth1FontSize,
+    seth2FontSize,
+    seth3FontSize,
+    setTextFontSize,
+    setDescriptionFontSize,
+    setHyperLinkFontSize,
+    setName,
+    setSectionHeadingColor,
+    setHeadingColor,
+    setHyperlinkColor,
+    setProjectLink,
   } = useTemplateStore();
+  const [tabMenu, setTabMenu] = useState("main");
   const { name, surname } = useStore();
   const t = useTranslations("Template");
 
@@ -35,14 +37,36 @@ const TemplateSettings = () => {
     document.title = originalTitle;
   };
 
-  const reset = () => {
+  const resetFonts = () => {
     try {
-      setTemplateName("CV");
+      setFontFamily("");
+      seth1FontSize("");
+      seth2FontSize("");
+      seth3FontSize("");
+      setTextFontSize("");
+      setDescriptionFontSize("");
+      setHyperLinkFontSize("");
+      toast.success(t("success"));
+    } catch (error) {
+      console.error("Error: " + error);
+    }
+  };
+  const resetColors = () => {
+    try {
       setSectionHeadingColor("");
       setHeadingColor("");
       setHyperlinkColor("");
+      toast.success(t("success"));
+    } catch (error) {
+      console.error("Error: " + error);
+    }
+  };
+  const resetAll = () => {
+    try {
+      setName("CV");
       setProjectLink("");
-      setFontFamily("");
+      resetColors();
+      resetFonts();
       toast.success(t("success"));
     } catch (error) {
       console.error(error);
@@ -57,101 +81,14 @@ const TemplateSettings = () => {
         </div>
       </Button>
       <Menu label={t("settings")}>
-        <button
-          type="button"
-          className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all text-center"
-        >
-          {t("change")}
-        </button>
-        <div className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all w-full font-normal">
-          {t("name")}
-          <input
-            type="text"
-            name="resume-name"
-            id="resume-name"
-            value={templateName}
-            onChange={(e) => setTemplateName(e.target.value)}
-            className="outline-0 border-0 bg-transparent border-b border-transparent focus:border-white/50 text-xs text-white/80 w-1/3 text-right"
-          />
-        </div>
-        <div className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all">
-          {t("section")}
-          <ColorPicker
-            id={`sectionHeading-color`}
-            state={sectionHeadingColor}
-            setState={setSectionHeadingColor}
-          />
-        </div>
-        <div className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all">
-          {t("heading")}
-          <ColorPicker
-            id={`heading-color`}
-            state={headingColor}
-            setState={setHeadingColor}
-          />
-        </div>
-        <div className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all">
-          {t("hyperlink")}
-          <ColorPicker
-            id={`hyperlink-color`}
-            state={hyperlinkColor || "#0284c7"}
-            setState={setHyperlinkColor}
-          />
-        </div>
-        <div className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all">
-          {t("project")}
-          <div className="flex items-center gap-1">
-            <button
-              type="button"
-              onClick={() => setProjectLink("")}
-              className={`${projectLink === "" ? "text-main" : ""}`}
-            >
-              <BiText size={16} />
-            </button>
-            <button
-              type="button"
-              onClick={() => setProjectLink("icon")}
-              className={`${projectLink === "icon" ? "text-main" : ""}`}
-            >
-              <MdInsertEmoticon size={16} />
-            </button>
-          </div>
-        </div>
-        <div className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all">
-          Font
-          <select
-            name="font-family"
-            id="font-family"
-            value={fontFamily}
-            onChange={(e) => setFontFamily(e.target.value)}
-            className="bg-transparent text-white/80 outline-none border-0 cursor-pointer"
-          >
-            <option
-              value=""
-              style={{ fontFamily: uiSans }}
-              className="bg-back text-white"
-            >
-              default
-            </option>
-            {FONTS.map((e, index) => (
-              <option
-                key={index}
-                value={e}
-                style={{ fontFamily: e }}
-                className="bg-back text-white"
-              >
-                {e}
-              </option>
-            ))}
-          </select>
-        </div>
-        <button
-          onClick={reset}
-          type="button"
-          className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all text-red-400 "
-        >
-          {t("reset")}
-        </button>
+        {
+          {
+            main: <MainMenu setTabMenu={setTabMenu} reset={resetAll} />,
+            sections: <SectionMenu setTabMenu={setTabMenu} reset={resetAll} />,
+            colors: <ColorMenu setTabMenu={setTabMenu} reset={resetColors} />,
+            fonts: <FontMenu setTabMenu={setTabMenu} reset={resetFonts} />,
+          }[tabMenu || "main"]
+        }
       </Menu>
     </div>
   );
