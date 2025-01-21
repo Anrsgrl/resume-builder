@@ -1,3 +1,4 @@
+import { cn } from "@/utils/helpers";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { FaCalendarTimes } from "react-icons/fa";
@@ -8,7 +9,8 @@ const Input = ({
   name,
   type = "text",
   present,
-  col,
+  className,
+  className__input,
 }) => {
   const t = useTranslations("General");
   const [presentStatus, setPresentStatus] = useState(false);
@@ -16,20 +18,22 @@ const Input = ({
     setState("");
     setPresentStatus(!presentStatus);
   };
-  // Normally, of course, I use twMerge and clsx for className merging in components. But I didn't see the need for this project.
 
   //* Maximum & minimum
   const currentYear = new Date().getFullYear();
   const maxMonth = `${currentYear}-12`;
   const minMonth = `${currentYear - 100}-12`;
   return (
-    <div className={`relative w-full ${col ? "sm:col-span-2" : ""}`}>
+    <div className={cn("relative w-full", className)}>
       <input
         type={type}
         name={name}
         value={state}
         id={name}
-        className="block px-4 py-2 w-full text-sm bg-transparent rounded-md border-1 appearance-none text-white border-gray-600 dark:focus:border-main focus:outline-none focus:ring-0 focus:border-main peer border disabled:opacity-50 h-10"
+        className={cn(
+          "block px-4 py-2 w-full text-sm bg-transparent rounded-md border-1 appearance-none text-white border-gray-600 dark:focus:border-main focus:outline-none focus:ring-0 focus:border-main peer border disabled:opacity-50 h-10",
+          className__input
+        )}
         placeholder=" "
         disabled={presentStatus}
         onChange={(e) => setState(e.target.value)}

@@ -1,20 +1,36 @@
-const Select = ({ state, setState, label, name, options = [], col }) => {
+const Select = ({
+  state,
+  setState,
+  label,
+  name,
+  options = [],
+  className,
+  className__select,
+  className__option,
+}) => {
   return (
-    <div className={`relative w-full ${col ? "col-span-2" : ""}`}>
+    <div className={cn("relative w-full", className)}>
       <select
         name={name}
         value={state}
         id={name}
-        className={`block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-md border-1 appearance-none border-gray-600 dark:focus:border-main focus:outline-none focus:ring-0 focus:border-main peer border disabled:opacity-50 ${
-          state !== "" ? "text-white" : "text-gray-400"
-        }`}
+        className={cn(
+          `block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-md border-1 appearance-none border-gray-600 dark:focus:border-main focus:outline-none focus:ring-0 focus:border-main peer border disabled:opacity-50 ${
+            state !== "" ? "text-white" : "text-gray-400"
+          }`,
+          className__select
+        )}
         onChange={(e) => setState(e.target.value)}
       >
-        <option value="" disabled hidden>
+        <option value="" disabled hidden className={cn(className__option)}>
           {label}
         </option>
         {options.map((option, index) => (
-          <option key={index} value={option.value} className="text-black">
+          <option
+            key={index}
+            value={option.value}
+            className={cn("text-black", className__option)}
+          >
             {option.label}
           </option>
         ))}

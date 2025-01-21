@@ -1,3 +1,4 @@
+import { cn } from "@/utils/helpers";
 import Link from "next/link";
 import React from "react";
 import { MdArrowRightAlt } from "react-icons/md";
@@ -8,8 +9,9 @@ const CustomLink = ({
   animation,
   icon,
   prev,
-  full,
-  closeXs,
+  className,
+  className__children,
+  className__animation,
   ...props
 }) => {
   return (
@@ -17,33 +19,28 @@ const CustomLink = ({
       href={href}
       {...props}
       type="button"
-      className={`flex items-center gap-1 animation-all group overflow-hidden px-3 py-1 rounded-md text-main cursor-pointer border border-main hover:border-main hover:bg-main font-semibold ${
-        full ? "w-full" : "w-fit"
-      } ${prev && "flex-row-reverse"}`}
+      className={cn(
+        `flex items-center gap-1 animation-all group overflow-hidden px-3 py-1 rounded-md text-main cursor-pointer border border-main hover:border-main hover:bg-main font-semibold ${
+          prev && "flex-row-reverse"
+        }`,
+        className
+      )}
     >
       {animation && (
         <span
-          className={`transform animation-all xs:opacity-0 group-hover:opacity-100 group-hover:text-white ${
-            animation && !prev
-              ? "xs:-translate-x-5  group-hover:xs:translate-x-0"
-              : animation && prev
-              ? "xs:translate-x-5  group-hover:xs:translate-x-0"
-              : ""
-          }`}
+          className={cn(
+            `transform animation-all group-hover:opacity-100 group-hover:text-white`,
+            className__animation
+          )}
         >
           <MdArrowRightAlt size={24} className={`${prev && "rotate-180"}`} />
         </span>
       )}
       <div
-        className={`uppercase text-sm animation-all group-hover:text-white ${
-          closeXs ? "" : "hidden xs:block"
-        } ${
-          animation && !prev
-            ? "-translate-x-3 group-hover:translate-x-0"
-            : animation && prev
-            ? "translate-x-4 group-hover:translate-x-0"
-            : ""
-        }`}
+        className={cn(
+          `uppercase text-sm animation-all group-hover:text-white`,
+          className__children
+        )}
       >
         {children}
       </div>
