@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  --dot-bg: #161616;
+  --dot-bg: #18181b;
   --dot-color: #848282;
   --dot-size: 1px;
   --dot-space: 40px;
