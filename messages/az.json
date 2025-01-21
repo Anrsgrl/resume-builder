@@ -145,6 +145,8 @@
     "Template": {
       "clean": "Bütün məlumatları sil",
       "sample": "Test məlumatı əlavə et",
+      "json": "JSON formatında kopyala",
+      "copied": "Uğurla kopyalandı!",
       "sampleSuccess": "Test məlumatı uğurlar əlavə edildi!",
       "cleanConfirm": "Bütün məlumatları silmək istədiyinizə əminsiniz?",
       "cleanSuccess": "Məlumatlar silindi!",

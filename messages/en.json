@@ -144,6 +144,8 @@
         "clean": "Clear all data",
         "sample": "Add sample data",
         "sampleSuccess": "Sample data loaded successfully!",
+        "json": "Copy data as JSON",
+        "copied": "Successfully copied!",
         "cleanConfirm": "Are you sure you want to delete all informations?",
         "cleanSuccess": "Informations have been cleared!",
         "save": "Save Resume as PDF",
