@@ -108,7 +108,7 @@ const TemplateSettings = () => {
       >
         <div className="flex items-center gap-1">
           {t("save")}
-          <MdSaveAlt size={20} />
+          <MdSaveAlt size={16} />
         </div>
       </Button>
       <div className="flex items-center gap-2">

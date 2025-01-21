@@ -1,7 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import Button from "@/components/common/Button";
+import { cn } from "@/utils/helpers";
 
-const Menu = ({ label, icon, children }) => {
+const Menu = ({
+  label,
+  icon,
+  children,
+  className,
+  className__button,
+  className__children,
+}) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
@@ -46,10 +54,16 @@ const Menu = ({ label, icon, children }) => {
   }, []);
 
   return (
-    <div className="relative inline-block text-left py-2" ref={menuRef}>
+    <div
+      className={cn("relative inline-block text-left py-2", className)}
+      ref={menuRef}
+    >
       <Button
         id="menu-button"
-        className={`bg-zinc-800 border-2 border-zinc-700 text-white hover:bg-zinc-800/90`}
+        className={cn(
+          `bg-zinc-800 border-2 border-zinc-700 text-white hover:bg-zinc-800/90`,
+          className__button
+        )}
         aria-expanded={dropdownOpen}
         aria-haspopup="true"
         onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -62,7 +76,10 @@ const Menu = ({ label, icon, children }) => {
 
       {dropdownOpen && (
         <div
-          className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-zinc-800 border-2 border-zinc-700 text-white ring-1 ring-black/5 focus:outline-none flex flex-col p-1"
+          className={cn(
+            "absolute right-0 z-[55] mt-2 w-56 origin-top-right rounded-md bg-zinc-800 border-2 border-zinc-700 text-white ring-1 ring-black/5 focus:outline-none flex flex-col p-1",
+            className__children
+          )}
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"

@@ -46,7 +46,7 @@ const Settings = () => {
       <button
         type="button"
         onClick={handleLoadSampleData}
-        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all w-full font-normal text-emerald-300"
+        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all w-full font-normal "
       >
         {t("sample")}
         <MdOutlineAdd />

@@ -18,7 +18,7 @@ export default async function RootLayout({ children, params }) {
     <html lang={locale}>
       <body>
         <NextIntlClientProvider messages={messages}>
-          <Toaster />
+          <Toaster containerClassName="print:hidden" />
           <main className="min-h-lvh">{children}</main>
           <Footer />
         </NextIntlClientProvider>

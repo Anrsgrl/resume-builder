@@ -2,7 +2,14 @@ import { cn } from "@/utils/helpers";
 import React from "react";
 import { MdArrowRightAlt } from "react-icons/md";
 
-const Button = ({ children, animation, icon, className, ...props }) => {
+const Button = ({
+  children,
+  animation,
+  icon,
+  className,
+  className__children,
+  ...props
+}) => {
   return (
     <button
       {...props}
@@ -18,9 +25,10 @@ const Button = ({ children, animation, icon, className, ...props }) => {
         </span>
       )}
       <div
-        className={`uppercase text-sm animation-all group-hover:text-white ${
-          animation && "-translate-x-3 group-hover:translate-x-0"
-        }`}
+        className={cn(
+          `uppercase text-xs sm:text-sm animation-all group-hover:text-white`,
+          className__children
+        )}
       >
         {children}
       </div>
