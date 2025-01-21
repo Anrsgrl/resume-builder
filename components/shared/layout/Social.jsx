@@ -7,33 +7,8 @@ import { useTranslations } from "next-intl";
 import { SOCIALS } from "@/utils/constants";
 
 const Social = () => {
-  const {
-    socialLinks,
-    setLinkedin,
-    setGithub,
-    setTwitter,
-    setFacebook,
-    setInstagram,
-    setWebsite,
-    setXing,
-    setMedium,
-    setFigma,
-    setDribbble,
-  } = useStore();
+  const { store, setStore } = useStore();
   const t = useTranslations("Social");
-
-  const socialMap = {
-    linkedin: setLinkedin,
-    github: setGithub,
-    twitter: setTwitter,
-    facebook: setFacebook,
-    instagram: setInstagram,
-    website: setWebsite,
-    xing: setXing,
-    medium: setMedium,
-    figma: setFigma,
-    dribbble: setDribbble,
-  };
 
   return (
     <div className="my-14 lg:my-20 px-10 flex flex-col gap-2">
@@ -44,8 +19,10 @@ const Social = () => {
         {SOCIALS.map((social) => (
           <Input
             key={social.name}
-            state={socialLinks[social.name.toLowerCase()] || ""}
-            setState={socialMap[social.name.toLowerCase()]}
+            state={store.socialLinks[social.name.toLowerCase()] || ""}
+            setState={(value) =>
+              setStore(`socialLinks.${social.name.toLowerCase()}`, value)
+            }
             name={social.name.toLowerCase()}
             label={
               <>

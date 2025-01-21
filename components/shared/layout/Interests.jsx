@@ -12,13 +12,12 @@ import { MdPlayArrow } from "react-icons/md";
 const Interests = () => {
   const t = useTranslations("Interests");
   const {
-    interests,
-    addInterest,
-    editInterest,
-    removeInterest,
-    updateInterestsOrder,
+    store: { interests },
+    addItem,
+    editItem,
+    removeItem,
+    updateOrder,
   } = useStore();
-
   const [newInterests, setNewInterests] = useState("");
   const [editedIndex, setEditedIndex] = useState(null);
   const [show, setShow] = useState(false);
@@ -26,9 +25,9 @@ const Interests = () => {
   const handleAddInterests = () => {
     if (newInterests.trim() !== "") {
       if (editedIndex === null) {
-        addInterest(newInterests);
+        addItem("interests", newInterests);
       } else {
-        editInterest(editedIndex, newInterests);
+        editItem("interests", editedIndex, newInterests);
         setEditedIndex(null);
       }
       setNewInterests("");
@@ -46,16 +45,16 @@ const Interests = () => {
   };
 
   const handleRemoveInterests = (index) => {
-    removeInterest(index);
+    removeItem("interests", index);
   };
 
   //* Sort functions
   const handleMoveInterestsUp = (index) => {
-    handleMoveItem(interests, updateInterestsOrder, index, "up");
+    handleMoveItem(interests, updateOrder, index, "up", "interests");
   };
 
   const handleMoveInterestsDown = (index) => {
-    handleMoveItem(interests, updateInterestsOrder, index, "down");
+    handleMoveItem(interests, updateOrder, index, "down", "interests");
   };
 
   return (

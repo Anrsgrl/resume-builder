@@ -17,11 +17,11 @@ const Editor = dynamic(() => import("@/components/shared/Editor"), {
 const Education = () => {
   const t = useTranslations("Education");
   const {
-    education,
-    addEducation,
-    editEducation,
-    removeEducation,
-    updateEducationOrder,
+    store: { education },
+    addItem,
+    editItem,
+    removeItem,
+    updateOrder,
   } = useStore();
 
   const [newEducation, setNewEducation] = useState({
@@ -34,12 +34,12 @@ const Education = () => {
     description: "",
   });
 
-  // Edit state
+  //* Edit state
   const [editedIndex, setEditedIndex] = useState(null);
 
   const handleAddEducation = () => {
     if (newEducation.institution && newEducation.degree) {
-      addEducation(newEducation);
+      addItem("education", newEducation);
       setNewEducation({
         institution: "",
         city: "",
@@ -56,7 +56,7 @@ const Education = () => {
 
   const handleEditEducation = () => {
     try {
-      editEducation(editedIndex, newEducation);
+      editItem("education", editedIndex, newEducation);
       toast.success(t("success"));
       setEditedIndex(null);
       setNewEducation({
@@ -86,18 +86,6 @@ const Education = () => {
       endDate: educationItem.endDate,
       description: educationItem.description,
     });
-    // Temporary solution
-    setTimeout(() => {
-      setNewEducation({
-        institution: educationItem.institution,
-        city: educationItem.city,
-        degree: educationItem.degree,
-        fieldOfStudy: educationItem.fieldOfStudy,
-        startDate: educationItem.startDate,
-        endDate: educationItem.endDate,
-        description: educationItem.description,
-      });
-    }, [200]);
   };
 
   const handleCloseEdit = () => {
@@ -114,16 +102,16 @@ const Education = () => {
   };
 
   const handleRemoveEducation = (index) => {
-    removeEducation(index);
+    removeItem("education", index);
   };
 
   //* Sort functions
   const handleMoveEducationUp = (index) => {
-    handleMoveItem(education, updateEducationOrder, index, "up");
+    handleMoveItem(education, updateOrder, index, "up", "education");
   };
 
   const handleMoveEducationDown = (index) => {
-    handleMoveItem(education, updateEducationOrder, index, "down");
+    handleMoveItem(education, updateOrder, index, "down", "education");
   };
 
   //* ISO

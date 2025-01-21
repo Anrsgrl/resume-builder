@@ -17,11 +17,11 @@ const Editor = dynamic(() => import("@/components/shared/Editor"), {
 const Project = () => {
   const t = useTranslations("Projects");
   const {
-    projects,
-    addProject,
-    editProject,
-    removeProject,
-    updateProjectOrder,
+    store: { projects },
+    addItem,
+    editItem,
+    removeItem,
+    updateOrder,
   } = useStore();
 
   const [newProject, setNewProject] = useState({
@@ -36,7 +36,7 @@ const Project = () => {
 
   const handleAddProject = () => {
     if (newProject.title) {
-      addProject(newProject);
+      addItem("projects", newProject);
       setNewProject({
         title: "",
         description: "",
@@ -53,7 +53,7 @@ const Project = () => {
   const [editedIndex, setEditedIndex] = useState(null);
   const handleEditProject = () => {
     try {
-      editProject(editedIndex, newProject);
+      editItem("projects", editedIndex, newProject);
       toast.success(t("success"));
       setEditedIndex(null);
       setNewProject({
@@ -71,8 +71,6 @@ const Project = () => {
   const handleChooseProject = (index) => {
     setEditedIndex(index);
     const project = projects[index];
-    console.log("Project", project);
-    console.log("Project", project.title);
     setNewProject({
       title: project.title,
       description: project.description,
@@ -104,7 +102,7 @@ const Project = () => {
   };
 
   const handleRemoveProject = (index) => {
-    removeProject(index);
+    removeItem("projects", index);
   };
 
   const handleAddTechnology = () => {
@@ -119,11 +117,11 @@ const Project = () => {
 
   //* Sort functions
   const handleMoveProjectUp = (index) => {
-    handleMoveItem(projects, updateProjectOrder, index, "up");
+    handleMoveItem(projects, updateOrder, index, "up", "projects");
   };
 
   const handleMoveProjectDown = (index) => {
-    handleMoveItem(projects, updateProjectOrder, index, "down");
+    handleMoveItem(projects, updateOrder, index, "down", "projects");
   };
 
   return (

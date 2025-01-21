@@ -16,11 +16,11 @@ const Editor = dynamic(() => import("@/components/shared/Editor"), {
 const Certificates = () => {
   const t = useTranslations("Certificates");
   const {
-    certificates,
-    addCertificate,
-    editCertificate,
-    removeCertificate,
-    updateCertificatesOrder,
+    store: { certificates },
+    addItem,
+    editItem,
+    removeItem,
+    updateOrder,
   } = useStore();
 
   const [show, setShow] = useState(false);
@@ -35,7 +35,7 @@ const Certificates = () => {
 
   const handleAddCertificate = () => {
     if (newCertificate.title && newCertificate.date) {
-      addCertificate(newCertificate);
+      addItem("certificates", newCertificate);
       setNewCertificate({
         title: "",
         date: "",
@@ -47,13 +47,13 @@ const Certificates = () => {
   };
 
   const handleRemoveCertificate = (index) => {
-    removeCertificate(index);
+    removeItem("certificates", index);
   };
 
   //* Edit
   const handleEditCertificate = () => {
     try {
-      editCertificate(editedIndex, newCertificate);
+      editItem("certificates", editedIndex, newCertificate);
       toast.success(t("success"));
       setEditedIndex(null);
       setNewCertificate({
@@ -96,11 +96,11 @@ const Certificates = () => {
 
   //* Sort functions
   const handleMoveCertificatesUp = (index) => {
-    handleMoveItem(certificates, updateCertificatesOrder, index, "up");
+    handleMoveItem(certificates, updateOrder, index, "up", "certificates");
   };
 
   const handleMoveCertificatesDown = (index) => {
-    handleMoveItem(certificates, updateCertificatesOrder, index, "down");
+    handleMoveItem(certificates, updateOrder, index, "down", "certificates");
   };
 
   //* ISO

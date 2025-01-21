@@ -3,7 +3,10 @@ import useStore from "@/store/store";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
 const ImageUpload = () => {
-  const { image, setImage } = useStore();
+  const {
+    store: { image },
+    setStore,
+  } = useStore();
   const [imagePreview, setImagePreview] = useState(null);
 
   const handleImageChange = async (e) => {
@@ -13,7 +16,7 @@ const ImageUpload = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         const base64String = reader.result;
-        setImage(base64String);
+        setStore("image", base64String);
         setImagePreview(base64String);
       };
       reader.readAsDataURL(file);
@@ -28,7 +31,7 @@ const ImageUpload = () => {
 
   const deleteImage = () => {
     if (window.confirm("Are you sure you want to delete?")) {
-      setImage(null);
+      setStore("image", null);
       setImagePreview(null);
     }
   };

@@ -1,25 +1,24 @@
 import { useState } from "react";
-import { MdPlayArrow } from "react-icons/md";
+import toast from "react-hot-toast";
+import { useLocale, useTranslations } from "next-intl";
 import useStore from "@/store/store";
 import Input from "@/components/common/Input";
 import Button from "@/components/common/Button";
 import Select from "@/components/common/Select";
-import { LANGUAGE_OPTIONS, LANGUAGE_OPTIONS_AZ } from "@/utils/constants";
-import { useLocale, useTranslations } from "next-intl";
-import toast from "react-hot-toast";
-import { handleMoveItem } from "@/utils/helpers";
 import Example from "@/components/shared/Example";
-import { GiLevelTwo } from "react-icons/gi";
+import { LANGUAGE_OPTIONS, LANGUAGE_OPTIONS_AZ } from "@/utils/constants";
+import { handleMoveItem } from "@/utils/helpers";
+import { MdPlayArrow } from "react-icons/md";
 import { TbProgress } from "react-icons/tb";
 
 const Languages = () => {
   const t = useTranslations("Languages");
   const {
-    languages,
-    addLanguage,
-    editLanguage,
-    removeLanguage,
-    updateLanguagesOrder,
+    store: { languages },
+    addItem,
+    editItem,
+    removeItem,
+    updateOrder,
   } = useStore();
 
   const [show, setShow] = useState(false);
@@ -31,7 +30,7 @@ const Languages = () => {
 
   const handleAddLanguage = () => {
     if (newLanguage.language && newLanguage.level) {
-      addLanguage(newLanguage);
+      addItem("languages", newLanguage);
       setNewLanguage({
         language: "",
         level: "",
@@ -42,14 +41,14 @@ const Languages = () => {
   };
 
   const handleRemoveLanguage = (index) => {
-    removeLanguage(index);
+    removeItem("languages", index);
   };
 
   //* Edit
   const [editedIndex, setEditedIndex] = useState(null);
   const handleEditLanguage = () => {
     try {
-      editLanguage(editedIndex, newLanguage);
+      editItem("languages", editedIndex, newLanguage);
       toast.success(t("success"));
       setEditedIndex(null);
       setNewLanguage({
@@ -81,11 +80,11 @@ const Languages = () => {
 
   //* Sort
   const handleMoveLanguageUp = (index) => {
-    handleMoveItem(languages, updateLanguagesOrder, index, "up");
+    handleMoveItem(languages, updateOrder, index, "up", "languages");
   };
 
   const handleMoveLanguageDown = (index) => {
-    handleMoveItem(languages, updateLanguagesOrder, index, "down");
+    handleMoveItem(languages, updateOrder, index, "down", "languages");
   };
 
   //* ISO

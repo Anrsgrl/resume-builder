@@ -11,11 +11,11 @@ import { handleMoveItem } from "@/utils/helpers";
 const References = () => {
   const t = useTranslations("References");
   const {
-    references,
-    addReference,
-    editReference,
-    removeReference,
-    updateReferencesOrder,
+    store: { references },
+    addItem,
+    editItem,
+    removeItem,
+    updateOrder,
   } = useStore();
 
   const [show, setShow] = useState(false);
@@ -30,7 +30,7 @@ const References = () => {
   //* Add
   const handleAddReference = () => {
     if (newReference.name && newReference.company) {
-      addReference(newReference);
+      addItem("references", newReference);
       setNewReference({
         name: "",
         company: "",
@@ -46,7 +46,7 @@ const References = () => {
   const [editedIndex, setEditedIndex] = useState(null);
   const handleEditReference = () => {
     try {
-      editReference(editedIndex, newReference);
+      editItem("references", editedIndex, newReference);
       toast.success(t("success"));
       setEditedIndex(null);
       setNewReference({
@@ -84,16 +84,16 @@ const References = () => {
 
   //* Remove
   const handleRemoveReference = (index) => {
-    removeReference(index);
+    removeItem("references", index);
   };
 
   //* Sort
   const handleMoveReferenceUp = (index) => {
-    handleMoveItem(references, updateReferencesOrder, index, "up");
+    handleMoveItem(references, updateOrder, index, "up", "references");
   };
 
   const handleMoveReferenceDown = (index) => {
-    handleMoveItem(references, updateReferencesOrder, index, "down");
+    handleMoveItem(references, updateOrder, index, "down", "references");
   };
 
   return (

@@ -17,11 +17,11 @@ import { MdDateRange, MdMap, MdPin, MdPinDrop } from "react-icons/md";
 const Experience = () => {
   const t = useTranslations("Experience");
   const {
-    experience,
-    addExperience,
-    editExperience,
-    removeExperience,
-    updateExperienceOrder,
+    store: { experience },
+    addItem,
+    editItem,
+    removeItem,
+    updateOrder,
   } = useStore();
 
   const [newExperience, setNewExperience] = useState({
@@ -35,7 +35,7 @@ const Experience = () => {
 
   const handleAddExperience = () => {
     if (newExperience.company && newExperience.jobTitle) {
-      addExperience(newExperience);
+      addItem("experience", newExperience);
       setNewExperience({
         company: "",
         jobTitle: "",
@@ -52,7 +52,7 @@ const Experience = () => {
   const [editedIndex, setEditedIndex] = useState(null);
   const handleEditExperience = () => {
     try {
-      editExperience(editedIndex, newExperience);
+      editItem("experience", editedIndex, newExperience);
       toast.success(t("success"));
       setEditedIndex(null);
       setNewExperience({
@@ -106,16 +106,16 @@ const Experience = () => {
   };
 
   const handleRemoveExperience = (index) => {
-    removeExperience(index);
+    removeItem("experience", index);
   };
 
   //* Sort functions
   const handleMoveExperienceUp = (index) => {
-    handleMoveItem(experience, updateExperienceOrder, index, "up");
+    handleMoveItem(experience, updateOrder, index, "up", "experience");
   };
 
   const handleMoveExperienceDown = (index) => {
-    handleMoveItem(experience, updateExperienceOrder, index, "down");
+    handleMoveItem(experience, updateOrder, index, "down", "experience");
   };
 
   //* ISO

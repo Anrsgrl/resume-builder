@@ -10,8 +10,13 @@ import { handleMoveItem } from "@/utils/helpers";
 
 const Skills = () => {
   const t = useTranslations("Skills");
-  const { skills, addSkill, editSkill, removeSkill, updateSkillsOrder } =
-    useStore();
+  const {
+    store: { skills },
+    addItem,
+    editItem,
+    removeItem,
+    updateOrder,
+  } = useStore();
 
   const [newSkill, setNewSkill] = useState("");
   const [editedIndex, setEditedIndex] = useState(null);
@@ -19,9 +24,9 @@ const Skills = () => {
   const handleAddSkill = () => {
     if (newSkill.trim() !== "") {
       if (editedIndex === null) {
-        addSkill(newSkill);
+        addItem("skills", newSkill);
       } else {
-        editSkill(editedIndex, newSkill);
+        editItem("skills", editedIndex, newSkill);
         setEditedIndex(null);
       }
       setNewSkill("");
@@ -39,16 +44,16 @@ const Skills = () => {
   };
 
   const handleRemoveSkill = (index) => {
-    removeSkill(index);
+    removeItem("skills", index);
   };
 
   //* Sort functions
   const handleMoveSkillUp = (index) => {
-    handleMoveItem(skills, updateSkillsOrder, index, "up");
+    handleMoveItem(skills, updateOrder, index, "up", "skills");
   };
 
   const handleMoveSkillDown = (index) => {
-    handleMoveItem(skills, updateSkillsOrder, index, "down");
+    handleMoveItem(skills, updateOrder, index, "down", "skills");
   };
 
   return (
