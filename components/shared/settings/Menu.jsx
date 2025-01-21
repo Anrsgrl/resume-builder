@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { AiFillSetting } from "react-icons/ai";
 import Button from "@/components/common/Button";
 
-const Menu = ({ label, children }) => {
+const Menu = ({ label, icon, children }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
-
+  const dropdownRef = useRef(null);
   const handleClickOutside = (event) => {
     if (
       menuRef.current &&
@@ -18,9 +17,29 @@ const Menu = ({ label, children }) => {
     }
   };
 
+  const adjustDropdownPosition = () => {
+    if (!dropdownRef.current) return;
+    const dropdownRect = dropdownRef.current.getBoundingClientRect();
+    const viewportWidth = window.innerWidth;
+
+    if (dropdownRect.right > viewportWidth) {
+      dropdownRef.current.style.right = "0";
+      dropdownRef.current.style.left = "auto";
+    }
+    if (dropdownRect.left < 0) {
+      dropdownRef.current.style.left = "0";
+      dropdownRef.current.style.right = "auto";
+    }
+  };
+
+  useEffect(() => {
+    if (dropdownOpen) {
+      adjustDropdownPosition();
+    }
+  }, [dropdownOpen]);
+
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -30,13 +49,14 @@ const Menu = ({ label, children }) => {
     <div className="relative inline-block text-left py-2" ref={menuRef}>
       <Button
         id="menu-button"
+        className={`bg-zinc-800 border-2 border-zinc-700 text-white hover:bg-zinc-800/90`}
         aria-expanded={dropdownOpen}
         aria-haspopup="true"
         onClick={() => setDropdownOpen(!dropdownOpen)}
         ref={buttonRef}
       >
-        <div className="flex items-center gap-1">
-          {label} <AiFillSetting size={20} />
+        <div className="flex items-center gap-2">
+          {label} {icon}
         </div>
       </Button>
 
@@ -47,6 +67,7 @@ const Menu = ({ label, children }) => {
           aria-orientation="vertical"
           aria-labelledby="menu-button"
           tabIndex="-1"
+          ref={dropdownRef}
         >
           {children}
         </div>
