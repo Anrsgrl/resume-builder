@@ -2,9 +2,9 @@ import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 import { azMonths } from "@/utils/constants";
 
-export const cn = (...inputs) => {
+export function cn(...inputs) {
   return twMerge(clsx(inputs));
-};
+}
 
 //* Create formatted time
 export const useFormattedTime = (time, locale) => {
@@ -24,7 +24,13 @@ export const useFormattedTime = (time, locale) => {
 };
 
 //* Sort functions
-export const handleMoveItem = (Items, updateItemOrder, index, direction) => {
+export const handleMoveItem = (
+  Items,
+  updateItemOrder,
+  index,
+  direction,
+  place
+) => {
   if (
     (direction === "up" && index > 0) ||
     (direction === "down" && index < Items.length - 1)
@@ -36,6 +42,6 @@ export const handleMoveItem = (Items, updateItemOrder, index, direction) => {
       0,
       movedItem
     );
-    updateItemOrder(updatedItems);
+    updateItemOrder(place, updatedItems);
   }
 };
