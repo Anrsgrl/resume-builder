@@ -3,10 +3,12 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import { PiReadCvLogo } from "react-icons/pi";
 import { FiMinimize } from "react-icons/fi";
-import TemplateSettings from "../shared/settings/TemplateSettings";
+import TemplateSettings from "@/components/shared/settings/TemplateSettings";
+import Loading from "@/components/shared/Loading";
 
 const Template1 = dynamic(() => import("@/components/templates/Template1"), {
   ssr: false,
+  loading: () => <Loading />,
 });
 
 const CVPreview = () => {
@@ -43,11 +45,15 @@ const CVPreview = () => {
         className={`flex flex-col items-center justify-center print:h-max animation-all ${
           show
             ? "fixed print:relative inset-0 z-40 overflow-visible py-4 print:py-0 bg-zinc-900/50 min-h-lvh backdrop-blur-lg"
-            : "hidden xl:block print:block h-[95dvh]"
+            : "hidden xl:block print:block max-h-[95lvh] print:max-h-max overflow-auto"
         }`}
       >
         <TemplateSettings />
-        <div className="w-full max-h-[90lvh] overflow-hidden lg:overflow-auto print:overflow-visible flex">
+        <div
+          className={`w-full overflow-hidden lg:overflow-auto print:overflow-visible flex justify-center ${
+            show ? "h-[90lvh] print:h-max" : ""
+          }`}
+        >
           <Template1 />
         </div>
       </div>
