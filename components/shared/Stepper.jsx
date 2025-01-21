@@ -24,6 +24,8 @@ const Stepper = ({ prev, next, prevTitle, nextTitle }) => {
       {prev && (
         <CustomLink
           prev={true}
+          className__children="hidden xs:block translate-x-4 group-hover:translate-x-0"
+          className__animation="xs:translate-x-5  group-hover:xs:translate-x-0 xs:opacity-0"
           href={prev}
           shallow={true}
           replace
@@ -40,13 +42,18 @@ const Stepper = ({ prev, next, prevTitle, nextTitle }) => {
         <PiDotsThreeOutlineFill />
       </button>
       <Modal isOpen={modal} onClose={toggleModal}>
-        <CustomLink closeXs={true} full={true} animation={true} href={`/`}>
+        <CustomLink
+          className__children="-translate-x-3 group-hover:translate-x-0"
+          className__animation="-translate-x-5  group-hover:translate-x-0 opacity-0"
+          animation={true}
+          href={`/`}
+        >
           {t("8")}
         </CustomLink>
         {STEPS.map((step, index) => (
           <CustomLink
-            closeXs={true}
-            full={true}
+            className__children="-translate-x-3 group-hover:translate-x-0"
+            className__animation="-translate-x-5  group-hover:translate-x-0 opacity-0"
             animation={true}
             key={index}
             href={`/build?step=${step.value}`}
@@ -56,7 +63,14 @@ const Stepper = ({ prev, next, prevTitle, nextTitle }) => {
         ))}
       </Modal>
       {next && (
-        <CustomLink href={next} shallow={true} replace animation={true}>
+        <CustomLink
+          className__children="hidden xs:block -translate-x-3 group-hover:translate-x-0"
+          className__animation="xs:-translate-x-5  group-hover:xs:translate-x-0 xs:opacity-0"
+          href={next}
+          shallow={true}
+          replace
+          animation={true}
+        >
           {nextTitle ? nextTitle : t("next")}
         </CustomLink>
       )}

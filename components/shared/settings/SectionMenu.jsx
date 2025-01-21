@@ -12,7 +12,7 @@ const Select = ({ label, state, setState, options, className }) => {
       value={state}
       onChange={(e) => setState(e.target.value)}
       className={cn(
-        "bg-transparent text-white/80 outline-none border-0 cursor-pointer animation-all",
+        "bg-transparent text-white/80 outline-none border-0 cursor-pointer animation-all appearance-none",
         className
       )}
     >

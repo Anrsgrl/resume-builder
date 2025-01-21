@@ -152,7 +152,7 @@ const Project = () => {
           setState={(value) =>
             setNewProject({ ...newProject, liveLink: value })
           }
-          col={true}
+          className={`sm:col-span-2`}
           name={"liveLink"}
           label={t("live")}
         />

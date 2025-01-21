@@ -150,7 +150,7 @@ const Experience = () => {
           setState={(value) =>
             setNewExperience({ ...newExperience, city: value })
           }
-          col={true}
+          className={`sm:col-span-2`}
           name={"city"}
           label={t("city")}
         />{" "}

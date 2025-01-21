@@ -16,7 +16,7 @@ const FontSelect = ({ label, options, state, setState, i }) => {
         value={state}
         title={state}
         onChange={(e) => setState(e.target.value)}
-        className="bg-transparent text-white/80 outline-none border-0 cursor-pointer animation-all text-right"
+        className="bg-transparent text-white/80 outline-none border-0 cursor-pointer animation-all text-right appearance-none"
       >
         <option
           value=""
