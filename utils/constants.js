@@ -11,6 +11,22 @@ import {
 } from "react-icons/si";
 import { TbWorld } from "react-icons/tb";
 
+export const azMonths = [
+  "Yan",
+  "Fev",
+  "Mar",
+  "Apr",
+  "May",
+  "İyn",
+  "İyl",
+  "Avq",
+  "Sen",
+  "Okt",
+  "Noy",
+  "Dek",
+];
+//* toLocaleDateString does not support the Azerbaijani language, I should have written like this
+
 export const LANGUAGE_OPTIONS = [
   { value: "elementary", label: "Elementary Proficiency" },
   { value: "limited_working", label: "Limited Working Proficiency" },

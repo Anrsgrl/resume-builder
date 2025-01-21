@@ -1,18 +1,10 @@
-const azMonths = [
-  "Yan",
-  "Fev",
-  "Mar",
-  "Apr",
-  "May",
-  "İyn",
-  "İyl",
-  "Avq",
-  "Sen",
-  "Okt",
-  "Noy",
-  "Dek",
-];
-//* toLocaleDateString does not support the Azerbaijani language, I should have written like this
+import clsx from "clsx";
+import { twMerge } from "tailwind-merge";
+import { azMonths } from "@/utils/constants";
+
+export const cn = (...inputs) => {
+  return twMerge(clsx(inputs));
+};
 
 //* Create formatted time
 export const useFormattedTime = (time, locale) => {
