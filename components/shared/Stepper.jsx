@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import CustomLink from "@/components/common/CustomLink";
-import Modal from "@/components/common/Modal";
+import Modal from "@/components/shared/Modal";
 import { PiDotsThreeOutlineFill } from "react-icons/pi";
 
 const Stepper = ({ prev, next, prevTitle, nextTitle }) => {

@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import useStore from "@/store/store";
 import useTemplateStore from "@/store/template";
 import { FONTS, uiSans } from "@/utils/constants";
-import Menu from "@/components/shared/Menu";
+import Menu from "@/components/shared/settings/Menu";
 import Button from "@/components/common/Button";
 import ColorPicker from "@/components/shared/ColorPicker";
 import { BiText } from "react-icons/bi";
@@ -59,11 +59,11 @@ const TemplateSettings = () => {
       <Menu label={t("settings")}>
         <button
           type="button"
-          className="px-4 py-2 text-sm flex items-center justify-between hover:bg-gray-800 cursor-pointer rounded-md animation-all text-center"
+          className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all text-center"
         >
           {t("change")}
         </button>
-        <div className="px-4 py-2 text-sm flex items-center justify-between hover:bg-gray-800 cursor-pointer rounded-md animation-all w-full font-normal">
+        <div className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all w-full font-normal">
           {t("name")}
           <input
             type="text"
@@ -74,7 +74,7 @@ const TemplateSettings = () => {
             className="outline-0 border-0 bg-transparent border-b border-transparent focus:border-white/50 text-xs text-white/80 w-1/3 text-right"
           />
         </div>
-        <div className="px-4 py-2 text-sm flex items-center justify-between hover:bg-gray-800 cursor-pointer rounded-md animation-all">
+        <div className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all">
           {t("section")}
           <ColorPicker
             id={`sectionHeading-color`}
@@ -82,7 +82,7 @@ const TemplateSettings = () => {
             setState={setSectionHeadingColor}
           />
         </div>
-        <div className="px-4 py-2 text-sm flex items-center justify-between hover:bg-gray-800 cursor-pointer rounded-md animation-all">
+        <div className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all">
           {t("heading")}
           <ColorPicker
             id={`heading-color`}
@@ -90,7 +90,7 @@ const TemplateSettings = () => {
             setState={setHeadingColor}
           />
         </div>
-        <div className="px-4 py-2 text-sm flex items-center justify-between hover:bg-gray-800 cursor-pointer rounded-md animation-all">
+        <div className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all">
           {t("hyperlink")}
           <ColorPicker
             id={`hyperlink-color`}
@@ -98,7 +98,7 @@ const TemplateSettings = () => {
             setState={setHyperlinkColor}
           />
         </div>
-        <div className="px-4 py-2 text-sm flex items-center justify-between hover:bg-gray-800 cursor-pointer rounded-md animation-all">
+        <div className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all">
           {t("project")}
           <div className="flex items-center gap-1">
             <button
@@ -117,7 +117,7 @@ const TemplateSettings = () => {
             </button>
           </div>
         </div>
-        <div className="px-4 py-2 text-sm flex items-center justify-between hover:bg-gray-800 cursor-pointer rounded-md animation-all">
+        <div className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all">
           Font
           <select
             name="font-family"
@@ -148,7 +148,7 @@ const TemplateSettings = () => {
         <button
           onClick={reset}
           type="button"
-          className="px-4 py-2 text-sm flex items-center justify-between hover:bg-gray-800 cursor-pointer rounded-md animation-all text-red-400 "
+          className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all text-red-400 "
         >
           {t("reset")}
         </button>

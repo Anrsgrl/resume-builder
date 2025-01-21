@@ -1,20 +1,19 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
+import dynamic from "next/dynamic";
+import { useTranslations } from "next-intl";
 import useStore from "@/store/store";
 import Input from "@/components/common/Input";
-import dynamic from "next/dynamic";
+import Button from "@/components/common/Button";
+import Stepper from "@/components/shared/Stepper";
+import Example from "@/components/shared/Example";
+import { handleMoveItem } from "@/utils/helpers";
+import { MdOutlineArrowOutward } from "react-icons/md";
+import { FaPlus } from "react-icons/fa";
+import { SiGithub } from "react-icons/si";
 const Editor = dynamic(() => import("@/components/shared/Editor"), {
   ssr: false,
 });
-import Button from "@/components/common/Button";
-import { FaArrowDown, FaArrowUp, FaPlus } from "react-icons/fa";
-import Stepper from "@/components/shared/Stepper";
-import { useTranslations } from "next-intl";
-import toast from "react-hot-toast";
-import { TbClick } from "react-icons/tb";
-import { handleMoveItem } from "@/utils/helpers";
-import Example from "./Example";
-import { MdLink, MdOutlineArrowOutward } from "react-icons/md";
-import { SiGithub } from "react-icons/si";
 const Project = () => {
   const t = useTranslations("Projects");
   const {

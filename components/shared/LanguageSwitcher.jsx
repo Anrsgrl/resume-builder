@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useLocale } from "next-intl";
 import Flag from "react-world-flags";
-import Modal from "@/components/common/Modal";
+import Modal from "@/components/shared/Modal";
 import { LOCALES } from "@/utils/constants";
 import { Link } from "@/i18n/routing";
 

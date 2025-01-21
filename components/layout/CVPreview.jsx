@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import { PiReadCvLogo } from "react-icons/pi";
 import { FiMinimize } from "react-icons/fi";
-import TemplateSettings from "../shared/TemplateSettings";
+import TemplateSettings from "../shared/settings/TemplateSettings";
 
 const Template1 = dynamic(() => import("@/components/templates/Template1"), {
   ssr: false,
@@ -40,14 +40,14 @@ const CVPreview = () => {
         )}
       </button>
       <div
-        className={`flex flex-col items-center justify-center print:h-max ${
+        className={`flex flex-col items-center justify-center print:h-max animation-all ${
           show
-            ? "fixed print:relative inset-0 z-40 overflow-visible py-4 print:py-0 bg-black/80 h-lvh"
+            ? "fixed print:relative inset-0 z-40 overflow-visible py-4 print:py-0 bg-zinc-900/50 min-h-lvh backdrop-blur-lg"
             : "hidden xl:block print:block h-[95dvh]"
         }`}
       >
         <TemplateSettings />
-        <div className="w-full max-h-[90lvh] overflow-hidden lg:overflow-auto print:overflow-visible scale-75 lg:scale-100 print:scale-100 flex">
+        <div className="w-full max-h-[90lvh] overflow-hidden lg:overflow-auto print:overflow-visible flex">
           <Template1 />
         </div>
       </div>

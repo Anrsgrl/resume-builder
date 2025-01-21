@@ -1,8 +1,8 @@
 import React from "react";
-import Certificates from "@/components/shared/Certificates";
-import Interests from "@/components/shared/Interests";
-import References from "@/components/shared/References";
-import Languages from "@/components/shared/Languages";
+import Certificates from "@/components/shared/layout/Certificates";
+import Interests from "@/components/shared/layout/Interests";
+import References from "@/components/shared/layout/References";
+import Languages from "@/components/shared/layout/Languages";
 import Stepper from "@/components/shared/Stepper";
 import { useTranslations } from "next-intl";
 
