@@ -41,7 +41,7 @@ const useTemplateStore = create(
       h3FontSize: "",
       textFontSize: "",
       descriptionFontSize: "",
-      hyperLinkFontSize: "",
+      hyperLinkFontSize: "#0284c7",
       setFontFamily: (value) => set({ fontFamily: value }),
       seth1FontSize: (value) => set({ h1FontSize: value }),
       seth2FontSize: (value) => set({ h2FontSize: value }),

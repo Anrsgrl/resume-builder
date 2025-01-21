@@ -160,7 +160,8 @@
         "description": "Description",
         "small": "small",
         "large": "large",
-        "resetFont": "Reset font settings"
+        "resetFont": "Reset font settings",
+        "resetColor": "Reset color settings"
     },
     "Footer": {
         "starOnGitHub": "Star on GitHub",

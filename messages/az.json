@@ -162,7 +162,8 @@
       "description": "Əlavə qeydlər",
       "small": "balaca",
       "large": "böyük",
-      "resetFont": "Font ayarlarını sıfırla"
+      "resetFont": "Font ayarlarını sıfırla",
+      "resetColor": "Rəng ayarlarını sıfırla"
     },
     "Footer": {
       "starOnGitHub": "GitHub-da Ulduzla",

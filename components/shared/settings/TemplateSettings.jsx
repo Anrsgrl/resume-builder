@@ -21,10 +21,16 @@ const TemplateSettings = () => {
     setDescriptionFontSize,
     setHyperLinkFontSize,
     setName,
-    setSectionHeadingColor,
-    setHeadingColor,
-    setHyperlinkColor,
+    seth1Color,
+    seth2Color,
+    seth3Color,
+    setTextColor,
+    setDescriptionColor,
+    setHyperLinkColor,
+    setImageSize,
     setProjectLink,
+    setSpaceBetween,
+    seth2Align,
   } = useTemplateStore();
   const [tabMenu, setTabMenu] = useState("main");
   const { name, surname } = useStore();
@@ -37,7 +43,7 @@ const TemplateSettings = () => {
     document.title = originalTitle;
   };
 
-  const resetFonts = () => {
+  const resetFonts = (message) => {
     try {
       setFontFamily("");
       seth1FontSize("");
@@ -46,17 +52,31 @@ const TemplateSettings = () => {
       setTextFontSize("");
       setDescriptionFontSize("");
       setHyperLinkFontSize("");
-      toast.success(t("success"));
+      message && toast.success(t("success"));
     } catch (error) {
       console.error("Error: " + error);
     }
   };
-  const resetColors = () => {
+  const resetColors = (message) => {
     try {
-      setSectionHeadingColor("");
-      setHeadingColor("");
-      setHyperlinkColor("");
-      toast.success(t("success"));
+      seth1Color("");
+      seth2Color("");
+      seth3Color("");
+      setTextColor("");
+      setDescriptionColor("");
+      setHyperLinkColor("#0284c7");
+      message && toast.success(t("success"));
+    } catch (error) {
+      console.error("Error: " + error);
+    }
+  };
+  const resetSections = (message) => {
+    try {
+      setImageSize("");
+      setProjectLink("");
+      setSpaceBetween("");
+      seth2Align("");
+      message && toast.success(t("success"));
     } catch (error) {
       console.error("Error: " + error);
     }
@@ -64,9 +84,9 @@ const TemplateSettings = () => {
   const resetAll = () => {
     try {
       setName("CV");
-      setProjectLink("");
-      resetColors();
-      resetFonts();
+      resetColors(false);
+      resetSections(false);
+      resetFonts(false);
       toast.success(t("success"));
     } catch (error) {
       console.error(error);
@@ -84,9 +104,24 @@ const TemplateSettings = () => {
         {
           {
             main: <MainMenu setTabMenu={setTabMenu} reset={resetAll} />,
-            sections: <SectionMenu setTabMenu={setTabMenu} reset={resetAll} />,
-            colors: <ColorMenu setTabMenu={setTabMenu} reset={resetColors} />,
-            fonts: <FontMenu setTabMenu={setTabMenu} reset={resetFonts} />,
+            sections: (
+              <SectionMenu
+                setTabMenu={setTabMenu}
+                reset={() => resetSections(true)}
+              />
+            ),
+            colors: (
+              <ColorMenu
+                setTabMenu={setTabMenu}
+                reset={() => resetColors(true)}
+              />
+            ),
+            fonts: (
+              <FontMenu
+                setTabMenu={setTabMenu}
+                reset={() => resetFonts(true)}
+              />
+            ),
           }[tabMenu || "main"]
         }
       </Menu>

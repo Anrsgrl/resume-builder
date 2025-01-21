@@ -4,16 +4,73 @@ import useTemplateStore from "@/store/template";
 import { useTranslations } from "next-intl";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 
-const ColorMenu = ({ setTabMenu }) => {
+const ColorSelect = ({ label, state, setState, id }) => {
+  return (
+    <div
+      key={id}
+      className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all"
+    >
+      {label}
+      <ColorPicker id={id} state={state || "#000000"} setState={setState} />
+    </div>
+  );
+};
+
+const ColorMenu = ({ setTabMenu, reset }) => {
   const {
-    sectionHeadingColor,
-    setSectionHeadingColor,
-    headingColor,
-    setHeadingColor,
-    hyperlinkColor,
-    setHyperlinkColor,
+    h1Color,
+    h2Color,
+    h3Color,
+    textColor,
+    descriptionColor,
+    hyperLinkColor,
+    seth1Color,
+    seth2Color,
+    seth3Color,
+    setTextColor,
+    setDescriptionColor,
+    setHyperLinkColor,
   } = useTemplateStore();
   const t = useTranslations("Template");
+  const colorInputs = [
+    {
+      label: t("h1"),
+      state: h1Color,
+      setState: seth1Color,
+      id: "h1Color",
+    },
+    {
+      label: t("h2"),
+      state: h2Color,
+      setState: seth2Color,
+      id: "h2Color",
+    },
+    {
+      label: t("h3"),
+      state: h3Color,
+      setState: seth3Color,
+      id: "h3Color",
+    },
+    {
+      label: t("text"),
+      state: textColor,
+      setState: setTextColor,
+      id: "textColor",
+    },
+    {
+      label: t("hyperlink"),
+      state: hyperLinkColor,
+      setState: setHyperLinkColor,
+      id: "hyperlinkColor",
+    },
+    {
+      label: t("description"),
+      state: descriptionColor,
+      setState: setDescriptionColor,
+      id: "descriptionColor",
+    },
+  ];
+
   return (
     <>
       {" "}
@@ -24,30 +81,22 @@ const ColorMenu = ({ setTabMenu }) => {
       >
         <MdKeyboardArrowLeft /> {t("back")}
       </button>
-      <div className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all">
-        {t("section")}
-        <ColorPicker
-          id={`sectionHeading-color`}
-          state={sectionHeadingColor}
-          setState={setSectionHeadingColor}
+      {colorInputs.map((item, index) => (
+        <ColorSelect
+          key={index}
+          id={item.id}
+          label={item.label}
+          state={item.state}
+          setState={item.setState}
         />
-      </div>
-      <div className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all">
-        {t("heading")}
-        <ColorPicker
-          id={`heading-color`}
-          state={headingColor}
-          setState={setHeadingColor}
-        />
-      </div>
-      <div className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all">
-        {t("hyperlink")}
-        <ColorPicker
-          id={`hyperlink-color`}
-          state={hyperlinkColor || "#0284c7"}
-          setState={setHyperlinkColor}
-        />
-      </div>
+      ))}
+      <button
+        onClick={reset}
+        type="button"
+        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all text-red-400 "
+      >
+        {t("resetColor")}
+      </button>
     </>
   );
 };
