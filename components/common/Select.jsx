@@ -1,3 +1,5 @@
+import { cn } from "@/utils/helpers";
+
 const Select = ({
   state,
   setState,
@@ -15,7 +17,7 @@ const Select = ({
         value={state}
         id={name}
         className={cn(
-          `block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-md border-1 appearance-none border-gray-600 dark:focus:border-main focus:outline-none focus:ring-0 focus:border-main peer border disabled:opacity-50 ${
+          `block px-4 py-2 w-full text-sm bg-transparent rounded-md border-1 appearance-none border-gray-600 dark:focus:border-main focus:outline-none focus:ring-0 focus:border-main peer border disabled:opacity-50 h-10 ${
             state !== "" ? "text-white" : "text-gray-400"
           }`,
           className__select
