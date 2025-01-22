@@ -1,9 +1,9 @@
 import React from "react";
-import Certificates from "@/components/shared/layout/Certificates";
-import Interests from "@/components/shared/layout/Interests";
-import References from "@/components/shared/layout/References";
-import Languages from "@/components/shared/layout/Languages";
-import Stepper from "@/components/shared/Stepper";
+import Certificates from "@/components/build/Certificates";
+import Interests from "@/components/build/Interests";
+import References from "@/components/build/References";
+import Languages from "@/components/build/Languages";
+import Stepper from "@/components/layout/Stepper";
 import { useTranslations } from "next-intl";
 
 const Additional = () => {

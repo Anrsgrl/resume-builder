@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import useStore from "@/store/store";
 import { IoCloudDoneSharp, IoCloudUploadOutline } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
-import ImageCrop from "@/components/common/ImageCrop";
+import ImageCrop from "@/components/shared/ImageCrop";
 import { useTranslations } from "next-intl";
 const ImageUpload = () => {
   const {

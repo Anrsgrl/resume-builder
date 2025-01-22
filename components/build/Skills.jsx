@@ -3,7 +3,7 @@ import useStore from "@/store/store";
 import Input from "@/components/common/Input";
 import Button from "@/components/common/Button";
 import { FaPlus, FaCheck, FaTimes } from "react-icons/fa";
-import Stepper from "@/components/shared/Stepper";
+import Stepper from "@/components/layout/Stepper";
 import { useTranslations } from "next-intl";
 import Example from "@/components/shared/Example";
 import { handleMoveItem } from "@/utils/helpers";

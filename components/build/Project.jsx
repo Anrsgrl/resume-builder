@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import useStore from "@/store/store";
 import Input from "@/components/common/Input";
 import Button from "@/components/common/Button";
-import Stepper from "@/components/shared/Stepper";
+import Stepper from "@/components/layout/Stepper";
 import Example from "@/components/shared/Example";
 import { handleMoveItem } from "@/utils/helpers";
 import { MdOutlineArrowOutward } from "react-icons/md";

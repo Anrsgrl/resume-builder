@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { FaArrowDown, FaArrowUp, FaEdit, FaTrash } from "react-icons/fa";
 import { TbClick } from "react-icons/tb";
-import Menu from "./settings/Menu";
+import Menu from "../settings/Menu";
 import { PiDotsThreeOutlineVerticalFill } from "react-icons/pi";
 
 const Example = ({ children, index, state, title, edit, remove, up, down }) => {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Cropper from "react-easy-crop";
 import Modal from "@/components/shared/Modal";
-import Button from "@/components/Button";
+import Button from "@/components/common/Button";
 import { MdCancel } from "react-icons/md";
 import { IoCheckmarkDoneCircleSharp } from "react-icons/io5";
 const ImageCrop = ({ open, image, onCropDone, onCropCancel }) => {

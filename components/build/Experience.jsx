@@ -7,7 +7,7 @@ const Editor = dynamic(() => import("@/components/shared/Editor"), {
 });
 import Button from "@/components/common/Button";
 import { handleMoveItem, useFormattedTime } from "@/utils/helpers";
-import Stepper from "@/components/shared/Stepper";
+import Stepper from "@/components/layout/Stepper";
 import { useLocale, useTranslations } from "next-intl";
 import toast from "react-hot-toast";
 import { LOCALES } from "@/utils/constants";

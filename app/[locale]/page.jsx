@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { MdArrowRightAlt, MdKeyboardArrowDown } from "react-icons/md";
-import LanguageSwitcher from "@/components/shared/LanguageSwitcher";
+import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
 import logo from "@/assets/images/logo.svg";
 
 export default function Home() {

@@ -1,9 +1,9 @@
 "use client";
-import ImageUpload from "@/components/common/ImageUpload";
+import ImageUpload from "@/components/shared/ImageUpload";
 import Input from "@/components/common/Input";
 import useStore from "@/store/store";
 import React from "react";
-import Stepper from "@/components/shared/Stepper";
+import Stepper from "@/components/layout/Stepper";
 import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 

@@ -3,7 +3,7 @@ import useStore from "@/store/store";
 import Input from "@/components/common/Input";
 import dynamic from "next/dynamic";
 import Button from "@/components/common/Button";
-import Stepper from "@/components/shared/Stepper";
+import Stepper from "@/components/layout/Stepper";
 import toast from "react-hot-toast";
 import { useLocale, useTranslations } from "next-intl";
 import { handleMoveItem, useFormattedTime } from "@/utils/helpers";

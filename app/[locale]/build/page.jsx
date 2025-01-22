@@ -2,37 +2,31 @@
 import Loading from "@/components/shared/Loading";
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
-const Additional = dynamic(() => import("@/components/layout/Additional"), {
+const Additional = dynamic(() => import("@/components/build/Additional"), {
   ssr: false,
   loading: () => <Loading />,
 });
-const Education = dynamic(
-  () => import("@/components/shared/layout/Education"),
-  {
-    ssr: false,
-    loading: () => <Loading />,
-  }
-);
-const Experience = dynamic(
-  () => import("@/components/shared/layout/Experience"),
-  {
-    ssr: false,
-    loading: () => <Loading />,
-  }
-);
-const Personal = dynamic(() => import("@/components/shared/layout/Personal"), {
+const Education = dynamic(() => import("@/components/build/Education"), {
   ssr: false,
   loading: () => <Loading />,
 });
-const Project = dynamic(() => import("@/components/shared/layout/Project"), {
+const Experience = dynamic(() => import("@/components/build/Experience"), {
   ssr: false,
   loading: () => <Loading />,
 });
-const Skills = dynamic(() => import("@/components/shared/layout/Skills"), {
+const Personal = dynamic(() => import("@/components/build/Personal"), {
   ssr: false,
   loading: () => <Loading />,
 });
-const Social = dynamic(() => import("@/components/shared/layout/Social"), {
+const Project = dynamic(() => import("@/components/build/Project"), {
+  ssr: false,
+  loading: () => <Loading />,
+});
+const Skills = dynamic(() => import("@/components/build/Skills"), {
+  ssr: false,
+  loading: () => <Loading />,
+});
+const Social = dynamic(() => import("@/components/build/Social"), {
   ssr: false,
   loading: () => <Loading />,
 });

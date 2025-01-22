@@ -2,7 +2,7 @@
 import Input from "@/components/common/Input";
 import useStore from "@/store/store";
 import React from "react";
-import Stepper from "@/components/shared/Stepper";
+import Stepper from "@/components/layout/Stepper";
 import { useTranslations } from "next-intl";
 import { SOCIALS } from "@/utils/constants";
 

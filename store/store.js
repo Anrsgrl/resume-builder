@@ -114,7 +114,7 @@ const useStore = create(
 
       //! Load sample data
       loadSampleData: async () => {
-        const response = await fetch("/sampleData.json");
+        const response = await fetch("/json/sampleData.json");
         const sampleData = await response.json();
         set((state) => ({
           store: { ...state.store, ...sampleData },
