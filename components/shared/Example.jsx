@@ -1,10 +1,20 @@
 import { useTranslations } from "next-intl";
 import { FaArrowDown, FaArrowUp, FaEdit, FaTrash } from "react-icons/fa";
 import { TbClick } from "react-icons/tb";
-import Menu from "../settings/Menu";
+import Menu from "@/components/settings/Menu";
 import { PiDotsThreeOutlineVerticalFill } from "react-icons/pi";
 
-const Example = ({ children, index, state, title, edit, remove, up, down }) => {
+const Example = ({
+  children,
+  index,
+  state,
+  title,
+  edit,
+  remove,
+  up,
+  down,
+  cursor = true,
+}) => {
   const t = useTranslations("General");
   return (
     <details
@@ -13,8 +23,10 @@ const Example = ({ children, index, state, title, edit, remove, up, down }) => {
     >
       <summary className="font-bold text-white/80 flex items-center justify-between cursor-pointer text-base">
         <span className="flex items-center gap-1">
-          <span className="max-w-[90%] truncate text-sm">{title}</span>{" "}
-          <TbClick className={`group-hover:text-main animation-all`} />
+          <span className="text-sm max-w-full truncate">{title}</span>{" "}
+          {cursor && (
+            <TbClick className={`group-hover:text-main animation-all`} />
+          )}
         </span>
         <div className="flex items-center gap-1">
           {up && down && (
