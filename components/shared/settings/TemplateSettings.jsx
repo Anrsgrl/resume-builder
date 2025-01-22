@@ -14,29 +14,9 @@ import Settings from "./Settings";
 import { FaPaintBrush } from "react-icons/fa";
 import { RiSettings3Fill } from "react-icons/ri";
 import JSONMenu from "./JSONMenu";
+
 const TemplateSettings = () => {
-  const {
-    templateName,
-    setFontFamily,
-    seth1FontSize,
-    seth2FontSize,
-    seth3FontSize,
-    setTextFontSize,
-    setDescriptionFontSize,
-    setHyperLinkFontSize,
-    setName,
-    seth1Color,
-    seth2Color,
-    seth3Color,
-    setTextColor,
-    setDescriptionColor,
-    setHyperLinkColor,
-    setImageSize,
-    setProjectLink,
-    setSpaceBetween,
-    seth2Align,
-    setTitleCase,
-  } = useTemplateStore();
+  const { template, setTemplate } = useTemplateStore();
   const [tabMenu, setTabMenu] = useState("main");
   const [settingTab, setSettingTab] = useState("main");
   const { name, surname } = useStore();
@@ -45,7 +25,7 @@ const TemplateSettings = () => {
   //* Print function
   const handlePrint = () => {
     const originalTitle = document.title;
-    document.title = templateName || `${name} ${surname} - CV`;
+    document.title = template.name || `${name} ${surname} - CV`;
     window.print();
     document.title = originalTitle;
   };
@@ -53,46 +33,49 @@ const TemplateSettings = () => {
   //* Template reset functions
   const resetFonts = (message) => {
     try {
-      setFontFamily("");
-      seth1FontSize("");
-      seth2FontSize("");
-      seth3FontSize("");
-      setTextFontSize("");
-      setDescriptionFontSize("");
-      setHyperLinkFontSize("");
+      setTemplate("fontFamily", "");
+      setTemplate("h1FontSize", "");
+      setTemplate("h2FontSize", "");
+      setTemplate("h3FontSize", "");
+      setTemplate("textFontSize", "");
+      setTemplate("descriptionFontSize", "");
+      setTemplate("hyperLinkFontSize", "");
       message && toast.success(t("success"));
     } catch (error) {
       console.error("Error: " + error);
     }
   };
+
   const resetColors = (message) => {
     try {
-      seth1Color("");
-      seth2Color("");
-      seth3Color("");
-      setTextColor("");
-      setDescriptionColor("");
-      setHyperLinkColor("#0284c7");
+      setTemplate("h1Color", "");
+      setTemplate("h2Color", "");
+      setTemplate("h3Color", "");
+      setTemplate("textColor", "");
+      setTemplate("descriptionColor", "");
+      setTemplate("hyperLinkColor", "#0284c7");
       message && toast.success(t("success"));
     } catch (error) {
       console.error("Error: " + error);
     }
   };
+
   const resetSections = (message) => {
     try {
-      setImageSize("");
-      setProjectLink("");
-      setSpaceBetween("");
-      seth2Align("");
-      setTitleCase("");
+      setTemplate("imageSize", "");
+      setTemplate("projectLink", "");
+      setTemplate("spaceBetween", "");
+      setTemplate("h2Align", "");
+      setTemplate("titleCase", "");
       message && toast.success(t("success"));
     } catch (error) {
       console.error("Error: " + error);
     }
   };
+
   const resetAll = () => {
     try {
-      setName("CV");
+      setTemplate("name", "CV");
       resetColors(false);
       resetSections(false);
       resetFonts(false);

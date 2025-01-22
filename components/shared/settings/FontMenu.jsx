@@ -4,7 +4,10 @@ import { useTranslations } from "next-intl";
 import React from "react";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 
-const FontSelect = ({ label, options, state, setState, i }) => {
+const FontSelect = ({ label, options, stateName, i }) => {
+  const { template, setTemplate } = useTemplateStore();
+  const state = template[stateName];
+
   return (
     <div
       key={i}
@@ -15,7 +18,7 @@ const FontSelect = ({ label, options, state, setState, i }) => {
         name={label}
         value={state}
         title={state}
-        onChange={(e) => setState(e.target.value)}
+        onChange={(e) => setTemplate(stateName, e.target.value)}
         className="bg-transparent text-white/80 outline-none border-0 cursor-pointer animation-all text-right appearance-none"
       >
         <option
@@ -29,12 +32,12 @@ const FontSelect = ({ label, options, state, setState, i }) => {
         {options?.map((e, index) => (
           <option
             key={index}
-            value={e.value ? e.value : e}
+            value={e.value || e}
             hidden={state === e || state === e.value}
             style={{ fontFamily: i !== 0 ? uiSans : e }}
             className="bg-zinc-900 text-white"
           >
-            {e.label ? e.label : e}
+            {e.label || e}
           </option>
         ))}
       </select>
@@ -43,23 +46,8 @@ const FontSelect = ({ label, options, state, setState, i }) => {
 };
 
 const FontMenu = ({ setTabMenu, reset }) => {
-  const {
-    fontFamily,
-    setFontFamily,
-    h1FontSize,
-    h2FontSize,
-    h3FontSize,
-    textFontSize,
-    descriptionFontSize,
-    seth1FontSize,
-    seth2FontSize,
-    seth3FontSize,
-    setTextFontSize,
-    setDescriptionFontSize,
-    hyperLinkFontSize,
-    setHyperLinkFontSize,
-  } = useTemplateStore();
   const t = useTranslations("Template");
+
   const sizeOptions = [
     {
       label: t("small"),
@@ -70,47 +58,41 @@ const FontMenu = ({ setTabMenu, reset }) => {
       value: "large",
     },
   ];
+
   const fontInputs = [
     {
       label: "Font",
-      state: fontFamily,
-      setState: setFontFamily,
+      stateName: "fontFamily",
       options: FONTS,
     },
     {
       label: t("h1"),
-      state: h1FontSize,
-      setState: seth1FontSize,
+      stateName: "h1FontSize",
       options: sizeOptions,
     },
     {
       label: t("h2"),
-      state: h2FontSize,
-      setState: seth2FontSize,
+      stateName: "h2FontSize",
       options: sizeOptions,
     },
     {
       label: t("h3"),
-      state: h3FontSize,
-      setState: seth3FontSize,
+      stateName: "h3FontSize",
       options: sizeOptions,
     },
     {
       label: t("text"),
-      state: textFontSize,
-      setState: setTextFontSize,
+      stateName: "textFontSize",
       options: sizeOptions,
     },
     {
       label: t("hyperlink"),
-      state: hyperLinkFontSize,
-      setState: setHyperLinkFontSize,
+      stateName: "hyperLinkFontSize",
       options: sizeOptions,
     },
     {
       label: t("description"),
-      state: descriptionFontSize,
-      setState: setDescriptionFontSize,
+      stateName: "descriptionFontSize",
       options: sizeOptions,
     },
   ];
@@ -124,13 +106,13 @@ const FontMenu = ({ setTabMenu, reset }) => {
       >
         <MdKeyboardArrowLeft /> {t("back")}
       </button>
+
       {fontInputs.map((item, index) => (
         <FontSelect
           key={index}
           i={index}
           label={item.label}
-          state={item.state}
-          setState={item.setState}
+          stateName={item.stateName}
           options={item.options}
         />
       ))}
@@ -138,7 +120,7 @@ const FontMenu = ({ setTabMenu, reset }) => {
       <button
         onClick={reset}
         type="button"
-        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all text-red-400 "
+        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all text-red-400"
       >
         {t("resetFont")}
       </button>

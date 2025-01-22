@@ -4,7 +4,10 @@ import { useTranslations } from "next-intl";
 import useTemplateStore from "@/store/template";
 
 const MainMenu = ({ setTabMenu, reset }) => {
-  const { name, setName } = useTemplateStore();
+  const {
+    template: { name },
+    setTemplate,
+  } = useTemplateStore();
 
   const t = useTranslations("Template");
   return (
@@ -22,7 +25,7 @@ const MainMenu = ({ setTabMenu, reset }) => {
           name="resume-name"
           id="resume-name"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setTemplate("name", e.target.value)}
           className="outline-0 border-0 bg-transparent border-b border-transparent focus:border-white/50 text-xs text-white/80 w-1/3 text-right"
         />
       </div>

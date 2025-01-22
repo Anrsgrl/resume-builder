@@ -4,76 +4,44 @@ import useTemplateStore from "@/store/template";
 import { useTranslations } from "next-intl";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 
-const ColorSelect = ({ label, state, setState, id }) => {
+const ColorSelect = ({ label, stateName, defaultValue }) => {
+  const { template, setTemplate } = useTemplateStore();
+  const state = template[stateName];
+
   return (
-    <div
-      key={id}
-      className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all"
-    >
+    <div className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all">
       {label}
-      <ColorPicker id={id} state={state || "#000000"} setState={setState} />
+      <ColorPicker
+        id={stateName}
+        state={state || defaultValue}
+        setState={(value) => setTemplate(stateName, value)}
+      />
     </div>
   );
 };
 
 const ColorMenu = ({ setTabMenu, reset }) => {
-  const {
-    h1Color,
-    h2Color,
-    h3Color,
-    textColor,
-    descriptionColor,
-    hyperLinkColor,
-    seth1Color,
-    seth2Color,
-    seth3Color,
-    setTextColor,
-    setDescriptionColor,
-    setHyperLinkColor,
-  } = useTemplateStore();
   const t = useTranslations("Template");
+
   const colorInputs = [
-    {
-      label: t("h1"),
-      state: h1Color,
-      setState: seth1Color,
-      id: "h1Color",
-    },
-    {
-      label: t("h2"),
-      state: h2Color,
-      setState: seth2Color,
-      id: "h2Color",
-    },
-    {
-      label: t("h3"),
-      state: h3Color,
-      setState: seth3Color,
-      id: "h3Color",
-    },
-    {
-      label: t("text"),
-      state: textColor,
-      setState: setTextColor,
-      id: "textColor",
-    },
+    { label: t("h1"), stateName: "h1Color", defaultValue: "#000000" },
+    { label: t("h2"), stateName: "h2Color", defaultValue: "#000000" },
+    { label: t("h3"), stateName: "h3Color", defaultValue: "#000000" },
+    { label: t("text"), stateName: "textColor", defaultValue: "#000000" },
     {
       label: t("hyperlink"),
-      state: hyperLinkColor,
-      setState: setHyperLinkColor,
-      id: "hyperlinkColor",
+      stateName: "hyperLinkColor",
+      defaultValue: "#0284c7",
     },
     {
       label: t("description"),
-      state: descriptionColor,
-      setState: setDescriptionColor,
-      id: "descriptionColor",
+      stateName: "descriptionColor",
+      defaultValue: "#000000",
     },
   ];
 
   return (
     <>
-      {" "}
       <button
         onClick={() => setTabMenu("main")}
         type="button"
@@ -84,16 +52,15 @@ const ColorMenu = ({ setTabMenu, reset }) => {
       {colorInputs.map((item, index) => (
         <ColorSelect
           key={index}
-          id={item.id}
           label={item.label}
-          state={item.state}
-          setState={item.setState}
+          stateName={item.stateName}
+          defaultValue={item.defaultValue}
         />
       ))}
       <button
         onClick={reset}
         type="button"
-        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all text-red-400 "
+        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all text-red-400"
       >
         {t("resetColor")}
       </button>
