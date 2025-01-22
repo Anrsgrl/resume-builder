@@ -1,39 +1,34 @@
 {
-  "state": {
-    "store": {
-      "general": {
-        "name": "ABNAR",
-        "surname": "AASDN",
-        "email": "",
-        "phone": "",
-        "jobTitle": "",
-        "country": "",
-        "city": "",
-        "driving": ""
-      },
-      "socialLinks": {
-        "linkedin": "",
-        "github": "",
-        "twitter": "",
-        "facebook": "",
-        "instagram": "",
-        "website": "",
-        "xing": "",
-        "medium": "",
-        "figma": "",
-        "dribbble": ""
-      },
-      "image": null,
-      "summary": "",
-      "certificates": [],
-      "experience": [],
-      "languages": [],
-      "education": [],
-      "skills": [],
-      "projects": [],
-      "interests": [],
-      "references": []
-    }
+  "general": {
+    "name": "asdh",
+    "surname": "asdh",
+    "email": "asdh",
+    "phone": "asdh",
+    "jobTitle": "",
+    "country": "",
+    "city": "",
+    "driving": ""
   },
-  "version": 0
+  "socialLinks": {
+    "linkedin": "",
+    "github": "",
+    "twitter": "",
+    "facebook": "",
+    "instagram": "",
+    "website": "",
+    "xing": "",
+    "medium": "",
+    "figma": "",
+    "dribbble": ""
+  },
+  "image": null,
+  "summary": "",
+  "certificates": [],
+  "experience": [],
+  "languages": [],
+  "education": [],
+  "skills": [],
+  "projects": [],
+  "interests": [],
+  "references": []
 }

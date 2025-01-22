@@ -1,15 +1,14 @@
 import useStore from "@/store/store";
-import { copyToClipboard } from "@/utils/helpers";
 import { useTranslations } from "next-intl";
 import React from "react";
 import toast from "react-hot-toast";
-import { BsFiletypeJson } from "react-icons/bs";
-import { MdOutlineAdd } from "react-icons/md";
+import { MdKeyboardArrowRight, MdOutlineAdd } from "react-icons/md";
 import { TbWashDrycleanOff } from "react-icons/tb";
-import { VscJson } from "react-icons/vsc";
-const Settings = () => {
+
+const Settings = ({ setSettingTab }) => {
   const { loadSampleData } = useStore();
   const t = useTranslations("Template");
+
   //* Reset all data
   const clearResumeData = () => {
     if (!window.confirm(t("cleanConfirm"))) {
@@ -36,20 +35,8 @@ const Settings = () => {
     }
   };
 
-  //* Reset all data
-  const getResumeData = () => {
-    try {
-      const data = JSON.parse(localStorage.getItem("resume-data"));
-      const stringData = JSON.stringify(data?.state?.store, null, 2);
-      copyToClipboard(stringData);
-      toast.success(t("copied"));
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
   return (
     <>
-      {" "}
       <button
         type="button"
         onClick={clearResumeData}
@@ -68,11 +55,19 @@ const Settings = () => {
       </button>
       <button
         type="button"
-        onClick={getResumeData}
-        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all w-full truncate font-normal"
+        onClick={() => setSettingTab("export")}
+        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all w-full font-normal"
       >
-        <span className="max-w-[90%] truncate">{t("json")}</span>
-        <VscJson />
+        {t("jsonExport")}
+        <MdKeyboardArrowRight />
+      </button>
+      <button
+        type="button"
+        onClick={() => setSettingTab("import")}
+        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all w-full font-normal"
+      >
+        {t("jsonImport")}
+        <MdKeyboardArrowRight />
       </button>
     </>
   );

@@ -13,6 +13,7 @@ import { MdSaveAlt } from "react-icons/md";
 import Settings from "./Settings";
 import { FaPaintBrush } from "react-icons/fa";
 import { RiSettings3Fill } from "react-icons/ri";
+import JSONMenu from "./JSONMenu";
 const TemplateSettings = () => {
   const {
     templateName,
@@ -37,6 +38,7 @@ const TemplateSettings = () => {
     setTitleCase,
   } = useTemplateStore();
   const [tabMenu, setTabMenu] = useState("main");
+  const [settingTab, setSettingTab] = useState("main");
   const { name, surname } = useStore();
   const t = useTranslations("Template");
 
@@ -111,7 +113,7 @@ const TemplateSettings = () => {
           <MdSaveAlt size={16} />
         </div>
       </Button>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1">
         <Menu label={t("customize")} icon={<FaPaintBrush size={16} />}>
           {
             {
@@ -138,7 +140,17 @@ const TemplateSettings = () => {
           }
         </Menu>
         <Menu label={t("settings")} icon={<RiSettings3Fill size={16} />}>
-          <Settings />
+          {
+            {
+              main: <Settings setSettingTab={setSettingTab} />,
+              import: (
+                <JSONMenu setSettingTab={setSettingTab} action="import" />
+              ),
+              export: (
+                <JSONMenu setSettingTab={setSettingTab} action="export" />
+              ),
+            }[settingTab || "main"]
+          }
         </Menu>
       </div>
     </div>

@@ -112,13 +112,70 @@ const useStore = create(
           },
         })),
 
-      //! Example data
+      //! Load sample data
       loadSampleData: async () => {
         const response = await fetch("/sampleData.json");
         const sampleData = await response.json();
         set((state) => ({
           store: { ...state.store, ...sampleData },
         }));
+      },
+
+      //! Import data from JSON file (only for the store's specific sections)
+      importDataFromFile: async (data) => {
+        try {
+          let finalData;
+          if (data instanceof File) {
+            const content = await data.text();
+            const parsedData = JSON.parse(content);
+            finalData = parsedData;
+          } else if (typeof data === "object" && data !== null) {
+            finalData = data;
+          } else {
+            throw new Error(
+              "Invalid input: data must be a valid object or file"
+            );
+          }
+          set((state) => ({
+            store: {
+              ...state.store,
+              general:
+                finalData.general || finalData.basics || finalData.personal,
+              socialLinks:
+                finalData.socialLinks ||
+                finalData.social ||
+                finalData.profiles ||
+                state.store.socialLinks,
+              image:
+                finalData.image ||
+                finalData.personal?.image ||
+                finalData.basics?.image ||
+                finalData.general?.image ||
+                state.store.image,
+              summary:
+                finalData.summary ||
+                finalData.personal?.summary ||
+                finalData.general?.summary ||
+                finalData.basics?.summary ||
+                state.store.summary,
+              certificates: finalData.certificates || state.store.certificates,
+              experience:
+                finalData.experience ||
+                finalData.experiences ||
+                finalData.work ||
+                finalData.workExperience ||
+                state.store.experience,
+              languages: finalData.languages || state.store.languages,
+              education: finalData.education || state.store.education,
+              skills: finalData.skills || state.store.skills,
+              projects: finalData.projects || state.store.projects,
+              interests: finalData.interests || state.store.interests,
+              references: finalData.references || state.store.references,
+            },
+          }));
+        } catch (error) {
+          console.error("Error:", error);
+        }
       },
     }),
     {
