@@ -33,7 +33,7 @@ const Select = ({ label, state, setState, options, className }) => {
 
 const SectionMenu = ({ setTabMenu, reset }) => {
   const {
-    template: { imageSize, projectLink, spaceBetween, h2Align, titleCase },
+    template: { imageSize, projectLink, spaceBetween, align, titleCase },
     setTemplate,
   } = useTemplateStore();
 
@@ -95,15 +95,15 @@ const SectionMenu = ({ setTabMenu, reset }) => {
         />
       </div>
 
-      <div id="h2-align" className="menu-item">
-        {t("h2")}
+      <div id="align" className="menu-item">
+        {t("align")}
         <div className="flex items-center gap-1">
           {alignOptions.map((item, index) => (
             <button
               key={index}
               type="button"
-              onClick={() => setTemplate("h2Align", item.value)}
-              className={cn(h2Align === item.value && "text-main")}
+              onClick={() => setTemplate("align", item.value)}
+              className={cn(align === item.value && "text-main")}
             >
               {item.icon}
             </button>

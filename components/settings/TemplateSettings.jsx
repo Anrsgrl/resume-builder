@@ -65,7 +65,7 @@ const TemplateSettings = () => {
       setTemplate("imageSize", "");
       setTemplate("projectLink", "");
       setTemplate("spaceBetween", "");
-      setTemplate("h2Align", "");
+      setTemplate("align", "");
       setTemplate("titleCase", "");
       message && toast.success(t("success"));
     } catch (error) {

@@ -182,6 +182,7 @@
         "more": "more",
         "imageSize": "Image size",
         "space": "Space between",
+        "align": "Align",
         "resetFont": "Reset font settings",
         "resetColor": "Reset color settings",
         "resetSection": "Reset section settings"

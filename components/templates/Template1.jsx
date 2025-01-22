@@ -145,8 +145,8 @@ const Template1 = ({}) => {
       "mt-6",
       "mt-4"
     ),
-    h2Align: handleFindStyle(
-      template.h2Align,
+    align: handleFindStyle(
+      template.align,
       "text-left",
       "text-right",
       "text-center"
@@ -167,7 +167,7 @@ const Template1 = ({}) => {
       }}
       className="w-[240mm] min-h-[296mm] print:min-h-[296mm] bg-white my-0 mx-auto p-2 rounded overflow-x-hidden overflow-y-visible"
     >
-      <div className="flex flex-col items-center justify-between w-full text-center">
+      <div className="flex flex-col items-center justify-between w-full text-center px-8">
         {store.image && (
           <Image
             src={store.image}
@@ -181,6 +181,7 @@ const Template1 = ({}) => {
           style={{ color: colorSettingsDefault.h1Color }}
           className={cn(
             "whitespace-nowrap w-full uppercase font-bold",
+            sectionSettingsDefault.align,
             fontSettingsDefault.h1FontSize
           )}
         >
@@ -188,7 +189,11 @@ const Template1 = ({}) => {
         </h1>
         <p
           style={{ color: colorSettingsDefault.textColor }}
-          className={cn(fontSettingsDefault.textFontSize)}
+          className={cn(
+            "w-full mt-1",
+            fontSettingsDefault.textFontSize,
+            sectionSettingsDefault.align
+          )}
         >
           {store.general.city && store.general.city}
           {store.general.country &&
@@ -232,14 +237,17 @@ const Template1 = ({}) => {
           title={t("Personal.summary")}
           color={colorSettingsDefault.h2Color}
           size={fontSettingsDefault.h2FontSize}
-          align={sectionSettingsDefault.h2Align}
+          align={sectionSettingsDefault.align}
           titleCase={sectionSettingsDefault.titleCase}
           space={sectionSettingsDefault.spaceBetween}
         >
           <p
             dangerouslySetInnerHTML={{ __html: store.summary }}
             style={{ color: colorSettingsDefault.textColor }}
-            className={cn(fontSettingsDefault.textFontSize)}
+            className={cn(
+              fontSettingsDefault.textFontSize,
+              sectionSettingsDefault.align
+            )}
           ></p>
         </Section>
       )}
@@ -249,11 +257,19 @@ const Template1 = ({}) => {
           title={t("Social.title")}
           color={colorSettingsDefault.h2Color}
           size={fontSettingsDefault.h2FontSize}
-          align={sectionSettingsDefault.h2Align}
+          align={sectionSettingsDefault.align}
           titleCase={sectionSettingsDefault.titleCase}
           space={sectionSettingsDefault.spaceBetween}
         >
-          <div className="flex items-center justify-center flex-wrap gap-4">
+          <div
+            className={`flex items-center flex-wrap gap-4 w-full ${
+              template.align === "left"
+                ? "justify-start"
+                : template.align === "right"
+                ? "justify-end"
+                : "justify-center"
+            }`}
+          >
             {Object.keys(store.socialLinks).map((key) => {
               const social = SOCIALS.find((e) => e.name.toLowerCase() === key);
               if (social && store.socialLinks[key]) {
@@ -302,7 +318,7 @@ const Template1 = ({}) => {
           title={t("Experience.title")}
           color={colorSettingsDefault.h2Color}
           size={fontSettingsDefault.h2FontSize}
-          align={sectionSettingsDefault.h2Align}
+          align={sectionSettingsDefault.align}
           titleCase={sectionSettingsDefault.titleCase}
           space={sectionSettingsDefault.spaceBetween}
         >
@@ -352,7 +368,7 @@ const Template1 = ({}) => {
           title={t("Education.title")}
           color={colorSettingsDefault.h2Color}
           size={fontSettingsDefault.h2FontSize}
-          align={sectionSettingsDefault.h2Align}
+          align={sectionSettingsDefault.align}
           titleCase={sectionSettingsDefault.titleCase}
           space={sectionSettingsDefault.spaceBetween}
         >
@@ -402,13 +418,17 @@ const Template1 = ({}) => {
           title={t("Skills.title")}
           color={colorSettingsDefault.h2Color}
           size={fontSettingsDefault.h2FontSize}
-          align={sectionSettingsDefault.h2Align}
+          align={sectionSettingsDefault.align}
           titleCase={sectionSettingsDefault.titleCase}
           space={sectionSettingsDefault.spaceBetween}
         >
           <p
             style={{ color: colorSettingsDefault.textColor }}
-            className={cn("text-center", fontSettingsDefault.textFontSize)}
+            className={cn(
+              "w-full",
+              fontSettingsDefault.textFontSize,
+              sectionSettingsDefault.align
+            )}
           >
             {store.skills.join(", ")}
           </p>
@@ -420,7 +440,7 @@ const Template1 = ({}) => {
           title={t("Projects.title")}
           color={colorSettingsDefault.h2Color}
           size={fontSettingsDefault.h2FontSize}
-          align={sectionSettingsDefault.h2Align}
+          align={sectionSettingsDefault.align}
           titleCase={sectionSettingsDefault.titleCase}
           space={sectionSettingsDefault.spaceBetween}
         >
@@ -512,7 +532,7 @@ const Template1 = ({}) => {
           title={t("Certificates.title")}
           color={colorSettingsDefault.h2Color}
           size={fontSettingsDefault.h2FontSize}
-          align={sectionSettingsDefault.h2Align}
+          align={sectionSettingsDefault.align}
           titleCase={sectionSettingsDefault.titleCase}
           space={sectionSettingsDefault.spaceBetween}
         >
@@ -550,7 +570,7 @@ const Template1 = ({}) => {
           title={t("References.title")}
           color={colorSettingsDefault.h2Color}
           size={fontSettingsDefault.h2FontSize}
-          align={sectionSettingsDefault.h2Align}
+          align={sectionSettingsDefault.align}
           titleCase={sectionSettingsDefault.titleCase}
           space={sectionSettingsDefault.spaceBetween}
         >
@@ -609,7 +629,7 @@ const Template1 = ({}) => {
           title={t("Languages.title")}
           color={colorSettingsDefault.h2Color}
           size={fontSettingsDefault.h2FontSize}
-          align={sectionSettingsDefault.h2Align}
+          align={sectionSettingsDefault.align}
           titleCase={sectionSettingsDefault.titleCase}
           space={sectionSettingsDefault.spaceBetween}
         >
@@ -642,13 +662,17 @@ const Template1 = ({}) => {
           title={t("Interests.title")}
           color={colorSettingsDefault.h2Color}
           size={fontSettingsDefault.h2FontSize}
-          align={sectionSettingsDefault.h2Align}
+          align={sectionSettingsDefault.align}
           titleCase={sectionSettingsDefault.titleCase}
           space={sectionSettingsDefault.spaceBetween}
         >
           <p
             style={{ color: colorSettingsDefault.textColor }}
-            className={cn(fontSettingsDefault.textFontSize)}
+            className={cn(
+              "w-full",
+              fontSettingsDefault.textFontSize,
+              sectionSettingsDefault.align
+            )}
           >
             {store.interests.join(", ")}
           </p>

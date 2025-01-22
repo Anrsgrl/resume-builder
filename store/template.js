@@ -21,7 +21,7 @@ const useTemplateStore = create(
         imageSize: "",
         projectLink: "",
         spaceBetween: "",
-        h2Align: "",
+        align: "",
         titleCase: "",
 
         //! Font
