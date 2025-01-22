@@ -10,8 +10,10 @@ import toast from "react-hot-toast";
 import { LOCALES } from "@/utils/constants";
 import Example from "@/components/shared/Example";
 import { MdDateRange, MdPinDrop } from "react-icons/md";
+import EditorLoading from "../shared/EditorLoading";
 const Editor = dynamic(() => import("@/components/shared/Editor"), {
   ssr: false,
+  loading: () => <EditorLoading />,
 });
 const Experience = () => {
   const t = useTranslations("Experience");
@@ -182,7 +184,6 @@ const Experience = () => {
           label={t("description")}
         />
       </div>
-
       <Button
         onClick={() =>
           editedIndex === null ? handleAddExperience() : handleEditExperience()

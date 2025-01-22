@@ -11,8 +11,10 @@ import { handleMoveItem } from "@/utils/helpers";
 import { MdOutlineArrowOutward } from "react-icons/md";
 import { FaPlus } from "react-icons/fa";
 import { SiGithub } from "react-icons/si";
+import EditorLoading from "@/components/shared/EditorLoading";
 const Editor = dynamic(() => import("@/components/shared/Editor"), {
   ssr: false,
+  loading: () => <EditorLoading />,
 });
 const Project = () => {
   const t = useTranslations("Projects");

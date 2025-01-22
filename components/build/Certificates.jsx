@@ -9,8 +9,10 @@ import toast from "react-hot-toast";
 import { useLocale, useTranslations } from "next-intl";
 import { LOCALES } from "@/utils/constants";
 import Example from "@/components/shared/Example";
+import EditorLoading from "@/components/shared/EditorLoading";
 const Editor = dynamic(() => import("@/components/shared/Editor"), {
   ssr: false,
+  loading: () => <EditorLoading />,
 });
 
 const Certificates = () => {

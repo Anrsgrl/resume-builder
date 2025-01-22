@@ -7,8 +7,10 @@ import Stepper from "@/components/layout/Stepper";
 import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 
+import EditorLoading from "@/components/shared/EditorLoading";
 const Editor = dynamic(() => import("@/components/shared/Editor"), {
   ssr: false,
+  loading: () => <EditorLoading />,
 });
 
 const Personal = () => {

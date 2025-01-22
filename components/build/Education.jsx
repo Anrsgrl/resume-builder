@@ -10,8 +10,10 @@ import { handleMoveItem, useFormattedTime } from "@/utils/helpers";
 import Example from "@/components/shared/Example";
 import { LOCALES } from "@/utils/constants";
 import { MdDateRange, MdTextFields } from "react-icons/md";
+import EditorLoading from "@/components/shared/EditorLoading";
 const Editor = dynamic(() => import("@/components/shared/Editor"), {
   ssr: false,
+  loading: () => <EditorLoading />,
 });
 
 const Education = () => {
