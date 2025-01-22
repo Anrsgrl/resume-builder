@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useStore from "@/store/store";
 import Input from "@/components/common/Input";
 import Button from "@/components/common/Button";
@@ -56,6 +56,23 @@ const Skills = () => {
     handleMoveItem(skills, updateOrder, index, "down", "skills");
   };
 
+  //* Shortcuts
+  const handleKeyPress = useCallback(
+    (event) => {
+      if (event.key === "Enter" && newSkill.trim() !== "") {
+        handleAddSkill();
+      }
+    },
+    [newSkill, handleAddSkill]
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [handleKeyPress]);
+
   return (
     <div className="my-14 lg:my-20 px-10 flex flex-col gap-2">
       <h1 className="text-center font-bold text-3xl text-main mb-4">
@@ -78,8 +95,7 @@ const Skills = () => {
         )}
       </div>
 
-      {/* Skills List */}
-      <div className="max-h-56 overflow-auto snap-y">
+      <div className="max-h-64 overflow-auto snap-y">
         {skills.length > 0 && (
           <div className="space-y-4 text-white/80">
             {skills.map((skill, index) => (
@@ -92,6 +108,7 @@ const Skills = () => {
                 edit={handleEditSkill}
                 title={skill}
                 state={skills}
+                cursor={false}
               ></Example>
             ))}
           </div>

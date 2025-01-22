@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useStore from "@/store/store";
 import Input from "@/components/common/Input";
 import Button from "@/components/common/Button";
 import { FaPlus, FaCheck, FaTimes } from "react-icons/fa";
-import Stepper from "@/components/layout/Stepper";
 import { useTranslations } from "next-intl";
 import Example from "@/components/shared/Example";
 import { handleMoveItem } from "@/utils/helpers";
@@ -57,6 +56,23 @@ const Interests = () => {
     handleMoveItem(interests, updateOrder, index, "down", "interests");
   };
 
+  //* Shortcuts
+  const handleKeyPress = useCallback(
+    (event) => {
+      if (event.key === "Enter" && newInterests.trim() !== "") {
+        handleAddInterests();
+      }
+    },
+    [newInterests, handleAddInterests]
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [handleKeyPress]);
+
   return (
     <div className="flex flex-col gap-2 border-b border-dashed border-gray-400">
       <h2
@@ -88,7 +104,6 @@ const Interests = () => {
             )}
           </div>
 
-          {/* Interests List */}
           <div className="max-h-56 overflow-auto snap-y mb-6">
             {interests.length > 0 && (
               <div className="space-y-4 text-white/80">
@@ -102,6 +117,7 @@ const Interests = () => {
                     edit={handleEditInterests}
                     title={interests}
                     state={interests}
+                    cursor={false}
                   ></Example>
                 ))}
               </div>

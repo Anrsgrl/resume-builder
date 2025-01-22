@@ -2,9 +2,6 @@ import { useState } from "react";
 import useStore from "@/store/store";
 import Input from "@/components/common/Input";
 import dynamic from "next/dynamic";
-const Editor = dynamic(() => import("@/components/shared/Editor"), {
-  ssr: false,
-});
 import Button from "@/components/common/Button";
 import { handleMoveItem, useFormattedTime } from "@/utils/helpers";
 import Stepper from "@/components/layout/Stepper";
@@ -12,8 +9,10 @@ import { useLocale, useTranslations } from "next-intl";
 import toast from "react-hot-toast";
 import { LOCALES } from "@/utils/constants";
 import Example from "@/components/shared/Example";
-import { MdDateRange, MdMap, MdPin, MdPinDrop } from "react-icons/md";
-
+import { MdDateRange, MdPinDrop } from "react-icons/md";
+const Editor = dynamic(() => import("@/components/shared/Editor"), {
+  ssr: false,
+});
 const Experience = () => {
   const t = useTranslations("Experience");
   const {
