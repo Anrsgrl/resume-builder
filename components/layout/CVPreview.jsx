@@ -1,10 +1,11 @@
 "use client";
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { PiReadCvLogo } from "react-icons/pi";
 import { FiMinimize } from "react-icons/fi";
 import TemplateSettings from "@/components/settings/TemplateSettings";
 import Loading from "@/components/shared/Loading";
+import toast from "react-hot-toast";
 
 const Template1 = dynamic(() => import("@/components/templates/Template1"), {
   ssr: false,
@@ -22,6 +23,22 @@ const CVPreview = () => {
       document.documentElement.style.overflow = "hidden";
     }
   };
+
+  //* Shortcuts
+  const handleKeyPress = useCallback((event) => {
+    if (event.ctrlKey && event.key === "s") {
+      event.preventDefault();
+      window.print();
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [handleKeyPress]);
+
   return (
     <>
       <button
