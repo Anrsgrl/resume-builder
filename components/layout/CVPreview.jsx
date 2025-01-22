@@ -5,7 +5,6 @@ import { PiReadCvLogo } from "react-icons/pi";
 import { FiMinimize } from "react-icons/fi";
 import TemplateSettings from "@/components/settings/TemplateSettings";
 import Loading from "@/components/shared/Loading";
-import toast from "react-hot-toast";
 
 const Template1 = dynamic(() => import("@/components/templates/Template1"), {
   ssr: false,
@@ -68,7 +67,7 @@ const CVPreview = () => {
         <TemplateSettings />
         <div
           className={`w-full overflow-hidden lg:overflow-auto print:overflow-visible flex justify-center ${
-            show ? "h-[90lvh] print:h-max" : ""
+            show ? "h-[90lvh] print:h-fit" : ""
           }`}
         >
           <Template1 />

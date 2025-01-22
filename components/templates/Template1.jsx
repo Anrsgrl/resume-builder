@@ -165,7 +165,7 @@ const Template1 = ({}) => {
       style={{
         fontFamily: fontSettingsDefault.fontFamily,
       }}
-      className="w-[240mm] min-h-[296mm] print:min-h-[296mm] bg-white my-0 mx-auto p-2 rounded overflow-x-hidden overflow-y-visible"
+      className="w-[240mm] min-h-[286mm] bg-white my-0 mx-auto p-2 rounded overflow-x-hidden overflow-y-visible"
     >
       <div className="flex flex-col items-center justify-between w-full text-center px-8">
         {store.image && (
