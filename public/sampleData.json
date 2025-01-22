@@ -1,17 +1,17 @@
 {
   "general": {
-    "name": "asdh",
-    "surname": "asdh",
-    "email": "asdh",
-    "phone": "asdh",
-    "jobTitle": "",
-    "country": "",
-    "city": "",
+    "name": "John",
+    "surname": "Doe",
+    "email": "johndoe@gmail.com",
+    "phone": "+1-212-456-7890",
+    "jobTitle": "Developer",
+    "country": "USA",
+    "city": "New York",
     "driving": ""
   },
   "socialLinks": {
-    "linkedin": "",
-    "github": "",
+    "linkedin": "https://www.linkedin.com/in/johndoe",
+    "github": "github.com/johndoe",
     "twitter": "",
     "facebook": "",
     "instagram": "",
@@ -22,13 +22,57 @@
     "dribbble": ""
   },
   "image": null,
-  "summary": "",
-  "certificates": [],
-  "experience": [],
+  "summary": "<p>John Doe is a highly skilled software engineer with over a decade of experience in developing innovative web and mobile applications. He specializes in full-stack development, focusing on creating scalable and user-friendly solutions for diverse industries.</p>",
+  "certificates": [
+    {
+      "title": "Sample certification",
+      "date": "2024-12",
+      "description": "<p>Sample certification covering data analysis tools, techniques, and hands-on projects using SQL, Excel, and Tableau.</p>"
+    }
+  ],
+  "experience": [
+    {
+      "company": "Sample Company",
+      "jobTitle": "Software Developer",
+      "city": "New York, USA",
+      "startDate": "2024-01",
+      "endDate": "",
+      "description": "<ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>As a Software Developer, responsible for designing, coding, testing, and deploying software solutions that meet user requirements and industry standards.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Skilled in programming languages such as JavaScript, Python, and Java, with expertise in frameworks like React and Node.js.</li></ol>"
+    }
+  ],
   "languages": [],
-  "education": [],
-  "skills": [],
-  "projects": [],
+  "education": [
+    {
+      "institution": "Sample University",
+      "city": "New York, USA",
+      "degree": "Bachelor",
+      "fieldOfStudy": "Computer Science",
+      "startDate": "2024-01",
+      "endDate": "2025-07",
+      "description": "<ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Bachelor of Computer Science (B.Sc. in Computer Science) is a comprehensive undergraduate program designed to provide students with a strong foundation in computing, programming, and problem-solving.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>The curriculum includes core subjects such as data structures, algorithms, software development, computer networks, and database management systems, along with electives in areas like artificial intelligence, cybersecurity, and web development.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Students gain practical experience through hands-on projects, coding assignments, and internships, preparing them for real-world applications.</li></ol>"
+    }
+  ],
+  "skills": [
+    "HTML5",
+    "CSS3",
+    "Javascript",
+    "Typescript",
+    "React.js",
+    "Next.js"
+  ],
+  "projects": [
+    {
+      "title": "Sample project",
+      "description": "<p>Sample project is a user-friendly task management application designed to help individuals and teams organize, prioritize, and track their tasks efficiently. Built with React and Node.js, the app includes features like real-time collaboration, deadline reminders, and progress tracking.</p>",
+      "technologies": [
+        "React",
+        "Node.js",
+        "TailwindCSS"
+      ],
+      "githubLink": "https://github.com/Anrsgrl/resume-builder",
+      "liveLink": "https://resume.anarr.dev"
+    }
+  ],
   "interests": [],
   "references": []
 }
