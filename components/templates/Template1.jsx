@@ -48,12 +48,13 @@ const Section = ({
   );
 };
 
-const Description = ({ state }) => {
+const Description = ({ state, color, size }) => {
   if (state === "<p><br></p>") return;
   return (
     <p
+      style={{ color: color }}
       dangerouslySetInnerHTML={{ __html: state }}
-      className="text-left mt-2 text-xs xs:text-sm opacity-80"
+      className={cn("text-left mt-2 opacity-80", size)}
     ></p>
   );
 };
@@ -86,12 +87,12 @@ const Template1 = ({}) => {
   const colorSettingsDefault = {
     h1Color: template.h1Color === "" ? "#000000" : template.h1Color,
     h2Color: template.h2Color === "" ? "#000000" : template.h2Color,
-    h3Color: template.h3Color === "" ? "#0284c7" : template.h3Color,
+    h3Color: template.h3Color === "" ? "#000000" : template.h3Color,
     textColor: template.textColor === "" ? "" : template.textColor,
     descriptionColor:
       template.descriptionColor === "" ? "" : template.descriptionColor,
     hyperLinkColor:
-      template.hyperLinkColor === "" ? "" : template.hyperLinkColor,
+      template.hyperLinkColor === "" ? "#0284c7" : template.hyperLinkColor,
   };
 
   //* ↓ - ↑ - default - Fonts
@@ -108,6 +109,30 @@ const Template1 = ({}) => {
       "text-xs xs:text-sm",
       "text-base xs:text-lg",
       "text-sm xs:text-base"
+    ),
+    h3FontSize: handleFindStyle(
+      template.h3FontSize,
+      "text-xs xs:text-sm",
+      "text-base xs:text-lg",
+      "text-sm xs:text-base"
+    ),
+    textFontSize: handleFindStyle(
+      template.textFontSize,
+      "text-xs",
+      "text-sm xs:text-base",
+      "text-xs xs:text-sm"
+    ),
+    hyperLinkFontSize: handleFindStyle(
+      template.hyperLinkFontSize,
+      "text-xs",
+      "text-sm xs:text-base",
+      "text-xs xs:text-sm"
+    ),
+    descriptionFontSize: handleFindStyle(
+      template.descriptionFontSize,
+      "text-xs",
+      "text-sm xs:text-base",
+      "text-xs xs:text-sm"
     ),
   };
 
@@ -161,7 +186,10 @@ const Template1 = ({}) => {
         >
           {store.general.name} {store.general.surname}
         </h1>
-        <p className="text-xs xs:text-sm">
+        <p
+          style={{ color: colorSettingsDefault.textColor }}
+          className={cn(fontSettingsDefault.textFontSize)}
+        >
           {store.general.city && store.general.city}
           {store.general.country &&
             `${store.general.city && ", "} ${store.general.country}`}
@@ -169,10 +197,11 @@ const Template1 = ({}) => {
             <>
               {(store.general.city || store.general.country) && " • "}
               <a
+                className={cn(fontSettingsDefault.hyperLinkFontSize)}
+                style={{ color: colorSettingsDefault.hyperLinkColor }}
                 target="_blank"
                 rel="noopener noreferrer"
                 href={`mailto:${store.general.email}`}
-                style={{ color: colorSettingsDefault.hyperLinkColor }}
               >
                 {store.general.email}
               </a>
@@ -185,10 +214,11 @@ const Template1 = ({}) => {
                 store.general.email) &&
                 " • "}
               <a
+                className={cn(fontSettingsDefault.hyperLinkFontSize)}
+                style={{ color: colorSettingsDefault.hyperLinkColor }}
                 target="_blank"
                 rel="noopener noreferrer"
                 href={`tel:${store.general.phone}`}
-                style={{ color: colorSettingsDefault.hyperLinkColor }}
               >
                 {store.general.phone}
               </a>
@@ -208,7 +238,8 @@ const Template1 = ({}) => {
         >
           <p
             dangerouslySetInnerHTML={{ __html: store.summary }}
-            className="text-xs xs:text-sm"
+            style={{ color: colorSettingsDefault.textColor }}
+            className={cn(fontSettingsDefault.textFontSize)}
           ></p>
         </Section>
       )}
@@ -246,18 +277,17 @@ const Template1 = ({}) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     key={key}
-                    className="flex items-center gap-1"
+                    className={cn(
+                      "flex items-center gap-1",
+                      fontSettingsDefault.hyperLinkFontSize
+                    )}
                   >
                     <span
-                      style={{
-                        color: !colorSettingsDefault.hyperLinkColor
-                          ? "#0ea5e9"
-                          : colorSettingsDefault.hyperLinkColor,
-                      }}
+                      style={{ color: colorSettingsDefault.hyperLinkColor }}
                     >
                       {social.logo}
                     </span>
-                    <span className="text-xs xs:text-sm">{username}</span>
+                    <span>{username}</span>
                   </a>
                 );
               }
@@ -280,22 +310,38 @@ const Template1 = ({}) => {
             <div key={index} className="flex flex-col w-full mb-2">
               <div className="flex items-center justify-between w-full">
                 <h3
-                  className="font-semibold"
-                  style={{ color: colorSettingsDefault.color }}
+                  className={cn(
+                    "font-semibold",
+                    fontSettingsDefault.h3FontSize
+                  )}
+                  style={{ color: colorSettingsDefault.h3Color }}
                 >
                   {exp.jobTitle}
                 </h3>
-                <p className="text-xs xs:text-sm">
+                <p
+                  style={{ color: colorSettingsDefault.textColor }}
+                  className={cn(fontSettingsDefault.textFontSize)}
+                >
                   {useFormattedTime(exp.startDate, localeIso)} -{" "}
                   {exp.endDate
                     ? useFormattedTime(exp.endDate, localeIso)
                     : t("General.present")}
                 </p>
               </div>
-              <h4 className="font-normal me-auto">
+              <h4
+                style={{ color: colorSettingsDefault.textColor }}
+                className={cn(
+                  "font-normal me-auto",
+                  fontSettingsDefault.h3FontSize
+                )}
+              >
                 {exp.company}, {exp.city}
               </h4>
-              <Description state={exp.description} />
+              <Description
+                color={colorSettingsDefault.descriptionColor}
+                size={fontSettingsDefault.descriptionFontSize}
+                state={exp.description}
+              />
             </div>
           ))}
         </Section>
@@ -314,22 +360,38 @@ const Template1 = ({}) => {
             <div key={index} className="flex flex-col w-full mb-2">
               <div className="flex items-center justify-between w-full">
                 <h3
-                  className="font-semibold"
-                  style={{ color: colorSettingsDefault.color }}
+                  className={cn(
+                    "font-semibold",
+                    fontSettingsDefault.h3FontSize
+                  )}
+                  style={{ color: colorSettingsDefault.h3Color }}
                 >
                   {edu.degree} {locale === "en" ? "of" : "-"} {edu.fieldOfStudy}
                 </h3>
-                <p className="text-xs xs:text-sm">
+                <p
+                  style={{ color: colorSettingsDefault.textColor }}
+                  className={cn(fontSettingsDefault.textFontSize)}
+                >
                   {useFormattedTime(edu.startDate, localeIso)} -{" "}
                   {edu.endDate
                     ? useFormattedTime(edu.endDate, localeIso)
                     : t("General.present")}
                 </p>
               </div>
-              <h4 className="font-normal me-auto">
+              <h4
+                style={{ color: colorSettingsDefault.textColor }}
+                className={cn(
+                  "font-normal me-auto",
+                  fontSettingsDefault.h3FontSize
+                )}
+              >
                 {edu.institution}, {edu.city}
               </h4>
-              <Description state={edu.description} />
+              <Description
+                color={colorSettingsDefault.descriptionColor}
+                size={fontSettingsDefault.descriptionFontSize}
+                state={edu.description}
+              />
             </div>
           ))}
         </Section>
@@ -344,7 +406,12 @@ const Template1 = ({}) => {
           titleCase={sectionSettingsDefault.titleCase}
           space={sectionSettingsDefault.spaceBetween}
         >
-          <p className="text-center">{store.skills.join(", ")}</p>
+          <p
+            style={{ color: colorSettingsDefault.textColor }}
+            className={cn("text-center", fontSettingsDefault.textFontSize)}
+          >
+            {store.skills.join(", ")}
+          </p>
         </Section>
       )}
       {store.projects?.length > 0 && (
@@ -362,8 +429,11 @@ const Template1 = ({}) => {
               <div key={index} className="flex flex-col w-full">
                 <div className="flex items-center justify-between w-full">
                   <h3
-                    className="font-semibold"
-                    style={{ color: colorSettingsDefault.hyperLinkColor }}
+                    className={cn(
+                      "font-semibold",
+                      fontSettingsDefault.h3FontSize
+                    )}
+                    style={{ color: colorSettingsDefault.h3Color }}
                   >
                     {project.title}
                   </h3>
@@ -376,6 +446,7 @@ const Template1 = ({}) => {
                           "https://",
                           ""
                         )}`}
+                        className={cn(fontSettingsDefault.hyperLinkFontSize)}
                         style={{ color: colorSettingsDefault.hyperLinkColor }}
                       >
                         {sectionSettingsDefault.projectLink === "icon" ? (
@@ -396,6 +467,7 @@ const Template1 = ({}) => {
                           "https://",
                           ""
                         )}`}
+                        className={cn(fontSettingsDefault.hyperLinkFontSize)}
                         style={{ color: colorSettingsDefault.hyperLinkColor }}
                       >
                         {sectionSettingsDefault.projectLink === "icon" ? (
@@ -408,14 +480,27 @@ const Template1 = ({}) => {
                   </div>
                 </div>
                 {project?.technologies?.length > 0 && (
-                  <div className="font-normal me-auto">
-                    <h3 className="mr-1 float-left font-normal">
+                  <p
+                    style={{ color: colorSettingsDefault.textColor }}
+                    className={cn(
+                      "text-left",
+                      fontSettingsDefault.textFontSize
+                    )}
+                  >
+                    <span
+                      style={{ color: colorSettingsDefault.textColor }}
+                      className={cn(fontSettingsDefault.h3FontSize)}
+                    >
                       {t("Projects.tech")}:
-                    </h3>{" "}
+                    </span>{" "}
                     {project.technologies.join(", ")}
-                  </div>
+                  </p>
                 )}
-                <Description state={project.description} />
+                <Description
+                  color={colorSettingsDefault.descriptionColor}
+                  size={fontSettingsDefault.descriptionFontSize}
+                  state={project.description}
+                />
               </div>
             ))}
           </div>
@@ -435,16 +520,26 @@ const Template1 = ({}) => {
             <div key={index} className="flex flex-col w-full mb-2">
               <div className="flex items-center justify-between w-full">
                 <h3
-                  className="font-semibold"
-                  style={{ color: colorSettingsDefault.color }}
+                  className={cn(
+                    "font-semibold",
+                    fontSettingsDefault.h3FontSize
+                  )}
+                  style={{ color: colorSettingsDefault.h3Color }}
                 >
                   {certificate.title}
                 </h3>
-                <p className="text-xs xs:text-sm">
+                <p
+                  style={{ color: colorSettingsDefault.textColor }}
+                  className={cn(fontSettingsDefault.textFontSize)}
+                >
                   {useFormattedTime(certificate.date, localeIso)}
                 </p>
               </div>
-              <Description state={certificate.description} />
+              <Description
+                color={colorSettingsDefault.descriptionColor}
+                size={fontSettingsDefault.descriptionFontSize}
+                state={certificate.description}
+              />
             </div>
           ))}
         </Section>
@@ -463,18 +558,27 @@ const Template1 = ({}) => {
             <div key={index} className="flex flex-col w-full mb-2">
               <div className="flex items-center justify-between w-full">
                 <h3
-                  className="font-semibold"
-                  style={{ color: colorSettingsDefault.color }}
+                  className={cn(
+                    "font-semibold",
+                    fontSettingsDefault.h3FontSize
+                  )}
+                  style={{ color: colorSettingsDefault.h3Color }}
                 >
                   {ref.name} - {ref.company}
                 </h3>
-                <div className="flex items-center text-xs xs:text-sm">
+                <div
+                  className={cn(
+                    "flex items-center",
+                    fontSettingsDefault.textFontSize
+                  )}
+                >
                   {ref.email && (
                     <a
+                      className={cn(fontSettingsDefault.hyperLinkFontSize)}
                       target="_blank"
                       rel="noopener noreferrer"
                       href={`mailto:${ref.email}`}
-                      className="text-sky-600"
+                      style={{ color: colorSettingsDefault.hyperLinkColor }}
                     >
                       {ref.email}
                     </a>
@@ -484,10 +588,11 @@ const Template1 = ({}) => {
                   )}
                   {ref.phone && (
                     <a
+                      className={cn(fontSettingsDefault.hyperLinkFontSize)}
                       target="_blank"
                       rel="noopener noreferrer"
                       href={`tel:${ref.phone}`}
-                      className="text-sky-600"
+                      style={{ color: colorSettingsDefault.hyperLinkColor }}
                     >
                       {ref.phone}
                     </a>
@@ -512,12 +617,18 @@ const Template1 = ({}) => {
             <div key={index} className="flex flex-col w-full mb-2">
               <div className="flex items-center justify-between w-full">
                 <h3
-                  className="font-semibold"
-                  style={{ color: colorSettingsDefault.color }}
+                  className={cn(
+                    "font-semibold",
+                    fontSettingsDefault.h3FontSize
+                  )}
+                  style={{ color: colorSettingsDefault.h3Color }}
                 >
                   {lang.language}
                 </h3>
-                <p className="text-xs xs:text-sm">
+                <p
+                  style={{ color: colorSettingsDefault.textColor }}
+                  className={cn(fontSettingsDefault.textFontSize)}
+                >
                   {LANG_OPTIONS.find((e) => e.value === lang.level)?.label}
                 </p>
               </div>
@@ -535,7 +646,12 @@ const Template1 = ({}) => {
           titleCase={sectionSettingsDefault.titleCase}
           space={sectionSettingsDefault.spaceBetween}
         >
-          <p>{store.interests.join(", ")}</p>
+          <p
+            style={{ color: colorSettingsDefault.textColor }}
+            className={cn(fontSettingsDefault.textFontSize)}
+          >
+            {store.interests.join(", ")}
+          </p>
         </Section>
       )}
     </div>

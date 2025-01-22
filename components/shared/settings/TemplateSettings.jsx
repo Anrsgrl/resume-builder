@@ -86,7 +86,7 @@ const TemplateSettings = () => {
   };
 
   return (
-    <div className="my-4 text-center flex flex-col xs:flex-row items-center justify-center gap-1 sticky top-0 lg:left-2/4 print:hidden">
+    <div className="my-4 text-center flex flex-col xs:flex-row items-center justify-center gap-1 sticky top-0 lg:left-2/4 print:hidden z-[99]">
       <Button
         onClick={handlePrint}
         className={`bg-sky-800 border-2 border-sky-700 text-white hover:bg-sky-800/90 block`}

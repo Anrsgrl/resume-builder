@@ -77,7 +77,7 @@ const Menu = ({
       {dropdownOpen && (
         <div
           className={cn(
-            "absolute right-0 z-[55] mt-2 w-56 origin-top-right rounded-md bg-zinc-800 border-2 border-zinc-700 text-white ring-1 ring-black/5 focus:outline-none flex flex-col p-1",
+            "absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-zinc-800 border-2 border-zinc-700 text-white ring-1 ring-black/5 focus:outline-none flex flex-col p-1",
             className__children
           )}
           role="menu"
