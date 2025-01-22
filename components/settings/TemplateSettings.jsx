@@ -10,10 +10,11 @@ import ColorMenu from "@/components/settings/ColorMenu";
 import SectionMenu from "@/components/settings/SectionMenu";
 import FontMenu from "@/components/settings/FontMenu";
 import { MdSaveAlt } from "react-icons/md";
-import Settings from "./Settings";
 import { FaPaintBrush } from "react-icons/fa";
 import { RiSettings3Fill } from "react-icons/ri";
-import JSONMenu from "./JSONMenu";
+import Settings from "@/components/settings/Settings";
+import JSONMenu from "@/components/settings/JSONMenu";
+import MarginMenu from "@/components/settings/MarginMenu";
 
 const TemplateSettings = () => {
   const { template, setTemplate } = useTemplateStore();
@@ -119,6 +120,7 @@ const TemplateSettings = () => {
                   reset={() => resetFonts(true)}
                 />
               ),
+              margin: <MarginMenu setTabMenu={setTabMenu} />,
             }[tabMenu || "main"]
           }
         </Menu>

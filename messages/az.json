@@ -145,6 +145,9 @@
     },
     "Template": {
       "or": "və ya",
+      "select": "Seç",
+      "section": "Bölüm",
+      "margin": "Məsafə",
       "clean": "Bütün məlumatları sil",
       "sample": "Test məlumatı əlavə et",
       "jsonExport": "JSON olaraq saxla",
@@ -187,7 +190,12 @@
       "align": "Düzülüş",
       "resetFont": "Font ayarlarını sıfırla",
       "resetColor": "Rəng ayarlarını sıfırla",
-      "resetSection": "Bölüm ayarlarını sıfırla"
+      "resetSection": "Bölüm ayarlarını sıfırla",
+      "custom": "Xüsusi məsafə",
+      "customAdd": "Xüsusi məsafə əlavə et",
+      "customError": "Zəhmət olmasa bölümü və məsafəni seçin",
+      "customSuccess": "Xüsusi məsafə uğurla əlavə edildi!",
+      "customReset": "Ləğv et"
     },
     "Footer": {
       "starOnGitHub": "GitHub-da Ulduzla",

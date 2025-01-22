@@ -26,7 +26,7 @@ const Section = ({
 }) => {
   return (
     <section
-      id={id}
+      id={`template1-${id}`}
       className={cn(
         "flex items-center justify-center flex-col gap-2 text-center w-full px-8",
         space

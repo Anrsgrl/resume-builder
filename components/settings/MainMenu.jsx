@@ -50,6 +50,14 @@ const MainMenu = ({ setTabMenu, reset }) => {
         {t("settingFont")}
         <MdKeyboardArrowRight />
       </button>
+      <button
+        type="button"
+        onClick={() => setTabMenu("margin")}
+        className="menu-item w-full font-normal"
+      >
+        {t("custom")}
+        <MdKeyboardArrowRight />
+      </button>
 
       <button onClick={reset} type="button" className="menu-item text-red-400 ">
         {t("reset")}

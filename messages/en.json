@@ -143,6 +143,9 @@
     },
     "Template": {
         "or": "or",
+        "select": "Select",
+        "section": "Section",
+        "margin": "Margin",
         "clean": "Clear all data",
         "sample": "Add sample data",
         "error": "Something went wrong...",
@@ -185,7 +188,12 @@
         "align": "Align",
         "resetFont": "Reset font settings",
         "resetColor": "Reset color settings",
-        "resetSection": "Reset section settings"
+        "resetSection": "Reset section settings",
+        "custom": "Custom margin",
+        "customAdd": "Add custom margin",
+        "customError": "Please select section and margin",
+        "customSuccess": "Custom margin successfully added!",
+        "customReset": "Reset custom margin"
     },
     "Footer": {
         "starOnGitHub": "Star on GitHub",
