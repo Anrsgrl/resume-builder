@@ -42,7 +42,7 @@ const Example = ({ children, index, state, title, edit, remove, up, down }) => {
             <button
               type="button"
               onClick={() => edit(index)}
-              className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all w-full font-normal text-blue-400"
+              className="menu-item w-full font-normal text-blue-400"
             >
               {t("edit")}
               <FaEdit />
@@ -50,7 +50,7 @@ const Example = ({ children, index, state, title, edit, remove, up, down }) => {
             <button
               type="button"
               onClick={() => remove(index)}
-              className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all w-full font-normal text-red-400"
+              className="menu-item w-full font-normal text-red-400"
             >
               {t("remove")}
               <FaTrash />

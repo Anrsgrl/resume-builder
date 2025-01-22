@@ -73,10 +73,7 @@ const SectionMenu = ({ setTabMenu, reset }) => {
         <MdKeyboardArrowLeft /> {t("back")}
       </button>
 
-      <div
-        id="image-size"
-        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all"
-      >
+      <div id="image-size" className="menu-item">
         {t("imageSize")}
         <Select
           label={`image-size`}
@@ -87,10 +84,7 @@ const SectionMenu = ({ setTabMenu, reset }) => {
         />
       </div>
 
-      <div
-        id="space-between"
-        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all"
-      >
+      <div id="space-between" className="menu-item">
         {t("space")}
         <Select
           label={`space-between`}
@@ -101,10 +95,7 @@ const SectionMenu = ({ setTabMenu, reset }) => {
         />
       </div>
 
-      <div
-        id="h2-align"
-        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all"
-      >
+      <div id="h2-align" className="menu-item">
         {t("h2")}
         <div className="flex items-center gap-1">
           {alignOptions.map((item, index) => (
@@ -120,10 +111,7 @@ const SectionMenu = ({ setTabMenu, reset }) => {
         </div>
       </div>
 
-      <div
-        id="title-case"
-        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all"
-      >
+      <div id="title-case" className="menu-item">
         {t("titles")}
         <div className="flex items-center gap-1">
           {caseOptions.map((item, index) => (
@@ -139,10 +127,7 @@ const SectionMenu = ({ setTabMenu, reset }) => {
         </div>
       </div>
 
-      <div
-        id="project-display"
-        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all"
-      >
+      <div id="project-display" className="menu-item">
         {t("project")}
         <div className="flex items-center gap-1">
           <button
@@ -162,11 +147,7 @@ const SectionMenu = ({ setTabMenu, reset }) => {
         </div>
       </div>
 
-      <button
-        onClick={reset}
-        type="button"
-        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all text-red-400"
-      >
+      <button onClick={reset} type="button" className="menu-item text-red-400">
         {t("resetSection")}
       </button>
     </>

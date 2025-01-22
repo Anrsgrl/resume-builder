@@ -9,7 +9,7 @@ const ColorSelect = ({ label, stateName, defaultValue }) => {
   const state = template[stateName];
 
   return (
-    <div className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all">
+    <div className="menu-item">
       {label}
       <ColorPicker
         id={stateName}
@@ -57,11 +57,7 @@ const ColorMenu = ({ setTabMenu, reset }) => {
           defaultValue={item.defaultValue}
         />
       ))}
-      <button
-        onClick={reset}
-        type="button"
-        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all text-red-400"
-      >
+      <button onClick={reset} type="button" className="menu-item text-red-400">
         {t("resetColor")}
       </button>
     </>

@@ -9,10 +9,7 @@ const FontSelect = ({ label, options, stateName, i }) => {
   const state = template[stateName];
 
   return (
-    <div
-      key={i}
-      className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all"
-    >
+    <div key={i} className="menu-item">
       {label}
       <select
         name={label}
@@ -117,11 +114,7 @@ const FontMenu = ({ setTabMenu, reset }) => {
         />
       ))}
 
-      <button
-        onClick={reset}
-        type="button"
-        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all text-red-400"
-      >
+      <button onClick={reset} type="button" className="menu-item text-red-400">
         {t("resetFont")}
       </button>
     </>

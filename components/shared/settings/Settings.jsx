@@ -40,7 +40,7 @@ const Settings = ({ setSettingTab }) => {
       <button
         type="button"
         onClick={clearResumeData}
-        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all w-full font-normal text-red-400"
+        className="menu-item w-full font-normal text-red-400"
       >
         {t("clean")}
         <TbWashDrycleanOff />
@@ -48,7 +48,7 @@ const Settings = ({ setSettingTab }) => {
       <button
         type="button"
         onClick={handleLoadSampleData}
-        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all w-full font-normal "
+        className="menu-item w-full font-normal "
       >
         {t("sample")}
         <MdOutlineAdd />
@@ -56,7 +56,7 @@ const Settings = ({ setSettingTab }) => {
       <button
         type="button"
         onClick={() => setSettingTab("export")}
-        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all w-full font-normal"
+        className="menu-item w-full font-normal"
       >
         {t("jsonExport")}
         <MdKeyboardArrowRight />
@@ -64,7 +64,7 @@ const Settings = ({ setSettingTab }) => {
       <button
         type="button"
         onClick={() => setSettingTab("import")}
-        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all w-full font-normal"
+        className="menu-item w-full font-normal"
       >
         {t("jsonImport")}
         <MdKeyboardArrowRight />

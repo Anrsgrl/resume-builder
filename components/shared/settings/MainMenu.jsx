@@ -12,13 +12,10 @@ const MainMenu = ({ setTabMenu, reset }) => {
   const t = useTranslations("Template");
   return (
     <>
-      <button
-        type="button"
-        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all text-center"
-      >
+      <button type="button" className="menu-item text-center">
         {t("change")}
       </button>
-      <div className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all w-full font-normal">
+      <div className="menu-item w-full font-normal">
         {t("name")}
         <input
           type="text"
@@ -32,7 +29,7 @@ const MainMenu = ({ setTabMenu, reset }) => {
       <button
         type="button"
         onClick={() => setTabMenu("colors")}
-        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all w-full font-normal"
+        className="menu-item w-full font-normal"
       >
         {t("settingColor")}
         <MdKeyboardArrowRight />
@@ -40,7 +37,7 @@ const MainMenu = ({ setTabMenu, reset }) => {
       <button
         type="button"
         onClick={() => setTabMenu("sections")}
-        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all w-full font-normal"
+        className="menu-item w-full font-normal"
       >
         {t("settingSection")}
         <MdKeyboardArrowRight />
@@ -48,17 +45,13 @@ const MainMenu = ({ setTabMenu, reset }) => {
       <button
         type="button"
         onClick={() => setTabMenu("fonts")}
-        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all w-full font-normal"
+        className="menu-item w-full font-normal"
       >
         {t("settingFont")}
         <MdKeyboardArrowRight />
       </button>
 
-      <button
-        onClick={reset}
-        type="button"
-        className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all text-red-400 "
-      >
+      <button onClick={reset} type="button" className="menu-item text-red-400 ">
         {t("reset")}
       </button>
     </>

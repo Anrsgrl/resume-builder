@@ -84,7 +84,7 @@ const JSONMenu = ({ setSettingTab, action }) => {
         <>
           <label
             htmlFor="importFile"
-            className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all w-full truncate font-normal"
+            className="menu-item w-full truncate font-normal"
           >
             <span className="max-w-[90%] truncate">{t("jsonImport")}</span>
             <VscJson />
@@ -122,7 +122,7 @@ const JSONMenu = ({ setSettingTab, action }) => {
           <button
             onClick={() => getResumeData(true)}
             type="button"
-            className="px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all"
+            className="menu-item"
           >
             {t("jsonExport")}
             <VscJson />

@@ -55,6 +55,9 @@ input::placeholder{
   .animation-all {
     @apply transition-all ease-in-out duration-300;
   }
+  .menu-item{
+    @apply px-4 py-2 text-sm flex items-center justify-between hover:bg-zinc-700 cursor-pointer rounded-md animation-all
+  }
 }
 
 
