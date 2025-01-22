@@ -40,9 +40,9 @@ const SectionMenu = ({ setTabMenu, reset }) => {
   const t = useTranslations("Template");
 
   const ImageSizeOptions = [
-    { value: "60", label: "60x60" },
+    { value: 60, label: "60x60" },
     { value: "", label: "80x80" },
-    { value: "100", label: "100x100" },
+    { value: 100, label: "100x100" },
   ];
 
   const spaceOptions = [
@@ -60,7 +60,7 @@ const SectionMenu = ({ setTabMenu, reset }) => {
   const caseOptions = [
     { value: "lower", icon: "aa" },
     { value: "", icon: "AA" },
-    { value: "capital", icon: "Aa" },
+    { value: "normal", icon: "Aa" },
   ];
 
   return (

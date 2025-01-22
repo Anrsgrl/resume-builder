@@ -1,10 +1,11 @@
 import React from "react";
-import { useFormattedTime } from "@/utils/helpers";
+import { cn, useFormattedTime } from "@/utils/helpers";
 import {
   LANGUAGE_OPTIONS,
   LANGUAGE_OPTIONS_AZ,
   LOCALES,
   SOCIALS,
+  uiSans,
 } from "@/utils/constants";
 import useStore from "@/store/store";
 import { useLocale, useTranslations } from "next-intl";
@@ -13,15 +14,32 @@ import { SiGithub } from "react-icons/si";
 import { MdArrowOutward } from "react-icons/md";
 import useTemplateStore from "@/store/template";
 
-const Section = ({ id, title, children, headingColor }) => {
+const Section = ({
+  id,
+  title,
+  children,
+  color,
+  align,
+  size,
+  titleCase,
+  space,
+}) => {
   return (
     <section
       id={id}
-      className={`flex items-center justify-center flex-col gap-2 text-center w-full px-8 mt-4`}
+      className={cn(
+        "flex items-center justify-center flex-col gap-2 text-center w-full px-8",
+        space
+      )}
     >
       <h2
-        style={{ color: headingColor }}
-        className={`pb-1 border-b-2 font-bold uppercase w-full text-sm xs:text-base text-center`}
+        style={{ color: color }}
+        className={cn(
+          "pb-1 border-b-2 font-bold w-full",
+          size,
+          align,
+          titleCase
+        )}
       >
         {title}
       </h2>
@@ -40,15 +58,21 @@ const Description = ({ state }) => {
   );
 };
 
+const handleFindStyle = (state, x, y, z) => {
+  const xOptions = ["small", "left", "lower", "less"];
+  const yOptions = ["large", "right", "normal", "more"];
+  if (xOptions.includes(state)) {
+    return x;
+  } else if (yOptions.includes(state)) {
+    return y;
+  } else {
+    return z;
+  }
+};
+
 const Template1 = ({}) => {
   const { store } = useStore();
-  const {
-    sectionHeadingColor,
-    headingColor,
-    hyperlinkColor,
-    projectLink,
-    fontFamily,
-  } = useTemplateStore();
+  const { template } = useTemplateStore();
   const t = useTranslations();
   const locale = useLocale();
   const LANG_OPTIONS = locale === "en" ? LANGUAGE_OPTIONS : LANGUAGE_OPTIONS_AZ;
@@ -58,21 +82,63 @@ const Template1 = ({}) => {
     [locale]
   );
 
-  const uiSans = `ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji`;
+  //* Colors
+  const colorSettingsDefault = {
+    h1Color: template.h1Color === "" ? "#000000" : template.h1Color,
+    h2Color: template.h2Color === "" ? "#000000" : template.h2Color,
+    h3Color: template.h3Color === "" ? "#0284c7" : template.h3Color,
+    textColor: template.textColor === "" ? "" : template.textColor,
+    descriptionColor:
+      template.descriptionColor === "" ? "" : template.descriptionColor,
+    hyperLinkColor:
+      template.hyperLinkColor === "" ? "" : template.hyperLinkColor,
+  };
 
-  const settingsDefault = {
-    sectionHeadingColor:
-      sectionHeadingColor === "" ? "#000000" : sectionHeadingColor,
-    headingColor: headingColor === "" ? "#000000" : headingColor,
-    hyperlinkColor: hyperlinkColor === "" ? "#0284c7" : hyperlinkColor,
-    projectLink: projectLink === "" ? "" : projectLink,
-    fontFamily: fontFamily === "" ? uiSans : fontFamily,
+  //* ↓ - ↑ - default - Fonts
+  const fontSettingsDefault = {
+    fontFamily: template.fontFamily === "" ? uiSans : template.fontFamily,
+    h1FontSize: handleFindStyle(
+      template.h1FontSize,
+      "text-sm xs:text-base",
+      "text-lg xs:text-xl",
+      "text-base xs:text-lg"
+    ),
+    h2FontSize: handleFindStyle(
+      template.h2FontSize,
+      "text-xs xs:text-sm",
+      "text-base xs:text-lg",
+      "text-sm xs:text-base"
+    ),
+  };
+
+  //* ↓ - ↑ - default - Sections
+  const sectionSettingsDefault = {
+    imageSize: template.imageSize === "" ? 80 : template.imageSize,
+    spaceBetween: handleFindStyle(
+      template.spaceBetween,
+      "mt-2",
+      "mt-6",
+      "mt-4"
+    ),
+    h2Align: handleFindStyle(
+      template.h2Align,
+      "text-left",
+      "text-right",
+      "text-center"
+    ),
+    titleCase: handleFindStyle(
+      template.titleCase,
+      "lowercase",
+      "normal-case",
+      "uppercase"
+    ),
+    projectLink: template.projectLink,
   };
 
   return (
     <div
       style={{
-        fontFamily: settingsDefault.fontFamily,
+        fontFamily: fontSettingsDefault.fontFamily,
       }}
       className="w-[240mm] min-h-[296mm] print:min-h-[296mm] bg-white my-0 mx-auto p-2 rounded overflow-x-hidden overflow-y-visible"
     >
@@ -80,13 +146,19 @@ const Template1 = ({}) => {
         {store.image && (
           <Image
             src={store.image}
-            height={80}
-            width={80}
+            height={sectionSettingsDefault.imageSize}
+            width={sectionSettingsDefault.imageSize}
             alt={t("Personal.title")}
             className="rounded-full"
           />
         )}
-        <h1 className="text-base xs:text-lg whitespace-nowrap w-full uppercase font-bold">
+        <h1
+          style={{ color: colorSettingsDefault.h1Color }}
+          className={cn(
+            "whitespace-nowrap w-full uppercase font-bold",
+            fontSettingsDefault.h1FontSize
+          )}
+        >
           {store.general.name} {store.general.surname}
         </h1>
         <p className="text-xs xs:text-sm">
@@ -100,7 +172,7 @@ const Template1 = ({}) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 href={`mailto:${store.general.email}`}
-                style={{ color: settingsDefault.hyperlinkColor }}
+                style={{ color: colorSettingsDefault.hyperLinkColor }}
               >
                 {store.general.email}
               </a>
@@ -116,7 +188,7 @@ const Template1 = ({}) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 href={`tel:${store.general.phone}`}
-                style={{ color: settingsDefault.hyperlinkColor }}
+                style={{ color: colorSettingsDefault.hyperLinkColor }}
               >
                 {store.general.phone}
               </a>
@@ -128,7 +200,11 @@ const Template1 = ({}) => {
         <Section
           id="summary"
           title={t("Personal.summary")}
-          headingColor={settingsDefault.sectionHeadingColor}
+          color={colorSettingsDefault.h2Color}
+          size={fontSettingsDefault.h2FontSize}
+          align={sectionSettingsDefault.h2Align}
+          titleCase={sectionSettingsDefault.titleCase}
+          space={sectionSettingsDefault.spaceBetween}
         >
           <p
             dangerouslySetInnerHTML={{ __html: store.summary }}
@@ -140,7 +216,11 @@ const Template1 = ({}) => {
         <Section
           id="socials"
           title={t("Social.title")}
-          headingColor={settingsDefault.sectionHeadingColor}
+          color={colorSettingsDefault.h2Color}
+          size={fontSettingsDefault.h2FontSize}
+          align={sectionSettingsDefault.h2Align}
+          titleCase={sectionSettingsDefault.titleCase}
+          space={sectionSettingsDefault.spaceBetween}
         >
           <div className="flex items-center justify-center flex-wrap gap-4">
             {Object.keys(store.socialLinks).map((key) => {
@@ -170,9 +250,9 @@ const Template1 = ({}) => {
                   >
                     <span
                       style={{
-                        color: !settingsDefault.hyperlinkColor
+                        color: !colorSettingsDefault.hyperLinkColor
                           ? "#0ea5e9"
-                          : settingsDefault.hyperlinkColor,
+                          : colorSettingsDefault.hyperLinkColor,
                       }}
                     >
                       {social.logo}
@@ -190,14 +270,18 @@ const Template1 = ({}) => {
         <Section
           id="experience"
           title={t("Experience.title")}
-          headingColor={settingsDefault.sectionHeadingColor}
+          color={colorSettingsDefault.h2Color}
+          size={fontSettingsDefault.h2FontSize}
+          align={sectionSettingsDefault.h2Align}
+          titleCase={sectionSettingsDefault.titleCase}
+          space={sectionSettingsDefault.spaceBetween}
         >
           {store.experience.map((exp, index) => (
             <div key={index} className="flex flex-col w-full mb-2">
               <div className="flex items-center justify-between w-full">
                 <h3
                   className="font-semibold"
-                  style={{ color: settingsDefault.headingColor }}
+                  style={{ color: colorSettingsDefault.color }}
                 >
                   {exp.jobTitle}
                 </h3>
@@ -220,14 +304,18 @@ const Template1 = ({}) => {
         <Section
           id="education"
           title={t("Education.title")}
-          headingColor={settingsDefault.sectionHeadingColor}
+          color={colorSettingsDefault.h2Color}
+          size={fontSettingsDefault.h2FontSize}
+          align={sectionSettingsDefault.h2Align}
+          titleCase={sectionSettingsDefault.titleCase}
+          space={sectionSettingsDefault.spaceBetween}
         >
           {store.education.map((edu, index) => (
             <div key={index} className="flex flex-col w-full mb-2">
               <div className="flex items-center justify-between w-full">
                 <h3
                   className="font-semibold"
-                  style={{ color: settingsDefault.headingColor }}
+                  style={{ color: colorSettingsDefault.color }}
                 >
                   {edu.degree} {locale === "en" ? "of" : "-"} {edu.fieldOfStudy}
                 </h3>
@@ -250,7 +338,11 @@ const Template1 = ({}) => {
         <Section
           id="skills"
           title={t("Skills.title")}
-          headingColor={settingsDefault.sectionHeadingColor}
+          color={colorSettingsDefault.h2Color}
+          size={fontSettingsDefault.h2FontSize}
+          align={sectionSettingsDefault.h2Align}
+          titleCase={sectionSettingsDefault.titleCase}
+          space={sectionSettingsDefault.spaceBetween}
         >
           <p className="text-center">{store.skills.join(", ")}</p>
         </Section>
@@ -259,7 +351,11 @@ const Template1 = ({}) => {
         <Section
           id="projects"
           title={t("Projects.title")}
-          headingColor={settingsDefault.sectionHeadingColor}
+          color={colorSettingsDefault.h2Color}
+          size={fontSettingsDefault.h2FontSize}
+          align={sectionSettingsDefault.h2Align}
+          titleCase={sectionSettingsDefault.titleCase}
+          space={sectionSettingsDefault.spaceBetween}
         >
           <div className="flex flex-col gap-4 w-full">
             {store.projects.map((project, index) => (
@@ -267,7 +363,7 @@ const Template1 = ({}) => {
                 <div className="flex items-center justify-between w-full">
                   <h3
                     className="font-semibold"
-                    style={{ color: settingsDefault.headingColor }}
+                    style={{ color: colorSettingsDefault.hyperLinkColor }}
                   >
                     {project.title}
                   </h3>
@@ -280,9 +376,9 @@ const Template1 = ({}) => {
                           "https://",
                           ""
                         )}`}
-                        style={{ color: settingsDefault.hyperlinkColor }}
+                        style={{ color: colorSettingsDefault.hyperLinkColor }}
                       >
-                        {settingsDefault.projectLink === "icon" ? (
+                        {sectionSettingsDefault.projectLink === "icon" ? (
                           <MdArrowOutward />
                         ) : (
                           t("Projects.live")
@@ -290,7 +386,7 @@ const Template1 = ({}) => {
                       </a>
                     )}
                     {project.liveLink && project.githubLink && (
-                      <span className="mx-2 opacity-75">|</span>
+                      <span className="mx-2 opacity-50">|</span>
                     )}
                     {project.githubLink && (
                       <a
@@ -300,9 +396,9 @@ const Template1 = ({}) => {
                           "https://",
                           ""
                         )}`}
-                        style={{ color: settingsDefault.hyperlinkColor }}
+                        style={{ color: colorSettingsDefault.hyperLinkColor }}
                       >
-                        {settingsDefault.projectLink === "icon" ? (
+                        {sectionSettingsDefault.projectLink === "icon" ? (
                           <SiGithub />
                         ) : (
                           t("Projects.github")
@@ -329,14 +425,18 @@ const Template1 = ({}) => {
         <Section
           id="certificates"
           title={t("Certificates.title")}
-          headingColor={settingsDefault.sectionHeadingColor}
+          color={colorSettingsDefault.h2Color}
+          size={fontSettingsDefault.h2FontSize}
+          align={sectionSettingsDefault.h2Align}
+          titleCase={sectionSettingsDefault.titleCase}
+          space={sectionSettingsDefault.spaceBetween}
         >
           {store.certificates.map((certificate, index) => (
             <div key={index} className="flex flex-col w-full mb-2">
               <div className="flex items-center justify-between w-full">
                 <h3
                   className="font-semibold"
-                  style={{ color: settingsDefault.headingColor }}
+                  style={{ color: colorSettingsDefault.color }}
                 >
                   {certificate.title}
                 </h3>
@@ -353,14 +453,18 @@ const Template1 = ({}) => {
         <Section
           id="references"
           title={t("References.title")}
-          headingColor={settingsDefault.sectionHeadingColor}
+          color={colorSettingsDefault.h2Color}
+          size={fontSettingsDefault.h2FontSize}
+          align={sectionSettingsDefault.h2Align}
+          titleCase={sectionSettingsDefault.titleCase}
+          space={sectionSettingsDefault.spaceBetween}
         >
           {store.references.map((ref, index) => (
             <div key={index} className="flex flex-col w-full mb-2">
               <div className="flex items-center justify-between w-full">
                 <h3
                   className="font-semibold"
-                  style={{ color: settingsDefault.headingColor }}
+                  style={{ color: colorSettingsDefault.color }}
                 >
                   {ref.name} - {ref.company}
                 </h3>
@@ -398,14 +502,18 @@ const Template1 = ({}) => {
         <Section
           id="languages"
           title={t("Languages.title")}
-          headingColor={settingsDefault.sectionHeadingColor}
+          color={colorSettingsDefault.h2Color}
+          size={fontSettingsDefault.h2FontSize}
+          align={sectionSettingsDefault.h2Align}
+          titleCase={sectionSettingsDefault.titleCase}
+          space={sectionSettingsDefault.spaceBetween}
         >
           {store.languages.map((lang, index) => (
             <div key={index} className="flex flex-col w-full mb-2">
               <div className="flex items-center justify-between w-full">
                 <h3
                   className="font-semibold"
-                  style={{ color: settingsDefault.headingColor }}
+                  style={{ color: colorSettingsDefault.color }}
                 >
                   {lang.language}
                 </h3>
@@ -421,7 +529,11 @@ const Template1 = ({}) => {
         <Section
           id="interests"
           title={t("Interests.title")}
-          headingColor={settingsDefault.sectionHeadingColor}
+          color={colorSettingsDefault.h2Color}
+          size={fontSettingsDefault.h2FontSize}
+          align={sectionSettingsDefault.h2Align}
+          titleCase={sectionSettingsDefault.titleCase}
+          space={sectionSettingsDefault.spaceBetween}
         >
           <p>{store.interests.join(", ")}</p>
         </Section>
