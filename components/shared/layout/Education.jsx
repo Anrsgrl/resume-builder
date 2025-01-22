@@ -86,6 +86,18 @@ const Education = () => {
       endDate: educationItem.endDate,
       description: educationItem.description,
     });
+    // Temporary solution
+    setTimeout(() => {
+      setNewEducation({
+        institution: educationItem.institution,
+        city: educationItem.city,
+        degree: educationItem.degree,
+        fieldOfStudy: educationItem.fieldOfStudy,
+        startDate: educationItem.startDate,
+        endDate: educationItem.endDate,
+        description: educationItem.description,
+      });
+    }, [200]);
   };
 
   const handleCloseEdit = () => {
