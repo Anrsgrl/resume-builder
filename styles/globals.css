@@ -60,14 +60,6 @@ input::placeholder{
   }
 }
 
-
-@media print {
-  #cv-preview {
-    width: 100%;
-    margin: 0 auto;
-    box-shadow: none;
-  }
-}
-#cv-preview {
-  page-break-inside: avoid;
+.reactEasyCrop_CropArea{
+  border-radius: 50%;
 }

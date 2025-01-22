@@ -33,7 +33,8 @@
         "country": "Country",
         "city": "City",
         "summary": "Summary",
-        "home": "Home"
+        "home": "Home",
+        "remove": "Are you sure you want to delete image?"
     },
     "Social": {
         "title": "Social"
