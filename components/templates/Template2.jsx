@@ -1,12 +1,6 @@
 import React from "react";
 import { cn, useFormattedTime } from "@/utils/helpers";
-import {
-  LANGUAGE_OPTIONS,
-  LANGUAGE_OPTIONS_AZ,
-  LOCALES,
-  SOCIALS,
-  uiSans,
-} from "@/utils/constants";
+import { LOCALES, SOCIALS, uiSans } from "@/utils/constants";
 import useStore from "@/store/store";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
@@ -26,7 +20,7 @@ const Section = ({
 }) => {
   return (
     <section
-      id={`template2-${id}`}
+      id={`template1-${id}`}
       className={cn(
         "flex items-center justify-center flex-col gap-2 text-center w-full px-8",
         space
@@ -71,12 +65,11 @@ const handleFindStyle = (state, x, y, z) => {
   }
 };
 
-const Template2 = ({}) => {
+const Template1 = ({}) => {
   const { store } = useStore();
   const { template } = useTemplateStore();
   const t = useTranslations();
   const locale = useLocale();
-  const LANG_OPTIONS = locale === "en" ? LANGUAGE_OPTIONS : LANGUAGE_OPTIONS_AZ;
 
   const localeIso = React.useMemo(
     () => LOCALES.find((lang) => lang.value === locale)?.iso || "en-US",
@@ -149,7 +142,7 @@ const Template2 = ({}) => {
       template.align,
       "text-left",
       "text-right",
-      "text-center"
+      "text-left"
     ),
     titleCase: handleFindStyle(
       template.titleCase,
@@ -167,69 +160,81 @@ const Template2 = ({}) => {
       }}
       className="w-[240mm] min-h-[286mm] bg-white my-0 mx-auto p-2 rounded overflow-x-hidden overflow-y-visible"
     >
-      <div className="flex flex-col items-center justify-between w-full text-center px-8">
+      <div className="flex items-center gap-1">
         {store.image && (
           <Image
             src={store.image}
             height={sectionSettingsDefault.imageSize}
             width={sectionSettingsDefault.imageSize}
             alt={t("Personal.title")}
-            className="rounded-full"
+            className="rounded-full ms-8"
           />
         )}
-        <h1
-          style={{ color: colorSettingsDefault.h1Color }}
-          className={cn(
-            "whitespace-nowrap w-full uppercase font-bold",
-            sectionSettingsDefault.align,
-            fontSettingsDefault.h1FontSize
-          )}
-        >
-          {store.general.name} {store.general.surname}
-        </h1>
-        <p
-          style={{ color: colorSettingsDefault.textColor }}
-          className={cn(
-            "w-full mt-1",
-            fontSettingsDefault.textFontSize,
-            sectionSettingsDefault.align
-          )}
-        >
-          {store.general.city && store.general.city}
-          {store.general.country &&
-            `${store.general.city && ", "} ${store.general.country}`}
-          {store.general.email && (
-            <>
-              {(store.general.city || store.general.country) && " • "}
-              <a
-                className={cn(fontSettingsDefault.hyperLinkFontSize)}
-                style={{ color: colorSettingsDefault.hyperLinkColor }}
-                target="_blank"
-                rel="noopener noreferrer"
-                href={`mailto:${store.general.email}`}
-              >
-                {store.general.email}
-              </a>
-            </>
-          )}
-          {store.general.phone && (
-            <>
-              {(store.general.city ||
-                store.general.country ||
-                store.general.email) &&
-                " • "}
-              <a
-                className={cn(fontSettingsDefault.hyperLinkFontSize)}
-                style={{ color: colorSettingsDefault.hyperLinkColor }}
-                target="_blank"
-                rel="noopener noreferrer"
-                href={`tel:${store.general.phone}`}
-              >
-                {store.general.phone}
-              </a>
-            </>
-          )}
-        </p>
+        <div className="flex flex-col items-center w-full text-center px-8">
+          <h1
+            style={{ color: colorSettingsDefault.h1Color }}
+            className={cn(
+              "whitespace-nowrap w-full uppercase font-bold",
+              sectionSettingsDefault.align,
+              fontSettingsDefault.h1FontSize
+            )}
+          >
+            {store.general.name} {store.general.surname}
+          </h1>
+          <h2
+            style={{ color: colorSettingsDefault.h2Color }}
+            className={cn(
+              "whitespace-nowrap w-full font-semibold",
+              sectionSettingsDefault.align,
+              fontSettingsDefault.h2FontSize
+            )}
+          >
+            {store.general.jobTitle}
+          </h2>
+          <p
+            style={{ color: colorSettingsDefault.textColor }}
+            className={cn(
+              "w-full mt-1",
+              fontSettingsDefault.textFontSize,
+              sectionSettingsDefault.align
+            )}
+          >
+            {store.general.city && store.general.city}
+            {store.general.country &&
+              `${store.general.city && ", "} ${store.general.country}`}
+            {store.general.email && (
+              <>
+                {(store.general.city || store.general.country) && " • "}
+                <a
+                  className={cn(fontSettingsDefault.hyperLinkFontSize)}
+                  style={{ color: colorSettingsDefault.hyperLinkColor }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={`mailto:${store.general.email}`}
+                >
+                  {store.general.email}
+                </a>
+              </>
+            )}
+            {store.general.phone && (
+              <>
+                {(store.general.city ||
+                  store.general.country ||
+                  store.general.email) &&
+                  " • "}
+                <a
+                  className={cn(fontSettingsDefault.hyperLinkFontSize)}
+                  style={{ color: colorSettingsDefault.hyperLinkColor }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={`tel:${store.general.phone}`}
+                >
+                  {store.general.phone}
+                </a>
+              </>
+            )}
+          </p>
+        </div>
       </div>
       {store.summary !== "" && store.summary !== "<p><br></p>" && (
         <Section
@@ -251,435 +256,463 @@ const Template2 = ({}) => {
           ></p>
         </Section>
       )}
-      {Object.values(store.socialLinks || {}).some((link) => link) && (
-        <Section
-          id="socials"
-          title={t("Social.title")}
-          color={colorSettingsDefault.h2Color}
-          size={fontSettingsDefault.h2FontSize}
-          align={sectionSettingsDefault.align}
-          titleCase={sectionSettingsDefault.titleCase}
-          space={sectionSettingsDefault.spaceBetween}
-        >
-          <div
-            className={`flex items-center flex-wrap gap-4 w-full ${
-              template.align === "left"
-                ? "justify-start"
-                : template.align === "right"
-                ? "justify-end"
-                : "justify-center"
-            }`}
-          >
-            {Object.keys(store.socialLinks).map((key) => {
-              const social = SOCIALS.find((e) => e.name.toLowerCase() === key);
-              if (social && store.socialLinks[key]) {
-                const rawPart = store.socialLinks[key];
-                const url =
-                  rawPart.startsWith("http://") ||
-                  rawPart.startsWith("https://")
-                    ? rawPart
-                    : `https://${rawPart}`;
-                const username = url
-                  .replace(
-                    /^https?:\/\/(?:www\.)?(?:linkedin\.com\/in\/|github\.com\/|twitter\.com\/|facebook\.com\/|instagram\.com\/|xing\.com\/|medium\.com\/)(.*)$/,
-                    "$1"
-                  )
-                  .replace(/^(https?:\/\/)?(www\.)?/, "")
-                  .replace(/\/$/, "");
+      <div className="grid grid-cols-[30%_70%] gap-4 mt-4">
+        <div className="flex flex-col">
+          {Object.values(store.socialLinks || {}).some((link) => link) && (
+            <Section
+              id="socials"
+              title={t("Social.title")}
+              color={colorSettingsDefault.h2Color}
+              size={fontSettingsDefault.h2FontSize}
+              align={sectionSettingsDefault.align}
+              titleCase={sectionSettingsDefault.titleCase}
+              space={sectionSettingsDefault.spaceBetween}
+            >
+              <div
+                className={`flex items-center flex-wrap gap-4 w-full ${
+                  template.align === "left"
+                    ? "justify-start"
+                    : template.align === "right"
+                    ? "justify-end"
+                    : "justify-center"
+                }`}
+              >
+                {Object.keys(store.socialLinks).map((key) => {
+                  const social = SOCIALS.find(
+                    (e) => e.name.toLowerCase() === key
+                  );
+                  if (social && store.socialLinks[key]) {
+                    const rawPart = store.socialLinks[key];
+                    const url =
+                      rawPart.startsWith("http://") ||
+                      rawPart.startsWith("https://")
+                        ? rawPart
+                        : `https://${rawPart}`;
+                    const username = url
+                      .replace(
+                        /^https?:\/\/(?:www\.)?(?:linkedin\.com\/in\/|github\.com\/|twitter\.com\/|facebook\.com\/|instagram\.com\/|xing\.com\/|medium\.com\/)(.*)$/,
+                        "$1"
+                      )
+                      .replace(/^(https?:\/\/)?(www\.)?/, "")
+                      .replace(/\/$/, "");
 
-                return (
-                  <a
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    key={key}
-                    className={cn(
-                      "flex items-center gap-1",
-                      fontSettingsDefault.hyperLinkFontSize
-                    )}
+                    return (
+                      <a
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        key={key}
+                        className={cn(
+                          "flex items-center gap-1",
+                          fontSettingsDefault.hyperLinkFontSize
+                        )}
+                      >
+                        <span
+                          style={{ color: colorSettingsDefault.hyperLinkColor }}
+                        >
+                          {social.logo}
+                        </span>
+                        <span>{username}</span>
+                      </a>
+                    );
+                  }
+                  return null;
+                })}
+              </div>
+            </Section>
+          )}
+
+          {store.skills?.length > 0 && (
+            <Section
+              id="skills"
+              title={t("Skills.title")}
+              color={colorSettingsDefault.h2Color}
+              size={fontSettingsDefault.h2FontSize}
+              align={sectionSettingsDefault.align}
+              titleCase={sectionSettingsDefault.titleCase}
+              space={sectionSettingsDefault.spaceBetween}
+            >
+              <p
+                style={{ color: colorSettingsDefault.textColor }}
+                className={cn(
+                  "w-full flex flex-wrap gap-1",
+                  fontSettingsDefault.textFontSize,
+                  sectionSettingsDefault.align
+                )}
+              >
+                {store.skills?.map((e) => (
+                  <span
+                    style={{
+                      backgroundColor: colorSettingsDefault.hyperLinkColor,
+                    }}
+                    className="px-2 py-1 rounded-md text-white block"
                   >
-                    <span
-                      style={{ color: colorSettingsDefault.hyperLinkColor }}
+                    {e}
+                  </span>
+                ))}
+              </p>
+            </Section>
+          )}
+          {store.references?.length > 0 && (
+            <Section
+              id="references"
+              title={t("References.title")}
+              color={colorSettingsDefault.h2Color}
+              size={fontSettingsDefault.h2FontSize}
+              align={sectionSettingsDefault.align}
+              titleCase={sectionSettingsDefault.titleCase}
+              space={sectionSettingsDefault.spaceBetween}
+            >
+              {store.references.map((ref, index) => (
+                <div key={index} className="flex flex-col w-full mb-2">
+                  <div className="flex flex-col w-full">
+                    <h3
+                      className={cn(
+                        "font-semibold flex flex-col items-start",
+                        fontSettingsDefault.h3FontSize
+                      )}
+                      style={{ color: colorSettingsDefault.h3Color }}
                     >
-                      {social.logo}
-                    </span>
-                    <span>{username}</span>
-                  </a>
-                );
-              }
-              return null;
-            })}
-          </div>
-        </Section>
-      )}
-      {store.experience?.length > 0 && (
-        <Section
-          id="experience"
-          title={t("Experience.title")}
-          color={colorSettingsDefault.h2Color}
-          size={fontSettingsDefault.h2FontSize}
-          align={sectionSettingsDefault.align}
-          titleCase={sectionSettingsDefault.titleCase}
-          space={sectionSettingsDefault.spaceBetween}
-        >
-          {store.experience.map((exp, index) => (
-            <div key={index} className="flex flex-col w-full mb-2">
-              <div className="flex items-center justify-between w-full">
-                <h3
-                  className={cn(
-                    "font-semibold",
-                    fontSettingsDefault.h3FontSize
-                  )}
-                  style={{ color: colorSettingsDefault.h3Color }}
-                >
-                  {exp.jobTitle}
-                </h3>
-                <p
-                  style={{ color: colorSettingsDefault.textColor }}
-                  className={cn(fontSettingsDefault.textFontSize)}
-                >
-                  {useFormattedTime(exp.startDate, localeIso)} -{" "}
-                  {exp.endDate
-                    ? useFormattedTime(exp.endDate, localeIso)
-                    : t("General.present")}
-                </p>
-              </div>
-              <h4
-                style={{ color: colorSettingsDefault.textColor }}
-                className={cn(
-                  "font-normal me-auto",
-                  fontSettingsDefault.h3FontSize
-                )}
-              >
-                {exp.company}, {exp.city}
-              </h4>
-              <Description
-                color={colorSettingsDefault.descriptionColor}
-                size={fontSettingsDefault.descriptionFontSize}
-                state={exp.description}
-              />
-            </div>
-          ))}
-        </Section>
-      )}
-      {store.education?.length > 0 && (
-        <Section
-          id="education"
-          title={t("Education.title")}
-          color={colorSettingsDefault.h2Color}
-          size={fontSettingsDefault.h2FontSize}
-          align={sectionSettingsDefault.align}
-          titleCase={sectionSettingsDefault.titleCase}
-          space={sectionSettingsDefault.spaceBetween}
-        >
-          {store.education.map((edu, index) => (
-            <div key={index} className="flex flex-col w-full mb-2">
-              <div className="flex items-center justify-between w-full">
-                <h3
-                  className={cn(
-                    "font-semibold",
-                    fontSettingsDefault.h3FontSize
-                  )}
-                  style={{ color: colorSettingsDefault.h3Color }}
-                >
-                  {edu.degree} {locale === "en" ? "of" : "-"} {edu.fieldOfStudy}
-                </h3>
-                <p
-                  style={{ color: colorSettingsDefault.textColor }}
-                  className={cn(fontSettingsDefault.textFontSize)}
-                >
-                  {useFormattedTime(edu.startDate, localeIso)} -{" "}
-                  {edu.endDate
-                    ? useFormattedTime(edu.endDate, localeIso)
-                    : t("General.present")}
-                </p>
-              </div>
-              <h4
-                style={{ color: colorSettingsDefault.textColor }}
-                className={cn(
-                  "font-normal me-auto",
-                  fontSettingsDefault.h3FontSize
-                )}
-              >
-                {edu.institution}, {edu.city}
-              </h4>
-              <Description
-                color={colorSettingsDefault.descriptionColor}
-                size={fontSettingsDefault.descriptionFontSize}
-                state={edu.description}
-              />
-            </div>
-          ))}
-        </Section>
-      )}
-      {store.skills?.length > 0 && (
-        <Section
-          id="skills"
-          title={t("Skills.title")}
-          color={colorSettingsDefault.h2Color}
-          size={fontSettingsDefault.h2FontSize}
-          align={sectionSettingsDefault.align}
-          titleCase={sectionSettingsDefault.titleCase}
-          space={sectionSettingsDefault.spaceBetween}
-        >
-          <p
-            style={{ color: colorSettingsDefault.textColor }}
-            className={cn(
-              "w-full",
-              fontSettingsDefault.textFontSize,
-              sectionSettingsDefault.align
-            )}
-          >
-            {store.skills.join(", ")}
-          </p>
-        </Section>
-      )}
-      {store.projects?.length > 0 && (
-        <Section
-          id="projects"
-          title={t("Projects.title")}
-          color={colorSettingsDefault.h2Color}
-          size={fontSettingsDefault.h2FontSize}
-          align={sectionSettingsDefault.align}
-          titleCase={sectionSettingsDefault.titleCase}
-          space={sectionSettingsDefault.spaceBetween}
-        >
-          <div className="flex flex-col gap-4 w-full">
-            {store.projects.map((project, index) => (
-              <div key={index} className="flex flex-col w-full">
-                <div className="flex items-center justify-between w-full">
-                  <h3
-                    className={cn(
-                      "font-semibold",
-                      fontSettingsDefault.h3FontSize
-                    )}
-                    style={{ color: colorSettingsDefault.h3Color }}
-                  >
-                    {project.title}
-                  </h3>
-                  <div className="flex items-center gap-1">
-                    {project.liveLink && (
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href={`https://${project.liveLink?.replace(
-                          "https://",
-                          ""
-                        )}`}
-                        className={cn(fontSettingsDefault.hyperLinkFontSize)}
-                        style={{ color: colorSettingsDefault.hyperLinkColor }}
-                      >
-                        {sectionSettingsDefault.projectLink === "icon" ? (
-                          <MdArrowOutward />
-                        ) : (
-                          t("Projects.live")
-                        )}
-                      </a>
-                    )}
-                    {project.liveLink && project.githubLink && (
-                      <span className="mx-2 opacity-50">|</span>
-                    )}
-                    {project.githubLink && (
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href={`https://${project.githubLink?.replace(
-                          "https://",
-                          ""
-                        )}`}
-                        className={cn(fontSettingsDefault.hyperLinkFontSize)}
-                        style={{ color: colorSettingsDefault.hyperLinkColor }}
-                      >
-                        {sectionSettingsDefault.projectLink === "icon" ? (
-                          <SiGithub />
-                        ) : (
-                          t("Projects.github")
-                        )}
-                      </a>
-                    )}
+                      <span>{ref.name}</span>
+                      <span className="whitespace-nowrap">{ref.company}</span>
+                    </h3>
+                    <div
+                      className={cn(
+                        "flex flex-col items-start",
+                        fontSettingsDefault.textFontSize
+                      )}
+                    >
+                      {ref.email && (
+                        <a
+                          className={cn(fontSettingsDefault.hyperLinkFontSize)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href={`mailto:${ref.email}`}
+                          style={{ color: colorSettingsDefault.hyperLinkColor }}
+                        >
+                          {ref.email}
+                        </a>
+                      )}
+                      {ref.phone && (
+                        <a
+                          className={cn(fontSettingsDefault.hyperLinkFontSize)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href={`tel:${ref.phone}`}
+                          style={{ color: colorSettingsDefault.hyperLinkColor }}
+                        >
+                          {ref.phone}
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
-                {project?.technologies?.length > 0 && (
-                  <p
+              ))}
+            </Section>
+          )}
+          {store.languages?.length > 0 && (
+            <Section
+              id="languages"
+              title={t("Languages.title")}
+              color={colorSettingsDefault.h2Color}
+              size={fontSettingsDefault.h2FontSize}
+              align={sectionSettingsDefault.align}
+              titleCase={sectionSettingsDefault.titleCase}
+              space={sectionSettingsDefault.spaceBetween}
+            >
+              {store.languages.map((lang, index) => (
+                <div key={index} className="flex flex-col w-full mb-2">
+                  <div className="flex flex-col w-full text-left">
+                    <h3
+                      className={cn(
+                        "font-semibold",
+                        fontSettingsDefault.h3FontSize
+                      )}
+                      style={{ color: colorSettingsDefault.h3Color }}
+                    >
+                      {lang.language}
+                    </h3>
+                    <p
+                      style={{ color: colorSettingsDefault.textColor }}
+                      className={cn(
+                        "whitespace-nowrap",
+                        fontSettingsDefault.textFontSize
+                      )}
+                    >
+                      {t(`Languages.${lang.level}`)}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </Section>
+          )}
+          {store.interests?.length > 0 && (
+            <Section
+              id="interests"
+              title={t("Interests.title")}
+              color={colorSettingsDefault.h2Color}
+              size={fontSettingsDefault.h2FontSize}
+              align={sectionSettingsDefault.align}
+              titleCase={sectionSettingsDefault.titleCase}
+              space={sectionSettingsDefault.spaceBetween}
+            >
+              <p
+                style={{ color: colorSettingsDefault.textColor }}
+                className={cn(
+                  "w-full",
+                  fontSettingsDefault.textFontSize,
+                  sectionSettingsDefault.align
+                )}
+              >
+                {store.interests.join(", ")}
+              </p>
+            </Section>
+          )}
+        </div>
+        <div className="flex flex-col">
+          {store.experience?.length > 0 && (
+            <Section
+              id="experience"
+              title={t("Experience.title")}
+              color={colorSettingsDefault.h2Color}
+              size={fontSettingsDefault.h2FontSize}
+              align={sectionSettingsDefault.align}
+              titleCase={sectionSettingsDefault.titleCase}
+              space={sectionSettingsDefault.spaceBetween}
+            >
+              {store.experience.map((exp, index) => (
+                <div key={index} className="flex flex-col w-full mb-2">
+                  <div className="flex items-center justify-between w-full">
+                    <h3
+                      className={cn(
+                        "font-semibold",
+                        fontSettingsDefault.h3FontSize
+                      )}
+                      style={{ color: colorSettingsDefault.h3Color }}
+                    >
+                      {exp.jobTitle}
+                    </h3>
+                    <p
+                      style={{ color: colorSettingsDefault.textColor }}
+                      className={cn(fontSettingsDefault.textFontSize)}
+                    >
+                      {useFormattedTime(exp.startDate, localeIso)} -{" "}
+                      {exp.endDate
+                        ? useFormattedTime(exp.endDate, localeIso)
+                        : t("General.present")}
+                    </p>
+                  </div>
+                  <h4
                     style={{ color: colorSettingsDefault.textColor }}
                     className={cn(
-                      "text-left",
-                      fontSettingsDefault.textFontSize
+                      "font-normal me-auto",
+                      fontSettingsDefault.h3FontSize
                     )}
                   >
-                    <span
-                      style={{ color: colorSettingsDefault.textColor }}
-                      className={cn(fontSettingsDefault.h3FontSize)}
-                    >
-                      {t("Projects.tech")}:
-                    </span>{" "}
-                    {project.technologies.join(", ")}
-                  </p>
-                )}
-                <Description
-                  color={colorSettingsDefault.descriptionColor}
-                  size={fontSettingsDefault.descriptionFontSize}
-                  state={project.description}
-                />
-              </div>
-            ))}
-          </div>
-        </Section>
-      )}
-      {store.certificates?.length > 0 && (
-        <Section
-          id="certificates"
-          title={t("Certificates.title")}
-          color={colorSettingsDefault.h2Color}
-          size={fontSettingsDefault.h2FontSize}
-          align={sectionSettingsDefault.align}
-          titleCase={sectionSettingsDefault.titleCase}
-          space={sectionSettingsDefault.spaceBetween}
-        >
-          {store.certificates.map((certificate, index) => (
-            <div key={index} className="flex flex-col w-full mb-2">
-              <div className="flex items-center justify-between w-full">
-                <h3
-                  className={cn(
-                    "font-semibold",
-                    fontSettingsDefault.h3FontSize
-                  )}
-                  style={{ color: colorSettingsDefault.h3Color }}
-                >
-                  {certificate.title}
-                </h3>
-                <p
-                  style={{ color: colorSettingsDefault.textColor }}
-                  className={cn(fontSettingsDefault.textFontSize)}
-                >
-                  {useFormattedTime(certificate.date, localeIso)}
-                </p>
-              </div>
-              <Description
-                color={colorSettingsDefault.descriptionColor}
-                size={fontSettingsDefault.descriptionFontSize}
-                state={certificate.description}
-              />
-            </div>
-          ))}
-        </Section>
-      )}
-      {store.references?.length > 0 && (
-        <Section
-          id="references"
-          title={t("References.title")}
-          color={colorSettingsDefault.h2Color}
-          size={fontSettingsDefault.h2FontSize}
-          align={sectionSettingsDefault.align}
-          titleCase={sectionSettingsDefault.titleCase}
-          space={sectionSettingsDefault.spaceBetween}
-        >
-          {store.references.map((ref, index) => (
-            <div key={index} className="flex flex-col w-full mb-2">
-              <div className="flex items-center justify-between w-full">
-                <h3
-                  className={cn(
-                    "font-semibold",
-                    fontSettingsDefault.h3FontSize
-                  )}
-                  style={{ color: colorSettingsDefault.h3Color }}
-                >
-                  {ref.name} - {ref.company}
-                </h3>
-                <div
-                  className={cn(
-                    "flex items-center",
-                    fontSettingsDefault.textFontSize
-                  )}
-                >
-                  {ref.email && (
-                    <a
-                      className={cn(fontSettingsDefault.hyperLinkFontSize)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href={`mailto:${ref.email}`}
-                      style={{ color: colorSettingsDefault.hyperLinkColor }}
-                    >
-                      {ref.email}
-                    </a>
-                  )}
-                  {ref.email && ref.phone && (
-                    <span className="mx-2 font-light">|</span>
-                  )}
-                  {ref.phone && (
-                    <a
-                      className={cn(fontSettingsDefault.hyperLinkFontSize)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href={`tel:${ref.phone}`}
-                      style={{ color: colorSettingsDefault.hyperLinkColor }}
-                    >
-                      {ref.phone}
-                    </a>
-                  )}
+                    {exp.company}, {exp.city}
+                  </h4>
+                  <Description
+                    color={colorSettingsDefault.descriptionColor}
+                    size={fontSettingsDefault.descriptionFontSize}
+                    state={exp.description}
+                  />
                 </div>
+              ))}
+            </Section>
+          )}
+          {store.education?.length > 0 && (
+            <Section
+              id="education"
+              title={t("Education.title")}
+              color={colorSettingsDefault.h2Color}
+              size={fontSettingsDefault.h2FontSize}
+              align={sectionSettingsDefault.align}
+              titleCase={sectionSettingsDefault.titleCase}
+              space={sectionSettingsDefault.spaceBetween}
+            >
+              {store.education.map((edu, index) => (
+                <div key={index} className="flex flex-col w-full mb-2">
+                  <div className="flex items-center justify-between w-full">
+                    <h3
+                      className={cn(
+                        "font-semibold",
+                        fontSettingsDefault.h3FontSize
+                      )}
+                      style={{ color: colorSettingsDefault.h3Color }}
+                    >
+                      {edu.degree} {locale === "en" ? "of" : "-"}{" "}
+                      {edu.fieldOfStudy}
+                    </h3>
+                    <p
+                      style={{ color: colorSettingsDefault.textColor }}
+                      className={cn(fontSettingsDefault.textFontSize)}
+                    >
+                      {useFormattedTime(edu.startDate, localeIso)} -{" "}
+                      {edu.endDate
+                        ? useFormattedTime(edu.endDate, localeIso)
+                        : t("General.present")}
+                    </p>
+                  </div>
+                  <h4
+                    style={{ color: colorSettingsDefault.textColor }}
+                    className={cn(
+                      "font-normal me-auto",
+                      fontSettingsDefault.h3FontSize
+                    )}
+                  >
+                    {edu.institution}, {edu.city}
+                  </h4>
+                  <Description
+                    color={colorSettingsDefault.descriptionColor}
+                    size={fontSettingsDefault.descriptionFontSize}
+                    state={edu.description}
+                  />
+                </div>
+              ))}
+            </Section>
+          )}
+          {store.projects?.length > 0 && (
+            <Section
+              id="projects"
+              title={t("Projects.title")}
+              color={colorSettingsDefault.h2Color}
+              size={fontSettingsDefault.h2FontSize}
+              align={sectionSettingsDefault.align}
+              titleCase={sectionSettingsDefault.titleCase}
+              space={sectionSettingsDefault.spaceBetween}
+            >
+              <div className="flex flex-col gap-4 w-full">
+                {store.projects.map((project, index) => (
+                  <div key={index} className="flex flex-col w-full">
+                    <div className="flex items-center justify-between w-full">
+                      <h3
+                        className={cn(
+                          "font-semibold",
+                          fontSettingsDefault.h3FontSize
+                        )}
+                        style={{ color: colorSettingsDefault.h3Color }}
+                      >
+                        {project.title}
+                      </h3>
+                      <div className="flex items-center gap-1">
+                        {project.liveLink && (
+                          <a
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={`https://${project.liveLink?.replace(
+                              "https://",
+                              ""
+                            )}`}
+                            className={cn(
+                              fontSettingsDefault.hyperLinkFontSize
+                            )}
+                            style={{
+                              color: colorSettingsDefault.hyperLinkColor,
+                            }}
+                          >
+                            {sectionSettingsDefault.projectLink === "icon" ? (
+                              <MdArrowOutward />
+                            ) : (
+                              t("Projects.live")
+                            )}
+                          </a>
+                        )}
+                        {project.liveLink && project.githubLink && (
+                          <span className="mx-2 opacity-50">|</span>
+                        )}
+                        {project.githubLink && (
+                          <a
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={`https://${project.githubLink?.replace(
+                              "https://",
+                              ""
+                            )}`}
+                            className={cn(
+                              fontSettingsDefault.hyperLinkFontSize
+                            )}
+                            style={{
+                              color: colorSettingsDefault.hyperLinkColor,
+                            }}
+                          >
+                            {sectionSettingsDefault.projectLink === "icon" ? (
+                              <SiGithub />
+                            ) : (
+                              t("Projects.github")
+                            )}
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                    {project?.technologies?.length > 0 && (
+                      <p
+                        style={{ color: colorSettingsDefault.textColor }}
+                        className={cn(
+                          "text-left",
+                          fontSettingsDefault.textFontSize
+                        )}
+                      >
+                        <span
+                          style={{ color: colorSettingsDefault.textColor }}
+                          className={cn(fontSettingsDefault.h3FontSize)}
+                        >
+                          {t("Projects.tech")}:
+                        </span>{" "}
+                        {project.technologies.join(", ")}
+                      </p>
+                    )}
+                    <Description
+                      color={colorSettingsDefault.descriptionColor}
+                      size={fontSettingsDefault.descriptionFontSize}
+                      state={project.description}
+                    />
+                  </div>
+                ))}
               </div>
-            </div>
-          ))}
-        </Section>
-      )}
-      {store.languages?.length > 0 && (
-        <Section
-          id="languages"
-          title={t("Languages.title")}
-          color={colorSettingsDefault.h2Color}
-          size={fontSettingsDefault.h2FontSize}
-          align={sectionSettingsDefault.align}
-          titleCase={sectionSettingsDefault.titleCase}
-          space={sectionSettingsDefault.spaceBetween}
-        >
-          {store.languages.map((lang, index) => (
-            <div key={index} className="flex flex-col w-full mb-2">
-              <div className="flex items-center justify-between w-full">
-                <h3
-                  className={cn(
-                    "font-semibold",
-                    fontSettingsDefault.h3FontSize
-                  )}
-                  style={{ color: colorSettingsDefault.h3Color }}
-                >
-                  {lang.language}
-                </h3>
-                <p
-                  style={{ color: colorSettingsDefault.textColor }}
-                  className={cn(fontSettingsDefault.textFontSize)}
-                >
-                  {LANG_OPTIONS.find((e) => e.value === lang.level)?.label}
-                </p>
-              </div>
-            </div>
-          ))}
-        </Section>
-      )}
-      {store.interests?.length > 0 && (
-        <Section
-          id="interests"
-          title={t("Interests.title")}
-          color={colorSettingsDefault.h2Color}
-          size={fontSettingsDefault.h2FontSize}
-          align={sectionSettingsDefault.align}
-          titleCase={sectionSettingsDefault.titleCase}
-          space={sectionSettingsDefault.spaceBetween}
-        >
-          <p
-            style={{ color: colorSettingsDefault.textColor }}
-            className={cn(
-              "w-full",
-              fontSettingsDefault.textFontSize,
-              sectionSettingsDefault.align
-            )}
-          >
-            {store.interests.join(", ")}
-          </p>
-        </Section>
-      )}
+            </Section>
+          )}
+          {store.certificates?.length > 0 && (
+            <Section
+              id="certificates"
+              title={t("Certificates.title")}
+              color={colorSettingsDefault.h2Color}
+              size={fontSettingsDefault.h2FontSize}
+              align={sectionSettingsDefault.align}
+              titleCase={sectionSettingsDefault.titleCase}
+              space={sectionSettingsDefault.spaceBetween}
+            >
+              {store.certificates.map((certificate, index) => (
+                <div key={index} className="flex flex-col w-full mb-2">
+                  <div className="flex items-center justify-between w-full">
+                    <h3
+                      className={cn(
+                        "font-semibold",
+                        fontSettingsDefault.h3FontSize
+                      )}
+                      style={{ color: colorSettingsDefault.h3Color }}
+                    >
+                      {certificate.title}
+                    </h3>
+                    <p
+                      style={{ color: colorSettingsDefault.textColor }}
+                      className={cn(fontSettingsDefault.textFontSize)}
+                    >
+                      {useFormattedTime(certificate.date, localeIso)}
+                    </p>
+                  </div>
+                  <Description
+                    color={colorSettingsDefault.descriptionColor}
+                    size={fontSettingsDefault.descriptionFontSize}
+                    state={certificate.description}
+                  />
+                </div>
+              ))}
+            </Section>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Template2;
+export default Template1;

@@ -5,8 +5,6 @@ import { PiReadCvLogo } from "react-icons/pi";
 import { FiMinimize } from "react-icons/fi";
 import TemplateSettings from "@/components/settings/TemplateSettings";
 import Loading from "@/components/shared/Loading";
-import Button from "../common/Button";
-import { TbWindowMaximize } from "react-icons/tb";
 import Template2 from "../templates/Template2";
 
 const Template1 = dynamic(() => import("@/components/templates/Template1"), {
@@ -73,7 +71,7 @@ const CVPreview = () => {
             show ? "h-[90lvh] print:h-fit print:overflow-hidden" : ""
           }`}
         >
-          <Template1 />
+          <Template2 />
         </div>
       </div>
     </>
