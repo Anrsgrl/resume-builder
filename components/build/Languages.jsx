@@ -6,7 +6,7 @@ import Input from "@/components/common/Input";
 import Button from "@/components/common/Button";
 import Select from "@/components/common/Select";
 import Example from "@/components/shared/Example";
-import { LANGUAGE_OPTIONS, LANGUAGE_OPTIONS_AZ } from "@/utils/constants";
+import { LANGUAGE_OPTIONS } from "@/utils/constants";
 import { handleMoveItem } from "@/utils/helpers";
 import { MdPlayArrow } from "react-icons/md";
 import { TbProgress } from "react-icons/tb";
@@ -89,7 +89,6 @@ const Languages = () => {
 
   //* ISO
   const locale = useLocale();
-  const LANG_OPTIONS = locale === "en" ? LANGUAGE_OPTIONS : LANGUAGE_OPTIONS_AZ;
 
   return (
     <div className="flex flex-col gap-2 border-b border-dashed border-gray-400">
@@ -116,7 +115,7 @@ const Languages = () => {
               label={t("language") + "*"}
             />
             <Select
-              options={LANG_OPTIONS}
+              options={LANGUAGE_OPTIONS}
               state={newLanguage.level}
               setState={(value) =>
                 setNewLanguage({ ...newLanguage, level: value })
@@ -156,7 +155,7 @@ const Languages = () => {
                       <strong className="text-main">
                         <TbProgress />
                       </strong>{" "}
-                      {LANG_OPTIONS.find((e) => e.value === lang.level).label}
+                      {t(lang.level)}
                     </p>
                   </Example>
                 ))}

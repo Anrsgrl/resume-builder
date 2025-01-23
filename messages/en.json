@@ -139,7 +139,12 @@
         "error": "Both Language and level must be provided to add language",
         "close": "Close",
         "edit": "Update",
-        "success": "Successfully edited!"
+        "success": "Successfully edited!",
+        "elementary": "Elementary Proficiency",
+        "limited": "Limited Working Proficiency",
+        "pro": "Professional Working Proficiency",
+        "fullPro": "Full Professional Proficiency",
+        "native": "Native or Bilingual Proficiency"
     },
     "Template": {
         "or": "or",

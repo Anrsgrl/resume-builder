@@ -141,7 +141,12 @@
       "error": "Dil və səviyyə daxil edilməlidir",
       "close": "Ləğv et",
       "success": "Uğurla düzəldildi!",
-      "edit": "Düzəliş et"
+      "edit": "Düzəliş et",
+      "elementary": "Elementar",
+      "limited": "Məhdud iş bacarığı",
+      "pro": "Peşəkar iş bacarığı",
+      "fullPro": "Tam peşəkar bacarıq",
+      "native": "Ana dili və ya iki dildə sərbəstlik"
     },
     "Template": {
       "or": "və ya",

@@ -1,6 +1,12 @@
 import React from "react";
 import { cn, useFormattedTime } from "@/utils/helpers";
-import { LOCALES, SOCIALS, uiSans } from "@/utils/constants";
+import {
+  LANGUAGE_OPTIONS,
+  LANGUAGE_OPTIONS_AZ,
+  LOCALES,
+  SOCIALS,
+  uiSans,
+} from "@/utils/constants";
 import useStore from "@/store/store";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
@@ -20,7 +26,7 @@ const Section = ({
 }) => {
   return (
     <section
-      id={`template1-${id}`}
+      id={`template2-${id}`}
       className={cn(
         "flex items-center justify-center flex-col gap-2 text-center w-full px-8",
         space
@@ -65,11 +71,12 @@ const handleFindStyle = (state, x, y, z) => {
   }
 };
 
-const Template1 = ({}) => {
+const Template2 = ({}) => {
   const { store } = useStore();
   const { template } = useTemplateStore();
   const t = useTranslations();
   const locale = useLocale();
+  const LANG_OPTIONS = locale === "en" ? LANGUAGE_OPTIONS : LANGUAGE_OPTIONS_AZ;
 
   const localeIso = React.useMemo(
     () => LOCALES.find((lang) => lang.value === locale)?.iso || "en-US",
@@ -642,7 +649,7 @@ const Template1 = ({}) => {
                   style={{ color: colorSettingsDefault.textColor }}
                   className={cn(fontSettingsDefault.textFontSize)}
                 >
-                  {t(`Languages.${lang.level}`)}
+                  {LANG_OPTIONS.find((e) => e.value === lang.level)?.label}
                 </p>
               </div>
             </div>
@@ -675,4 +682,4 @@ const Template1 = ({}) => {
   );
 };
 
-export default Template1;
+export default Template2;

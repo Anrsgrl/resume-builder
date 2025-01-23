@@ -7,6 +7,7 @@ import TemplateSettings from "@/components/settings/TemplateSettings";
 import Loading from "@/components/shared/Loading";
 import Button from "../common/Button";
 import { TbWindowMaximize } from "react-icons/tb";
+import Template2 from "../templates/Template2";
 
 const Template1 = dynamic(() => import("@/components/templates/Template1"), {
   ssr: false,

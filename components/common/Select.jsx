@@ -1,4 +1,5 @@
 import { cn } from "@/utils/helpers";
+import { useTranslations } from "next-intl";
 
 const Select = ({
   state,
@@ -10,6 +11,7 @@ const Select = ({
   className__select,
   className__option,
 }) => {
+  const t = useTranslations();
   return (
     <div className={cn("relative w-full", className)}>
       <select
@@ -30,10 +32,10 @@ const Select = ({
         {options.map((option, index) => (
           <option
             key={index}
-            value={option.value}
+            value={option.value ? option.value : option}
             className={cn("text-black", className__option)}
           >
-            {option.label}
+            {t(`Languages.${option.value ? option.value : option}`)}
           </option>
         ))}
       </select>
