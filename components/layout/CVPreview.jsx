@@ -5,6 +5,8 @@ import { PiReadCvLogo } from "react-icons/pi";
 import { FiMinimize } from "react-icons/fi";
 import TemplateSettings from "@/components/settings/TemplateSettings";
 import Loading from "@/components/shared/Loading";
+import Button from "../common/Button";
+import { TbWindowMaximize } from "react-icons/tb";
 
 const Template1 = dynamic(() => import("@/components/templates/Template1"), {
   ssr: false,
@@ -58,16 +60,16 @@ const CVPreview = () => {
         )}
       </button>
       <div
-        className={`flex flex-col items-center justify-center print:h-max animation-all ${
+        className={`flex flex-col items-center justify-center print:h-fit animation-all ${
           show
-            ? "fixed print:relative inset-0 z-40 overflow-visible py-4 print:py-0 bg-zinc-900/50 min-h-lvh backdrop-blur-lg"
-            : "hidden xl:block print:block max-h-[95lvh] print:max-h-max overflow-auto"
+            ? "fixed print:relative inset-0 z-40 overflow-visible py-4 print:py-0 bg-zinc-900/50 min-h-[95lvh] backdrop-blur-lg"
+            : "hidden xl:block print:block max-h-[95lvh] print:max-h-fit overflow-auto"
         }`}
       >
-        <TemplateSettings />
+        <TemplateSettings openReview={openReview} show={show} />
         <div
-          className={`w-full overflow-hidden lg:overflow-auto print:overflow-visible flex justify-center ${
-            show ? "h-[90lvh] print:h-fit" : ""
+          className={`w-full overflow-auto print:overflow-visible print:w-full print:flex print:justify-start print:grow print:m-0 print:p-0 ${
+            show ? "h-[90lvh] print:h-fit print:overflow-hidden" : ""
           }`}
         >
           <Template1 />
