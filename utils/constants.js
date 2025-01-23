@@ -38,6 +38,7 @@ export const LANGUAGE_OPTIONS = [
 export const LOCALES = [
   { value: "az", label: "AZ", iso: "az-AZ", description: "Azərbaycan dili" },
   { value: "en", label: "US", iso: "en-US", description: "English" },
+  { value: "tr", label: "TR", iso: "tr-TR", description: "Türkçe" },
 ];
 
 export const SOCIALS = [
