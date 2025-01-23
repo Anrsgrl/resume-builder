@@ -14,7 +14,7 @@ Resume Builder is a free and simple tool that allows users to build their resume
 
 | Template 1                                                      | Template 2                                                     
 | ------------------------------------------------------------ | ----------------------------------------------------------- |
-| <img src="assets/templates/template1.webp" width="200px" /> | <img src="assets/templates/template2.webp" width="200px" /> | <img src="https://i.imgur.com/Dwv8Y7f.jpg" width="200px" /> |
+| <img src="assets/templates/template1.webp" width="250px" /> | <img src="assets/templates/template2.webp" width="250px" /> |
 
 
 ## Features
