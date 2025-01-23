@@ -231,7 +231,7 @@ const Template1 = ({}) => {
           )}
         </p>
       </div>
-      {store.summary !== "" && (
+      {store.summary !== "" && store.summary !== "<p><br></p>" && (
         <Section
           id="summary"
           title={t("Personal.summary")}
