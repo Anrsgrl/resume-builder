@@ -17,7 +17,7 @@ import JSONMenu from "@/components/settings/JSONMenu";
 import MarginMenu from "@/components/settings/MarginMenu";
 import { TbWindowMaximize, TbWindowMinimize } from "react-icons/tb";
 
-const TemplateSettings = ({ openReview, show }) => {
+const TemplateSettings = ({ openReview, show, setTemplateModal }) => {
   const { template, setTemplate } = useTemplateStore();
   const [tabMenu, setTabMenu] = useState("main");
   const [settingTab, setSettingTab] = useState("main");
@@ -111,7 +111,13 @@ const TemplateSettings = ({ openReview, show }) => {
         <Menu label={t("customize")} icon={<FaPaintBrush size={16} />}>
           {
             {
-              main: <MainMenu setTabMenu={setTabMenu} reset={resetAll} />,
+              main: (
+                <MainMenu
+                  setTabMenu={setTabMenu}
+                  reset={resetAll}
+                  setTemplateModal={setTemplateModal}
+                />
+              ),
               sections: (
                 <SectionMenu
                   setTabMenu={setTabMenu}

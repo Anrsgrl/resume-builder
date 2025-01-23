@@ -274,7 +274,7 @@ const Template1 = ({}) => {
                     ? "justify-start"
                     : template.align === "right"
                     ? "justify-end"
-                    : "justify-center"
+                    : "justify-start"
                 }`}
               >
                 {Object.keys(store.socialLinks).map((key) => {
@@ -340,8 +340,9 @@ const Template1 = ({}) => {
                   sectionSettingsDefault.align
                 )}
               >
-                {store.skills?.map((e) => (
+                {store.skills?.map((e, index) => (
                   <span
+                    key={index}
                     style={{
                       backgroundColor: colorSettingsDefault.hyperLinkColor,
                     }}

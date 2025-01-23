@@ -198,7 +198,9 @@
         "customAdd": "Add custom margin",
         "customError": "Please select section and margin",
         "customSuccess": "Custom margin successfully added!",
-        "customReset": "Reset custom margin"
+        "customReset": "Reset custom margin",
+        "template": "Template",
+        "templateSuccess": "Template {number} successfully selected!"
     },
     "Footer": {
         "starOnGitHub": "Star on GitHub",

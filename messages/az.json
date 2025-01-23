@@ -200,7 +200,9 @@
       "customAdd": "Xüsusi məsafə əlavə et",
       "customError": "Zəhmət olmasa bölümü və məsafəni seçin",
       "customSuccess": "Xüsusi məsafə uğurla əlavə edildi!",
-      "customReset": "Ləğv et"
+      "customReset": "Ləğv et",
+      "template": "Şablon",
+      "templateSuccess": "Şablon {number} uğurla seçildi!"
     },
     "Footer": {
       "starOnGitHub": "GitHub-da Ulduzla",

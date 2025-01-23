@@ -3,7 +3,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { useTranslations } from "next-intl";
 import useTemplateStore from "@/store/template";
 
-const MainMenu = ({ setTabMenu, reset }) => {
+const MainMenu = ({ setTabMenu, setTemplateModal, reset }) => {
   const {
     template: { name },
     setTemplate,
@@ -12,7 +12,11 @@ const MainMenu = ({ setTabMenu, reset }) => {
   const t = useTranslations("Template");
   return (
     <>
-      <button type="button" className="menu-item text-center">
+      <button
+        type="button"
+        className="menu-item text-center"
+        onClick={() => setTemplateModal(true)}
+      >
         {t("change")}
       </button>
       <div className="menu-item w-full font-normal">

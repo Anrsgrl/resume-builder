@@ -5,16 +5,22 @@ import { PiReadCvLogo } from "react-icons/pi";
 import { FiMinimize } from "react-icons/fi";
 import TemplateSettings from "@/components/settings/TemplateSettings";
 import Loading from "@/components/shared/Loading";
-import Template2 from "../templates/Template2";
+import ChangeTemplate from "@/components/settings/ChangeTemplate";
+import useTemplateStore from "@/store/template";
 
 const Template1 = dynamic(() => import("@/components/templates/Template1"), {
   ssr: false,
   loading: () => <Loading />,
 });
+const Template2 = dynamic(() => import("@/components/templates/Template2"), {
+  ssr: false,
+  loading: () => <Loading />,
+});
 
 const CVPreview = () => {
+  const { template, setTemplate } = useTemplateStore();
   const [show, setShow] = useState(false);
-
+  const [templateModal, setTemplateModal] = useState(false);
   const openReview = () => {
     setShow(!show);
     if (show) {
@@ -58,6 +64,7 @@ const CVPreview = () => {
           />
         )}
       </button>
+      <ChangeTemplate open={templateModal} setOpen={setTemplateModal} />
       <div
         className={`flex flex-col items-center justify-center print:h-fit animation-all ${
           show
@@ -65,13 +72,23 @@ const CVPreview = () => {
             : "hidden xl:block print:block max-h-[95lvh] print:max-h-fit overflow-auto"
         }`}
       >
-        <TemplateSettings openReview={openReview} show={show} />
+        <TemplateSettings
+          openReview={openReview}
+          show={show}
+          templateModal={templateModal}
+          setTemplateModal={setTemplateModal}
+        />
         <div
           className={`w-full overflow-auto print:overflow-visible print:w-full print:flex print:justify-start print:grow print:m-0 print:p-0 ${
             show ? "h-[90lvh] print:h-fit print:overflow-hidden" : ""
           }`}
         >
-          <Template2 />
+          {
+            {
+              1: <Template1 />,
+              2: <Template2 />,
+            }[template.templateNumber]
+          }
         </div>
       </div>
     </>
