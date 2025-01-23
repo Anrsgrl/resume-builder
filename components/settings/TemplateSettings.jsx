@@ -15,8 +15,9 @@ import { RiSettings3Fill } from "react-icons/ri";
 import Settings from "@/components/settings/Settings";
 import JSONMenu from "@/components/settings/JSONMenu";
 import MarginMenu from "@/components/settings/MarginMenu";
+import { TbWindowMaximize, TbWindowMinimize } from "react-icons/tb";
 
-const TemplateSettings = () => {
+const TemplateSettings = ({ openReview, show }) => {
   const { template, setTemplate } = useTemplateStore();
   const [tabMenu, setTabMenu] = useState("main");
   const [settingTab, setSettingTab] = useState("main");
@@ -31,7 +32,9 @@ const TemplateSettings = () => {
     document.title = originalTitle;
   };
 
-  //* Template reset functions
+  //? Template reset functions
+
+  //* Fonts
   const resetFonts = (message) => {
     try {
       setTemplate("fontFamily", "");
@@ -47,6 +50,7 @@ const TemplateSettings = () => {
     }
   };
 
+  //* Colors
   const resetColors = (message) => {
     try {
       setTemplate("h1Color", "");
@@ -61,6 +65,7 @@ const TemplateSettings = () => {
     }
   };
 
+  //* Sections
   const resetSections = (message) => {
     try {
       setTemplate("imageSize", "");
@@ -74,6 +79,7 @@ const TemplateSettings = () => {
     }
   };
 
+  //* All
   const resetAll = () => {
     try {
       setTemplate("name", "CV");
@@ -87,7 +93,11 @@ const TemplateSettings = () => {
   };
 
   return (
-    <div className="my-4 text-center flex flex-col xs:flex-row items-center justify-center gap-1 sticky top-0 lg:left-2/4 print:hidden z-[99]">
+    <div
+      className={`my-4 text-center flex flex-col xs:flex-row items-center justify-center gap-1 sticky top-0 lg:left-2/4 ${
+        show ? "lg:-translate-x-2/4" : ""
+      } print:hidden z-[99]`}
+    >
       <Button
         onClick={handlePrint}
         className={`bg-sky-800 border-2 border-sky-700 text-white hover:bg-sky-800/90 block`}
@@ -138,6 +148,18 @@ const TemplateSettings = () => {
           }
         </Menu>
       </div>
+      <Button
+        className={
+          "bg-zinc-800 border-2 border-zinc-700 text-white hover:bg-zinc-800/90 flex py-2 hidden xl:block hover:scale-90 animation-all"
+        }
+        onClick={openReview}
+      >
+        {!show ? (
+          <TbWindowMaximize size={16} className="rotate-[270deg]" />
+        ) : (
+          <TbWindowMinimize size={16} className="rotate-[270deg]" />
+        )}
+      </Button>
     </div>
   );
 };

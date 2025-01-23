@@ -59,7 +59,7 @@ const Menu = ({
       ref={menuRef}
     >
       <Button
-        id="menu-button"
+        id={`${label}-menu-button`}
         className={cn(
           `bg-zinc-800 border-2 border-zinc-700 text-white hover:bg-zinc-800/90`,
           className__button

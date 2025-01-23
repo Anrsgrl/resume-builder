@@ -84,20 +84,16 @@ const CustomMargin = ({ setTabMenu }) => {
           <span className="text-xs text-white/40">px</span>
         </div>
       </div>
-      <div className="menu-item">
-        <button type="button" onClick={addCustomMargin}>
-          {t("Template.customAdd")}
-        </button>
-      </div>
-      <div className="menu-item">
-        <button
-          type="button"
-          onClick={() => window.location.reload()}
-          className="text-red-400"
-        >
-          {t("Template.customReset")}
-        </button>
-      </div>
+      <button type="button" onClick={addCustomMargin} className="menu-item">
+        {t("Template.customAdd")}
+      </button>
+      <button
+        type="button"
+        onClick={() => window.location.reload()}
+        className="text-red-400 menu-item"
+      >
+        {t("Template.customReset")}
+      </button>
     </>
   );
 };
