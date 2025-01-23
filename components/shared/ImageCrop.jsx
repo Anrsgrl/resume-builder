@@ -12,7 +12,6 @@ const ImageCrop = ({ open, image, onCropDone, onCropCancel }) => {
 
   const onCropComplete = (croppedArea, croppedAreaPixels) => {
     setCroppedArea(croppedAreaPixels);
-    console.log(croppedArea, croppedAreaPixels);
   };
 
   return (
@@ -38,7 +37,6 @@ const ImageCrop = ({ open, image, onCropDone, onCropCancel }) => {
           type="button"
           onClick={() => onCropDone(croppedArea)}
           className={`aspect-square text-white bg-main border-main hover:bg-main/70`}
-          main
         >
           <IoCheckmarkDoneCircleSharp size={24} />
         </Button>

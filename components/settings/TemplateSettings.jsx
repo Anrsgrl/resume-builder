@@ -24,10 +24,12 @@ const TemplateSettings = ({ openReview, show }) => {
   const { name, surname } = useStore();
   const t = useTranslations("Template");
 
+  const templateName = template.name !== "CV" ? template.name : "";
+
   //* Print function
   const handlePrint = () => {
     const originalTitle = document.title;
-    document.title = template.name || `${name} ${surname} - CV`;
+    document.title = templateName || `${name} ${surname} - CV`;
     window.print();
     document.title = originalTitle;
   };
