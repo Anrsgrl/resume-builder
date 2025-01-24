@@ -22,6 +22,12 @@ body {
 }
 
 
+@layer utilities {
+  .print-exact{
+    -webkit-print-color-adjust: exact;
+  }
+}
+
 @layer components {
   .animation-all {
     @apply transition-all ease-in-out duration-300;
@@ -87,7 +93,8 @@ input[type=number] {
 
 /** Print screen optimizations */
 @media print {
-  body {-webkit-print-color-adjust: exact;}
+  html {border: none; outline: none;}
+  body, #root {border: none; outline: none;}
 }
   
 @page { size: auto;  margin: 0mm; }

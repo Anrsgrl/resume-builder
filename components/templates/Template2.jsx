@@ -335,7 +335,7 @@ const Template1 = ({}) => {
               <p
                 style={{ color: colorSettingsDefault.textColor }}
                 className={cn(
-                  "w-full flex flex-wrap gap-1",
+                  "w-full flex flex-wrap gap-1 print-exact",
                   fontSettingsDefault.textFontSize,
                   sectionSettingsDefault.align
                 )}
