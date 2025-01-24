@@ -26,7 +26,7 @@ const Button = ({
       )}
       <div
         className={cn(
-          `uppercase text-xs sm:text-sm animation-all group-hover:text-white`,
+          `uppercase text-xs sm:text-sm animation-all group-hover:text-white select-none`,
           className__children
         )}
       >

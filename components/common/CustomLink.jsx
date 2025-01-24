@@ -20,7 +20,7 @@ const CustomLink = ({
       {...props}
       type="button"
       className={cn(
-        `flex items-center gap-1 animation-all group overflow-hidden px-3 py-1 rounded-md text-main cursor-pointer border border-main hover:border-main hover:bg-main font-semibold ${
+        `flex items-center gap-1 animation-all group overflow-hidden px-3 py-1 rounded-md text-main cursor-pointer border border-main hover:border-main hover:bg-main font-semibold select-none ${
           prev && "flex-row-reverse"
         }`,
         className
