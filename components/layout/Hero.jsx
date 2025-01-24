@@ -12,7 +12,7 @@ const Heading = ({ title, free }) => {
     <h1 className="text-white text-3xl font-bold text-center">
       {title}
       <span className="font-bold relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-main to-main/80 animate-glow uppercase">
-        {free}
+        {" "} {free}
       </span>
     </h1>
   );
