@@ -50,3 +50,11 @@ export const handleMoveItem = (
 export const copyToClipboard = (text) => {
   navigator.clipboard.writeText(text);
 };
+
+//* Scroll
+export const scrollToSection = (top) => {
+  window.scrollTo({
+    top: top,
+    behavior: "smooth",
+  });
+};
