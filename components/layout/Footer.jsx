@@ -20,7 +20,7 @@ export default function Footer() {
     year: new Date().getFullYear(),
   });
   return (
-    <footer className="w-full bg-back border-t border-main text-white py-6 text-center print:hidden">
+    <footer className="w-full bg-zinc-900 border-t border-main text-white py-6 text-center print:hidden">
       <div className="container mx-auto flex flex-col items-center gap-4">
         <a
           href="https://github.com/Anrsgrl/resume-builder"
