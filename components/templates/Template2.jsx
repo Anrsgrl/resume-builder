@@ -17,13 +17,15 @@ const Section = ({
   size,
   titleCase,
   space,
+  className,
 }) => {
   return (
     <section
       id={`template1-${id}`}
       className={cn(
-        "flex items-center justify-center flex-col gap-2 text-center w-full px-8",
-        space
+        "flex items-center justify-center flex-col gap-2 text-center w-full",
+        space,
+        className
       )}
     >
       <h2
@@ -160,21 +162,27 @@ const Template1 = ({}) => {
       }}
       className="w-[240mm] min-h-[286mm] bg-white my-0 mx-auto p-2 rounded overflow-x-hidden overflow-y-visible"
     >
-      <div className="flex items-center gap-1">
+      <div
+        className={`flex items-center gap-1 px-8 ${
+          sectionSettingsDefault.align === "text-right"
+            ? "flex-row-reverse"
+            : "flex-row"
+        }`}
+      >
         {store.image && (
           <Image
             src={store.image}
             height={sectionSettingsDefault.imageSize}
             width={sectionSettingsDefault.imageSize}
             alt={t("Personal.title")}
-            className="rounded-full ms-8"
+            className="rounded-full"
           />
         )}
-        <div className="flex flex-col items-center w-full text-center px-8">
+        <div className="flex flex-col items-center w-full text-center px-4">
           <h1
             style={{ color: colorSettingsDefault.h1Color }}
             className={cn(
-              "whitespace-nowrap w-full uppercase font-bold",
+              `whitespace-nowrap w-full uppercase font-bold`,
               sectionSettingsDefault.align,
               fontSettingsDefault.h1FontSize
             )}
@@ -245,6 +253,7 @@ const Template1 = ({}) => {
           align={sectionSettingsDefault.align}
           titleCase={sectionSettingsDefault.titleCase}
           space={sectionSettingsDefault.spaceBetween}
+          className={`px-8`}
         >
           <p
             dangerouslySetInnerHTML={{ __html: store.summary }}
@@ -256,7 +265,7 @@ const Template1 = ({}) => {
           ></p>
         </Section>
       )}
-      <div className="grid grid-cols-[30%_70%] gap-4 mt-4">
+      <div className="grid grid-cols-[25%_65%] gap-4 mt-4 w-full justify-between px-8">
         <div className="flex flex-col">
           {Object.values(store.socialLinks || {}).some((link) => link) && (
             <Section
@@ -335,7 +344,11 @@ const Template1 = ({}) => {
               <p
                 style={{ color: colorSettingsDefault.textColor }}
                 className={cn(
-                  "w-full flex flex-wrap gap-1 print-exact",
+                  `w-full flex flex-wrap gap-1 print-exact ${
+                    sectionSettingsDefault.align === "text-right"
+                      ? "justify-end"
+                      : ""
+                  }`,
                   fontSettingsDefault.textFontSize,
                   sectionSettingsDefault.align
                 )}
@@ -369,7 +382,11 @@ const Template1 = ({}) => {
                   <div className="flex flex-col w-full">
                     <h3
                       className={cn(
-                        "font-semibold flex flex-col items-start",
+                        `font-semibold flex flex-col ${
+                          sectionSettingsDefault.align === "text-right"
+                            ? "items-end"
+                            : "items-start"
+                        }`,
                         fontSettingsDefault.h3FontSize
                       )}
                       style={{ color: colorSettingsDefault.h3Color }}
@@ -379,7 +396,11 @@ const Template1 = ({}) => {
                     </h3>
                     <div
                       className={cn(
-                        "flex flex-col items-start",
+                        `flex flex-col ${
+                          sectionSettingsDefault.align === "text-right"
+                            ? "items-end"
+                            : "items-start"
+                        }`,
                         fontSettingsDefault.textFontSize
                       )}
                     >
@@ -423,7 +444,12 @@ const Template1 = ({}) => {
             >
               {store.languages.map((lang, index) => (
                 <div key={index} className="flex flex-col w-full mb-2">
-                  <div className="flex flex-col w-full text-left">
+                  <div
+                    className={cn(
+                      "flex flex-col w-full",
+                      sectionSettingsDefault.align
+                    )}
+                  >
                     <h3
                       className={cn(
                         "font-semibold",
