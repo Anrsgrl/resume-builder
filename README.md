@@ -10,12 +10,18 @@ Resume Builder is a free and simple tool that allows users to build their resume
 
 </div>
 
+## Templates
+
+| Template 1                                                      | Template 2                                                     
+| ------------------------------------------------------------ | ----------------------------------------------------------- |
+| <img src="assets/templates/template1.webp" width="250px" /> | <img src="assets/templates/template2.webp" width="250px" /> |
+
 
 ## Features
 
 - Build a professional resume with ease.
 - No sign-up required for creating and downloading resumes.
-- Multilingual support with initial language options (English and Azerbaijani).
+- Multilingual support with initial language options (English, Turkish and Azerbaijani).
 - Data is stored locally in the browser using `localStorage`.
 
 ## Technologies Used
@@ -36,7 +42,6 @@ Data entered by users is stored securely in the browser's `localStorage`. Please
 ## TODO
 
 - Add more templates for different types of resumes.
-- Implement resume customization options for users.
 - Extend multilingual support with additional languages.
 - Enhance UI/UX design for a better user experience.
 
