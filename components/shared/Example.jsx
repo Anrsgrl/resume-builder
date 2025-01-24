@@ -21,14 +21,14 @@ const Example = ({
       key={index}
       className="bg-zinc-700/10 border-2 border-zinc-600 text-white hover:bg-zinc-700/20 px-4 py-2 rounded-md animation-all mt-2 text-sm group"
     >
-      <summary className="font-bold text-white/80 flex items-center justify-between cursor-pointer text-base">
-        <span className="flex items-center gap-1">
+      <summary className="font-bold text-white/80 flex flex-col-reverse xs:flex-row items-center justify-between cursor-pointer text-base">
+        <span className="flex items-center gap-1 w-full">
           <span className="text-sm max-w-full truncate">{title}</span>{" "}
           {cursor && (
             <TbClick className={`group-hover:text-main animation-all`} />
           )}
         </span>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 mr-auto xs:mr-0">
           {up && down && (
             <div className="flex items-center gap-2">
               <button
@@ -49,12 +49,13 @@ const Example = ({
           )}
           <Menu
             icon={<PiDotsThreeOutlineVerticalFill />}
-            className__button={`bg-transparent border-0`}
+            className__button={`bg-transparent border-0 px-1`}
+            className__children={`w-44 xs:w-56`}
           >
             <button
               type="button"
               onClick={() => edit(index)}
-              className="menu-item w-full font-normal text-blue-400"
+              className="menu-item w-full font-normal text-blue-400 text-xs xs:text-sm"
             >
               {t("edit")}
               <FaEdit />
@@ -62,7 +63,7 @@ const Example = ({
             <button
               type="button"
               onClick={() => remove(index)}
-              className="menu-item w-full font-normal text-red-400"
+              className="menu-item w-full font-normal text-red-400 text-xs xs:text-sm"
             >
               {t("remove")}
               <FaTrash />
