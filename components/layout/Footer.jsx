@@ -1,71 +1,52 @@
 "use client";
-import { useEffect, useState } from "react";
-import CountUp from "react-countup";
-import { BsStarFill } from "react-icons/bs";
-import { SiGithub } from "react-icons/si";
 import { useTranslations } from "next-intl";
+import StarOnGithub from "@/components/layout/StarOnGithub";
+
+const Link = ({ label, url }) => {
+  return (
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      href={url}
+      className="hover:underline"
+    >
+      {label}
+    </a>
+  );
+};
 
 export default function Footer() {
   const t = useTranslations("Footer");
-  const [githubStars, setGithubStars] = useState(null);
 
-  useEffect(() => {
-    fetch("https://api.github.com/repos/Anrsgrl/resume-builder")
-      .then((res) => res.json())
-      .then((data) => setGithubStars(data.stargazers_count))
-      .catch((err) => console.error("Failed to fetch GitHub stars:", err));
-  }, []);
-
+  //* Copyright (c)
   const translatedCopyright = t("copyright", {
     year: new Date().getFullYear(),
   });
+
+  //* Links
+  const LINKS = [
+    {
+      label: t("codeOfConduct"),
+      url: "https://github.com/Anrsgrl/resume-builder/blob/main/CODE_OF_CONDUCT.md",
+    },
+    {
+      label: t("contributing"),
+      url: "https://github.com/Anrsgrl/resume-builder/blob/main/CONTRIBUTING.md",
+    },
+    {
+      label: t("security"),
+      url: "https://github.com/Anrsgrl/resume-builder/blob/main/SECURITY.md",
+    },
+  ];
+
   return (
     <footer className="w-full bg-zinc-900 border-t border-main text-white py-6 text-center print:hidden">
       <div className="container mx-auto flex flex-col items-center gap-4">
-        <a
-          href="https://github.com/Anrsgrl/resume-builder"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 px-4 py-2 rounded-md font-medium text-white hover:bg-gray-700 hover:bg-gray-600 transition duration-300"
-        >
-          <SiGithub size={20} />
-          <span>{t("starOnGitHub")}</span>
-
-          <span className="flex items-center gap-1 bg-gray-800 text-yellow-400 px-2 py-1 rounded-full text-sm">
-            <BsStarFill size={12} />
-            {githubStars === null ? (
-              "?"
-            ) : (
-              <CountUp start={0} end={githubStars} duration={2.5} />
-            )}
-          </span>
-        </a>
-
+        <StarOnGithub label={t("starOnGitHub")} />
         <div className="flex flex-wrap justify-center gap-4 text-sm px-2">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://github.com/Anrsgrl/resume-builder/blob/main/CODE_OF_CONDUCT.md"
-            className="hover:underline"
-          >
-            {t("codeOfConduct")}
-          </a>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://github.com/Anrsgrl/resume-builder/blob/main/CONTRIBUTING.md"
-            className="hover:underline"
-          >
-            {t("contributing")}
-          </a>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://github.com/Anrsgrl/resume-builder/blob/main/SECURITY.md"
-            className="hover:underline"
-          >
-            {t("security")}
-          </a>
+          {LINKS.map((link, index) => (
+            <Link key={index} label={link.label} url={link.url} />
+          ))}
         </div>
 
         <p className="text-xs text-gray-400">{translatedCopyright}</p>
