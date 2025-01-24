@@ -122,6 +122,7 @@ const TemplateSettings = ({ openReview, show, setTemplateModal }) => {
                 <SectionMenu
                   setTabMenu={setTabMenu}
                   reset={() => resetSections(true)}
+                  templateNumber={template.templateNumber}
                 />
               ),
               colors: (

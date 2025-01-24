@@ -31,7 +31,7 @@ const Select = ({ label, state, setState, options, className }) => {
   );
 };
 
-const SectionMenu = ({ setTabMenu, reset }) => {
+const SectionMenu = ({ setTabMenu, reset, templateNumber }) => {
   const {
     template: { imageSize, projectLink, spaceBetween, align, titleCase },
     setTemplate,
@@ -62,6 +62,11 @@ const SectionMenu = ({ setTabMenu, reset }) => {
     { value: "", icon: "AA" },
     { value: "normal", icon: "Aa" },
   ];
+
+  const alignExisting = [1];
+  const filteredAlignOptions = alignExisting.includes(templateNumber)
+    ? alignOptions
+    : alignOptions.filter((e) => e.value !== "");
 
   return (
     <>
@@ -98,7 +103,7 @@ const SectionMenu = ({ setTabMenu, reset }) => {
       <div id="align" className="menu-item">
         {t("align")}
         <div className="flex items-center gap-1">
-          {alignOptions.map((item, index) => (
+          {filteredAlignOptions.map((item, index) => (
             <button
               key={index}
               type="button"
