@@ -40,7 +40,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="w-full bg-zinc-900 border-t border-main text-white py-6 text-center print:hidden">
+    <footer className="w-full bg-zinc-950 border-t border-main text-white py-6 text-center print:hidden">
       <div className="container mx-auto flex flex-col items-center gap-4">
         <StarOnGithub label={t("starOnGitHub")} />
         <div className="flex flex-wrap justify-center gap-4 text-sm px-2">

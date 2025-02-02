@@ -19,7 +19,7 @@ export default async function RootLayout({ children, params }) {
       <body>
         <NextIntlClientProvider messages={messages}>
           <Toaster containerClassName="print:hidden" />
-          <main className="min-h-lvh">{children}</main>
+          <main className="min-h-lvh ">{children}</main>
           <Footer />
         </NextIntlClientProvider>
       </body>

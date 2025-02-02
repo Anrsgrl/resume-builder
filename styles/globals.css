@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+/* body {
   --dot-bg: #18181b;
   --dot-color: #848282;
   --dot-size: 1px;
@@ -19,6 +19,12 @@ body {
       )
       center / var(--dot-space) var(--dot-space),
     var(--dot-color);
+} */
+
+body{
+  background-color: #09090b;
+opacity: 0.8;
+background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, rgba(39, 39, 42, 0.2) 10px );
 }
 
 
