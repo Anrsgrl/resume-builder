@@ -11,7 +11,7 @@ const Heading = ({ title, free }) => {
   return (
     <h1 className="text-white text-3xl font-bold text-center">
       {title}
-      <span className="font-bold relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-main to-main/80 animate-glow uppercase  ml-2">
+      <span className="font-bold relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-main to-main/80 animate-glow uppercase ml-2">
         {free}
       </span>
     </h1>
