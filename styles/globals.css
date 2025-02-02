@@ -24,7 +24,7 @@
 body{
   background-color: #09090b;
 opacity: 0.8;
-background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, rgba(39, 39, 42, 0.2) 10px );
+background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, rgba(39, 39, 42, 0.1) 10px );
 }
 
 
