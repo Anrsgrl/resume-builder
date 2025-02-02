@@ -40,6 +40,7 @@ export const LOCALES = [
   { value: "en", label: "US", iso: "en-US", description: "English" },
   { value: "tr", label: "TR", iso: "tr-TR", description: "Türkçe" },
   { value: "ru", label: "RU", iso: "ru-RU", description: "Pусский" },
+  { value: "cn", label: "CN", iso: "zh-CN", description: "中文" },
 ];
 
 export const SOCIALS = [
